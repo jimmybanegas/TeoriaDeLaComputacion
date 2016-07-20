@@ -146,7 +146,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Proyecto Elaborado para la clase de TEORIA DE COMPUTACION SPS IV 2016   UNITEC por Jimmy Ramos  (21141016 )"/>
+          <text value="Proyecto Elaborado para la clase de TEORIA DE COMPUTACION SPS IV 2016 UNITEC por Jimmy Ramos  (21141016 )"/>
         </properties>
       </component>
     </children>

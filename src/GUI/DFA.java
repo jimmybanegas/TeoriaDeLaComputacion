@@ -28,9 +28,6 @@ public class DFA extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-      //  contentPane.add(graphComponent);
-
-       // panelGraph.add(graphComponent);
 
         automataDFA = new AutomataDFA();
 
@@ -125,20 +122,6 @@ public class DFA extends JDialog {
 
         panelGraph.setLayout(new BorderLayout());
         panelGraph.add(graphComponent,BorderLayout.CENTER);
-
-        /*javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(graphComponent, 500, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(graphComponent, 500, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );*/
-
     }
 
     private void showMessage(String s) {
