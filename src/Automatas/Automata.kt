@@ -7,7 +7,7 @@ abstract class Automata {
 
     val alfabeto = mutableListOf(String)
 
-    val transiciones = mutableListOf<Trasicion>()
+    val transiciones = mutableListOf<Transicion>()
 
     val estados = mutableListOf<Estado>()
 

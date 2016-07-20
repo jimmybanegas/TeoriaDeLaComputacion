@@ -1,5 +1,3 @@
-@file:Suppress("UNREACHABLE_CODE")
-
 package Automatas
 import java.lang.Object;
 
@@ -8,11 +6,11 @@ import java.lang.Object;
  */
 class Estado {
     var  vertice: Object? = null
-//    get() {return vertice}
+    get() {return vertice}
     set(value) {field=vertice}
 
     var nombre: String = ""
-   // get() {return nombre}
+    get() {return nombre}
     set(value) {field=nombre}
 
     constructor(nombre: String, vertice: Object) {

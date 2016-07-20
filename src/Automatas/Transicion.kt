@@ -2,7 +2,7 @@ package Automatas
 
 import java.lang.Object
 
-class Trasicion {
+class Transicion {
     var origen: Estado? = null
     get() {return origen}
     set(value) {field=origen}

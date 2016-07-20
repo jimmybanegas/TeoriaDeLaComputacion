@@ -12,7 +12,7 @@ class AutomataDFA : Automata() {
 
     override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: Object) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        transiciones.add(Trasicion(origen,destino,nombre,vertice))
+        transiciones.add(Transicion(origen,destino,nombre,vertice))
     }
 
     override fun evaluar(cadena: String) : Boolean {
@@ -50,18 +50,18 @@ class AutomataDFA : Automata() {
 
     private fun verificarCadena(evaluar: CharArray): Boolean {
        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        var stay = true
+
         for (i in 0..evaluar.size - 1) {
             for (c in alfabeto) {
                 if (c.equals( evaluar[i])) {
-                    stay = true
+                    return true
                     break
                 } else {
-                    stay = false
+                   return false
                 }
             }
         }
-        return stay
+        return true
     }
 
     private fun estadoInicialEsDeAceptacion(): Boolean {
