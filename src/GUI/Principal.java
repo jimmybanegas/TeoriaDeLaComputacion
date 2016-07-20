@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class Principal extends JDialog {
@@ -50,52 +51,34 @@ public class Principal extends JDialog {
             case 0:
                 DFA dfaWindow = new DFA();
 
-                dfaWindow.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                       // super.windowClosing(e);
-                        new Principal().setVisible(true);
-                    }
-                });
-
                 //Mostrar ventana de DFA
-                dfaWindow.pack();
-                dfaWindow.setLocation(500,300);
-                dfaWindow.setVisible(true);
+                ConfigurationForWindows.SetConfigurations(dfaWindow);
 
-                //Ocultar el parent o Principal.form
-                this.setVisible(false);
-                this.dispose();
+             /*   dfaWindow.pack();
+                dfaWindow.setSize(200, 200);
+                final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                final Dimension screenSize = toolkit.getScreenSize();
+                final int x = (screenSize.width - dfaWindow.getWidth()) / 2;
+                final int y = (screenSize.height - dfaWindow.getHeight()) / 2;
+                dfaWindow.setLocation(x, y);
 
-
+                dfaWindow.setVisible(true);*/
+                break;
             case 1:
                 Turing turingWindow = new Turing();
 
-                turingWindow.addWindowListener(new WindowAdapter(){
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        //super.windowClosing(e);
-                        new Principal().setVisible(true);
-                    }
-                });
+                ConfigurationForWindows.SetConfigurations(turingWindow);
 
-                //Mostrar ventana de Turing
-                turingWindow.pack();
-                turingWindow.setLocation(500,300);
-                turingWindow.setVisible(true);
-
-                //Ocultar el parent o Principal.form
-                this.setVisible(false);
-                this.dispose();
-
-
+                break;
+            default:
+                dispose();
         }
-
-        dispose();
+       // dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
+        setVisible(false);
         dispose();
     }
 

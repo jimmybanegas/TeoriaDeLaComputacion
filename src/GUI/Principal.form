@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.Principal">
   <grid id="cbd77" binding="contentPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="48" y="54" width="502" height="336"/>
+      <xy x="48" y="54" width="722" height="336"/>
     </constraints>
     <properties/>
     <clientProperties>
@@ -146,7 +146,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Proyecto Elaborado para la clase de TEORIA DE COMPUTACION SPS IV 2016   UNITEC por Jimmy Ramos  (21141016 )"/>
         </properties>
       </component>
     </children>

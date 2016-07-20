@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class DFA extends JDialog {
@@ -43,18 +44,20 @@ public class DFA extends JDialog {
 
     private void onOK() {
         // add your code here
-        dispose();
+       // dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
-        dispose();
+             this.setVisible(false);
+        this.dispose();
     }
 
     public static void main(String[] args) {
         DFA dialog = new DFA();
-        dialog.pack();
-        dialog.setVisible(true);
+        ConfigurationForWindows.SetConfigurations(dialog);
         System.exit(0);
     }
+
+
 }
