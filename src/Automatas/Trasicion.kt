@@ -1,12 +1,23 @@
 package Automatas
 
-import org.omg.CORBA.Object
+import java.lang.Object
 
 class Trasicion {
-    private var origen: Estado? = null
-    private var destino: Estado? = null
-    private var vertice: Object? = null
-    private var nombre: String = ""
+    var origen: Estado? = null
+    get() {return origen}
+    set(value) {field=origen}
+
+    var destino: Estado? = null
+    get() {return destino}
+    set(value) {field=destino}
+
+    var vertice: Object? = null
+    get() {return vertice}
+    set(value) {field=vertice}
+
+    var nombre: String = ""
+    get() {return nombre}
+    set(value) {field=nombre}
 
     //Constructor Default
     constructor()

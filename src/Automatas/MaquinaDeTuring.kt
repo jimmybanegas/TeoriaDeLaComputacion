@@ -16,7 +16,7 @@ class MaquinaDeTuring : Automata() {
     }
 
 
-    override fun evaluar(cadena: String) {
+    override fun evaluar(cadena: String) : Boolean {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

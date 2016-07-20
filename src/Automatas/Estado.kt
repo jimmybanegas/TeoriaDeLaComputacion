@@ -1,16 +1,19 @@
 @file:Suppress("UNREACHABLE_CODE")
 
 package Automatas
-
-import org.omg.CORBA.Object
-
+import java.lang.Object;
 
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
 class Estado {
-    private var  vertice: Object? = null
-    private var nombre: String = ""
+    var  vertice: Object? = null
+//    get() {return vertice}
+    set(value) {field=vertice}
+
+    var nombre: String = ""
+   // get() {return nombre}
+    set(value) {field=nombre}
 
     constructor(nombre: String, vertice: Object) {
         this.nombre = nombre

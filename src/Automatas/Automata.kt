@@ -5,13 +5,13 @@ package Automatas
  */
 abstract class Automata {
 
-    val alfabeto = listOf<String>()
+    val alfabeto = mutableListOf(String)
 
-    val transiciones = listOf<Trasicion>()
+    val transiciones = mutableListOf<Trasicion>()
 
-    val estados = listOf<Estado>()
+    val estados = mutableListOf<Estado>()
 
-    val estadosFinales = listOf<Estado>()
+    val estadosFinales = mutableListOf<Estado>()
 
     val estadoInicial = Estado()
    /* get() {return _estadoInicial}
@@ -21,6 +21,6 @@ abstract class Automata {
 
     abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: java.lang.Object)
 
-    abstract fun evaluar(cadena:String)
+    abstract fun evaluar(cadena:String): Boolean
 }
 
