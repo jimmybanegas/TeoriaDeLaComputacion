@@ -9,15 +9,14 @@ import javafx.scene.Scene
 import javafx.scene.layout.StackPane
 import javafx.stage.Stage
 import GUI.Principal
+import java.awt.Dimension
 
 fun main(args: Array<String>) {
     println("hola desde Kotlin")
 
     val dialog = Principal()
     dialog.pack()
-    dialog.alignmentX
-    dialog.alignmentY
+    dialog.setLocation(500,300)
     dialog.isVisible = true
-
 }
 

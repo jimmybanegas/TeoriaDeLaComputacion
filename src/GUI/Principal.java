@@ -7,8 +7,8 @@ public class Principal extends JDialog {
     private JPanel contentPanel;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JComboBox comboBox1;
-    private JLabel lblElijaAuotmata;
+    private JComboBox cmbSelectedAutomata;
+    private JLabel lblChooseAuotmata;
 
     public Principal() {
         setContentPane(contentPanel);
@@ -45,6 +45,52 @@ public class Principal extends JDialog {
 
     private void onOK() {
         // add your code here
+
+        switch (cmbSelectedAutomata.getSelectedIndex()){
+            case 0:
+                DFA dfaWindow = new DFA();
+
+                dfaWindow.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                       // super.windowClosing(e);
+                        new Principal().setVisible(true);
+                    }
+                });
+
+                //Mostrar ventana de DFA
+                dfaWindow.pack();
+                dfaWindow.setLocation(500,300);
+                dfaWindow.setVisible(true);
+
+                //Ocultar el parent o Principal.form
+                this.setVisible(false);
+                this.dispose();
+
+
+            case 1:
+                Turing turingWindow = new Turing();
+
+                turingWindow.addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        //super.windowClosing(e);
+                        new Principal().setVisible(true);
+                    }
+                });
+
+                //Mostrar ventana de Turing
+                turingWindow.pack();
+                turingWindow.setLocation(500,300);
+                turingWindow.setVisible(true);
+
+                //Ocultar el parent o Principal.form
+                this.setVisible(false);
+                this.dispose();
+
+
+        }
+
         dispose();
     }
 
