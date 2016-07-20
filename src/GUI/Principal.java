@@ -46,29 +46,18 @@ public class Principal extends JDialog {
 
     private void onOK() {
         // add your code here
-
         switch (cmbSelectedAutomata.getSelectedIndex()){
             case 0:
                 DFA dfaWindow = new DFA();
 
                 //Mostrar ventana de DFA
                 ConfigurationForWindows.SetConfigurations(dfaWindow);
-
-             /*   dfaWindow.pack();
-                dfaWindow.setSize(200, 200);
-                final Toolkit toolkit = Toolkit.getDefaultToolkit();
-                final Dimension screenSize = toolkit.getScreenSize();
-                final int x = (screenSize.width - dfaWindow.getWidth()) / 2;
-                final int y = (screenSize.height - dfaWindow.getHeight()) / 2;
-                dfaWindow.setLocation(x, y);
-
-                dfaWindow.setVisible(true);*/
                 break;
             case 1:
                 Turing turingWindow = new Turing();
 
+                //Mostrar ventana de Turing
                 ConfigurationForWindows.SetConfigurations(turingWindow);
-
                 break;
             default:
                 dispose();
