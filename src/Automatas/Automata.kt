@@ -1,26 +1,35 @@
 package Automatas
 
+
+import java.lang.Object;
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
 abstract class Automata {
 
     val alfabeto = mutableListOf(String)
+    //val alfabetoItems: List<String> get() = alfabeto.toList()
 
     val transiciones = mutableListOf<Transicion>()
+    val transaccionesItems: List<Transicion> get() = transiciones.toList()
 
     val estados = mutableListOf<Estado>()
+    val estadosItems: List<Estado> get() = estados.toList()
 
-    val estadosFinales = mutableListOf<Estado>()
+    var estadosDeAceptacion = mutableListOf<Estado>()
+    val aceptacionItems: List<Estado> get() = estadosDeAceptacion.toList()
+       // set(value) {field = estadosDeAceptacion}
 
-    val estadoInicial = Estado()
-   /* get() {return _estadoInicial}
-    set(value) {field = value}*/
+    var estadoInicial = Estado()
+//    get() {return estadoInicial}
+   // set(value) {field = estadoInicial}
 
-    abstract fun agregarEstado(nombre: String, vertice: java.lang.Object)
+    abstract fun agregarEstado(nombre: String, vertice: Object)
 
-    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: java.lang.Object)
+    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: Object)
 
     abstract fun evaluar(cadena:String): Boolean
+
+    abstract fun agregarEstadoAceptacion(estado: Estado)
 }
 

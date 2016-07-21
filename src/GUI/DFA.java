@@ -11,25 +11,32 @@ import com.mxgraph.view.mxGraph;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
+
 
 public class DFA extends JDialog {
+   // private static final AutomataDFA automataDFA = new AutomataDFA();
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JTextField textArea1;
     private JTextField textArea2;
     private JPanel panelGraph;
+    private JButton crearEstadoButton;
+    private JButton crearTransicionButton;
+    private JButton eliminarEstadoButton;
+    private JButton eliminarTransiciónButton;
     private static mxGraphComponent graphComponent;
     protected static mxGraph graph = new mxGraph();
     protected int valor = 0;
-    protected static AutomataDFA automataDFA;
+   protected static AutomataDFA automataDFA;
 
-    public DFA() {
+    public DFA(Object automataDFA) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        automataDFA = new AutomataDFA();
+        this.automataDFA = (AutomataDFA) automataDFA;
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -40,6 +47,13 @@ public class DFA extends JDialog {
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
+            }
+        });
+
+        crearEstadoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                onCrearEstado();
             }
         });
 
@@ -81,16 +95,16 @@ public class DFA extends JDialog {
                 graph.getModel().remove(evt.getProperty("cell"));
                 return;
             }
-            if(!automataDFA.CheckTransition(v1, nombre)){
+          /*  if(!automataDFA.CheckTransition(v1, nombre)){
                 showMessage("No se puede agregar una Transicion con el mismo valor!");
                 graph.getModel().remove(evt.getProperty("cell"));
                 return;
             }
             String name = String.valueOf(nombre);
             edge.setValue(name);
-            DFA.automataDFA.agregarTransicion(name,v1,v2,edge);
+            DFA.automataDFA.agregarTransicion(name,v1,v2,edge);*/
         });
-        graphComponent.getGraphControl().addMouseListener(new MouseAdapter(){
+      /*  graphComponent.getGraphControl().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseReleased(MouseEvent e) {
                 if(e.isPopupTrigger())
@@ -108,20 +122,112 @@ public class DFA extends JDialog {
                     try {
                         Object parent = graph.getDefaultParent();
                         String name = String.valueOf(valor++);
-                        Object v1 = graph.insertVertex(parent, null, "I"+name,x, y, 50, 50,
+                        Object v1 = graph.insertVertex(parent, null, "q"+name,x, y, 50, 50,
                                 "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;"
                                         +"fillColor=lightblue");
 
-                        automataDFA.agregarEstado("I"+name,v1);
+                        automataDFA.agregarEstado("q"+name,v1);
                     } finally {
                         graph.getModel().endUpdate();
                     }
                 }
             }
-        });
+        });*/
 
         panelGraph.setLayout(new BorderLayout());
         panelGraph.add(graphComponent,BorderLayout.CENTER);
+    }
+
+    private void onCrearEstado() {
+        Random rand = new Random();
+        long x  = rand.nextInt(600) + 1;
+        long y  = rand.nextInt(300) + 1;
+
+        graph.getModel().beginUpdate();
+        try {
+            Object parent = graph.getDefaultParent();
+            String name = String.valueOf(valor++);
+            boolean esInicial;
+            boolean esDeAceptacion;
+
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int inicial = JOptionPane.showConfirmDialog(this, "¿Es estado Inicial?", "Inicial", dialogButton);
+            if(inicial == 0) {
+
+               if(automataDFA.ExisteEstadoInicial()){
+                   int dialogButton2 = JOptionPane.YES_NO_OPTION;
+                   int inicial2 = JOptionPane.showConfirmDialog(this, "¿Ya hay inicial, desea cambiarlo?", "Inicial", dialogButton2);
+
+                   if(inicial2==0)
+                       esInicial = true;
+                   else
+                       esInicial = false;
+
+               }else
+               {
+                   esInicial = true;
+               }
+
+
+            } else {
+                esInicial =false;
+            }
+
+            int dialogButton2 = JOptionPane.YES_NO_OPTION;
+            int aceptacion = JOptionPane.showConfirmDialog(this, "¿Es estado de aceptación?", "Aceptación", dialogButton2);
+            if(aceptacion == 0) {
+                esDeAceptacion = true;
+            } else {
+                esDeAceptacion = false;
+            }
+
+            Object v1 = new Object();
+
+            Estado estado = new Estado("q"+name,v1);
+
+            if(esInicial&& esDeAceptacion){
+                 v1 = graph.insertVertex(parent, null, "q"+name,x, y, 50, 50,
+                        "resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightgreen;strokeColor=black");
+
+                automataDFA.setEstadoInicial(estado);
+                automataDFA.agregarEstadoAceptacion(estado);
+            }
+            else if(!esInicial && !esDeAceptacion){
+                 v1 = graph.insertVertex(parent, null, "q"+name,x, y, 50, 50,
+                        "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow;strokeColor=black");
+            }
+            else if(esInicial && !esDeAceptacion){
+                 v1 = graph.insertVertex(parent, null, "q"+name,x, y, 50, 50,
+                        "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightgreen;strokeColor=black");
+
+                automataDFA.setEstadoInicial(estado);
+            }
+            else if (!esInicial && esDeAceptacion){
+                 v1 = graph.insertVertex(parent, null, "q"+name,x, y, 50, 50,
+                        "resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow;strokeColor=black");
+                automataDFA.agregarEstadoAceptacion(estado);
+            }
+
+            automataDFA.agregarEstado("q"+name,v1);
+
+            System.out.println("Imp estado "+ estado.getNombre());
+
+        } finally {
+            graph.getModel().endUpdate();
+
+            System.out.println("Tamaño Estado " +automataDFA.getEstados().size());
+
+            for (  Estado item : automataDFA.getEstadosItems()) {
+                System.out.println("Estado " +item.getNombre());
+            }
+
+            for (  Estado item : automataDFA.getAceptacionItems()) {
+                System.out.println("Aceptacion " +item.getNombre());
+            }
+
+            System.out.println("Inicial " +automataDFA.getEstadoInicial().getNombre());
+
+        }
     }
 
     private void showMessage(String s) {
@@ -143,7 +249,7 @@ public class DFA extends JDialog {
 
     private void onCancel() {
         // add your code here if necessary
-             this.setVisible(false);
+        this.setVisible(false);
         this.dispose();
     }
 
@@ -152,7 +258,7 @@ public class DFA extends JDialog {
     };
 
     public static void main(String[] args) {
-        DFA dialog = new DFA();
+        DFA dialog = new DFA(automataDFA);
         ConfigurationForWindows.SetConfigurations(dialog);
        // ConfigurationForWindows.setGraph(graph, graphComponent);
         System.exit(0);

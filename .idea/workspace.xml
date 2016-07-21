@@ -2,11 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="467645c4-9e07-4ed3-8ade-e51f933cda5d" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Automatas/Trasicion.kt" afterPath="$PROJECT_DIR$/src/Automatas/Transicion.kt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Automata.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataDFA.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Estado.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/MaquinaDeTuring.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Trasicion.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$4.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$5.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/GUI/DFA.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TeoriaDeComputacion.iml" afterPath="$PROJECT_DIR$/TeoriaDeComputacion.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/Automata.kt" afterPath="$PROJECT_DIR$/src/Automatas/Automata.kt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" afterPath="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/Estado.kt" afterPath="$PROJECT_DIR$/src/Automatas/Estado.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt" afterPath="$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/DFA.form" afterPath="$PROJECT_DIR$/src/GUI/DFA.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/DFA.java" afterPath="$PROJECT_DIR$/src/GUI/DFA.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/Principal.java" afterPath="$PROJECT_DIR$/src/GUI/Principal.java" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +45,80 @@
     <favorites_list name="untitled" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="AutomataDFA.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-884">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DFA.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/DFA.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DFA.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/DFA.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Estado.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Automatas/Estado.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Automata.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Automatas/Automata.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Principal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Principal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding>
+                <element signature="e#564#565#0" expanded="true" />
+                <element signature="e#602#603#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaquinaDeTuring.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -60,17 +148,17 @@
         <option value="$PROJECT_DIR$/src/GUI/Turing.java" />
         <option value="$PROJECT_DIR$/src/Main.kt" />
         <option value="$PROJECT_DIR$/src/GUI/ConfigForWindows.java" />
-        <option value="$PROJECT_DIR$/src/GUI/Principal.java" />
         <option value="$PROJECT_DIR$/src/GUI/ConfigurationForWindows.java" />
         <option value="$PROJECT_DIR$/src/GUI/Principal.form" />
-        <option value="$PROJECT_DIR$/src/GUI/DFA.form" />
-        <option value="$PROJECT_DIR$/src/Automatas/Automata.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt" />
-        <option value="$PROJECT_DIR$/src/GUI/DFA.java" />
         <option value="$PROJECT_DIR$/src/Automatas/Trasicion.kt" />
         <option value="$PROJECT_DIR$/src/Automatas/Transicion.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/Estado.kt" />
+        <option value="$PROJECT_DIR$/src/GUI/DFA.form" />
+        <option value="$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt" />
         <option value="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
+        <option value="$PROJECT_DIR$/src/GUI/Principal.java" />
+        <option value="$PROJECT_DIR$/src/GUI/DFA.java" />
+        <option value="$PROJECT_DIR$/src/Automatas/Automata.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/Estado.kt" />
       </list>
     </option>
   </component>
@@ -86,8 +174,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1456" />
+    <option name="width" value="1452" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -115,6 +202,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -183,8 +271,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Automatas" />
+              <option name="myItemId" value="GUI" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Principal" />
+              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -197,13 +289,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GUI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DFA" />
+              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TeoriaDeLaComputacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TeoriaDeLaComputacion" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Automatas" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
@@ -221,11 +338,11 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="GUI" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Jimmy Banegas\IdeaProjects\untitled\src\GUI" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="GUI" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.MainKt">
@@ -713,15 +830,16 @@
       <workItem from="1468900938198" duration="9452000" />
       <workItem from="1468988245392" duration="3241000" />
       <workItem from="1469026544978" duration="26776000" />
+      <workItem from="1469113113468" duration="13464000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39469000" />
+    <option name="totallyTimeSpent" value="52933000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="0" width="1452" height="876" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -730,12 +848,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5069444" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.49305555" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32898173" sideWeight="0.49305555" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32937685" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14861111" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14832869" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -766,7 +884,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -797,8 +923,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#49#0" expanded="false" />
-            <element signature="e#50#357#0" expanded="true" />
+            <element signature="e#50#357#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -854,27 +979,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Principal.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Principal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/DFA.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ConfigurationForWindows.java">
@@ -890,7 +1002,7 @@
         <state relative-caret-position="272">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
-            <element signature="e#50#357#0" expanded="true" />
+            <element signature="e#50#357#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -903,45 +1015,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
+    <entry file="file://$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+        <state relative-caret-position="153">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/Estado.kt">
+    <entry file="file://$PROJECT_DIR$/src/GUI/DFA.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Principal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#564#565#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/DFA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-884">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Automatas/Automata.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="316">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/DFA.java">
+    <entry file="file://$PROJECT_DIR$/src/Automatas/Estado.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
-          <folding>
-            <element signature="e#4814#4815#0" expanded="true" />
-            <element signature="e#4841#4842#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/MaquinaDeTuring.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
           <folding />
         </state>
       </provider>

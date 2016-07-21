@@ -1,7 +1,8 @@
 package GUI;
 
+import Automatas.AutomataDFA;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class Principal extends JDialog {
@@ -48,7 +49,9 @@ public class Principal extends JDialog {
         // add your code here
         switch (cmbSelectedAutomata.getSelectedIndex()){
             case 0:
-                DFA dfaWindow = new DFA();
+                AutomataDFA automataDFA = new AutomataDFA();
+
+                DFA dfaWindow = new DFA(automataDFA);
 
                 //Mostrar ventana de DFA
                 ConfigurationForWindows.SetConfigurations(dfaWindow);

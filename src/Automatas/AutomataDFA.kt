@@ -5,7 +5,7 @@ import java.lang.Object;
  * Created by Affisa-Jimmy on 20/7/2016.
  */
 class AutomataDFA : Automata() {
-    override fun agregarEstado(nombre: String, vertice: Object) {
+    override fun agregarEstado(nombre: String,vertice: Object) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         estados.add(Estado(nombre,vertice))
     }
@@ -41,7 +41,7 @@ class AutomataDFA : Automata() {
         if (!stay) {
             return false
         }
-        for (estado in estadosFinales) {
+        for (estado in estadosDeAceptacion) {
             if (estado.nombre.equals(fin.nombre))
                 return true
         }
@@ -50,7 +50,6 @@ class AutomataDFA : Automata() {
 
     private fun verificarCadena(evaluar: CharArray): Boolean {
        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-
         for (i in 0..evaluar.size - 1) {
             for (c in alfabeto) {
                 if (c.equals( evaluar[i])) {
@@ -66,10 +65,23 @@ class AutomataDFA : Automata() {
 
     private fun estadoInicialEsDeAceptacion(): Boolean {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+     //   return estadosFinales().anyMatch({ estado -> estado.nombreEstado.equals(estadoInicial.nombreEstado) })
+    }
+
+    fun ExisteEstadoInicial() : Boolean{
+        if (estadoInicial.nombre!=""){
+            println(estadoInicial.nombre)
+            return true
+        }
+        else
+            return false
     }
 
     fun CheckTransition(v1 : Estado, name: Char): Boolean {
         return false
     }
 
+    override fun agregarEstadoAceptacion(estado: Estado){
+        estadosDeAceptacion.add(estado)
+    }
 }
