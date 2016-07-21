@@ -1,7 +1,8 @@
 package Automatas
 
 
-import java.lang.Object;
+import com.mxgraph.model.mxCell
+
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
@@ -24,9 +25,9 @@ abstract class Automata {
 //    get() {return estadoInicial}
    // set(value) {field = estadoInicial}
 
-    abstract fun agregarEstado(nombre: String, vertice: Object)
+    abstract fun agregarEstado(nombre: String, vertice: mxCell)
 
-    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: Object)
+    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: mxCell)
 
     abstract fun evaluar(cadena:String): Boolean
 

@@ -4,6 +4,7 @@ import Automatas.AutomataDFA;
 import Automatas.Estado;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxGraph;
@@ -37,6 +38,12 @@ public class DFA extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
 
         this.automataDFA = (AutomataDFA) automataDFA;
+
+       /* if(((AutomataDFA) automataDFA).getEstadoInicial().getNombre()!=""){
+            graph.getModel().setStyle(((AutomataDFA) automataDFA).getEstadoInicial().getVertice(), "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;"
+                    +"fillColor=lightgreen");
+        }
+        */
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -95,21 +102,21 @@ public class DFA extends JDialog {
                 graph.getModel().remove(evt.getProperty("cell"));
                 return;
             }
-          /*  if(!automataDFA.CheckTransition(v1, nombre)){
+            /*if(!automataDFA.CheckTransition(v1, nombre)){
                 showMessage("No se puede agregar una Transicion con el mismo valor!");
                 graph.getModel().remove(evt.getProperty("cell"));
                 return;
-            }
+            }*/
             String name = String.valueOf(nombre);
             edge.setValue(name);
-            DFA.automataDFA.agregarTransicion(name,v1,v2,edge);*/
+            DFA.automataDFA.agregarTransicion(name,v1,v2,edge);
         });
-      /*  graphComponent.getGraphControl().addMouseListener(new MouseAdapter(){
+     /*   graphComponent.getGraphControl().addMouseListener(new MouseAdapter(){
             @Override
             public void mouseReleased(MouseEvent e) {
                 if(e.isPopupTrigger())
                 {
-                   // jPopupMenuForm.show(getContentPane(),e.getX(),e.getY());
+                    jPopupMenuForm.show(getContentPane(),e.getX(),e.getY());
                 }
             }
             @Override
@@ -149,17 +156,30 @@ public class DFA extends JDialog {
             String name = String.valueOf(valor++);
             boolean esInicial;
             boolean esDeAceptacion;
+            boolean cambiarInicial = false;
+            Estado v2 = null;
 
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int inicial = JOptionPane.showConfirmDialog(this, "¿Es estado Inicial?", "Inicial", dialogButton);
             if(inicial == 0) {
 
-               if(automataDFA.ExisteEstadoInicial()){
+               if(automataDFA.getEstadoInicial().getNombre()!=""){
                    int dialogButton2 = JOptionPane.YES_NO_OPTION;
-                   int inicial2 = JOptionPane.showConfirmDialog(this, "¿Ya hay inicial, desea cambiarlo?", "Inicial", dialogButton2);
+                   int inicial2 = JOptionPane.showConfirmDialog(this, "Ya hay inicial, ¿desea cambiarlo?", "Inicial", dialogButton2);
 
-                   if(inicial2==0)
+                   if(inicial2==0){
                        esInicial = true;
+                       cambiarInicial=true;
+                       v2 = automataDFA.getEstadoInicial();
+
+                       //System.out.println("Regreso  "+ );
+
+                      /* graph.getModel().setStyle(v2, "resizable=0;editable=0;whiteSpace=wrap;"
+                               +"fillColor=lightyellow");
+                       graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "yellow", new Object[]{v2}); //changes the color to red
+                       graphComponent.refresh();*/
+                   }
+
                    else
                        esInicial = false;
 
@@ -181,9 +201,9 @@ public class DFA extends JDialog {
                 esDeAceptacion = false;
             }
 
-            Object v1 = new Object();
+            Object v1 = new mxCell();
 
-            Estado estado = new Estado("q"+name,v1);
+            Estado estado = new Estado("q"+name,(mxCell) v1);
 
             if(esInicial&& esDeAceptacion){
                  v1 = graph.insertVertex(parent, null, "q"+name,x, y, 50, 50,
@@ -208,9 +228,21 @@ public class DFA extends JDialog {
                 automataDFA.agregarEstadoAceptacion(estado);
             }
 
-            automataDFA.agregarEstado("q"+name,v1);
+            automataDFA.agregarEstado("q"+name,(mxCell) v1);
 
-            System.out.println("Imp estado "+ estado.getNombre());
+            if(cambiarInicial){
+               /* graph.getModel().setStyle(v2,  "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow;strokeColor=black");
+                System.out.println("v2 "+ v2);
+                System.out.println("v1 "+ v1);
+                /*graph.getModel().setStyle(v1, "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;"
+                        +"fillColor=lightgreen");*/
+             //   automataDFA.setEstadoInicial(estado);*/
+                CambiarEstadoInicial(estado,v2);
+            }
+
+
+         /*   System.out.println("Imp estado "+ estado.getNombre());
+            System.out.println("Imp estado "+ estado.getVertice());*/
 
         } finally {
             graph.getModel().endUpdate();
@@ -230,17 +262,39 @@ public class DFA extends JDialog {
         }
     }
 
+    private void CambiarEstadoInicial(Estado estadoInicial, Estado estado) {
+        graph.getModel().setStyle(estadoInicial.getVertice(), "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;"
+                +"fillColor=red");
+        graph.getModel().setStyle(estado.getVertice(), "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;"
+                +"fillColor=red");
+       // automataDFA.setEstadoInicial(estado);
+    }
+
     private void showMessage(String s) {
 
     }
 
-    private char escogerTransicion() {
-            return 0;
+    private char escogerTransicion(){
+        char nombre = 0;
+        while(true){
+            String name = JOptionPane.showInputDialog("Digite nombre de Transicion:");
+            if(name==null||name.isEmpty()){
+                showMessage("No se guardo nada!!");
+                break;
+            }
+            char[] na=name.toCharArray();
+            if(na.length>1){
+                showMessage("Solo puede ingresar una letra o caracter!");
+            }else if(na.length==1){
+                nombre=na[0];
+                break;
+            }
+        }
+        return nombre;
     }
-
-    private Estado obtenerEstado(mxCell origen) {
+  /*  private Estado obtenerEstado(mxCell origen) {
         return null;
-    }
+    }*/
 
     private void onOK() {
         // add your code here
@@ -256,6 +310,65 @@ public class DFA extends JDialog {
     public static mxGraph getGraph() {
         return graph;
     };
+
+    private void agregarTrasicion(java.awt.event.ActionEvent evt) {
+       // if(prologoEstado())
+        //    return;
+        String name =JOptionPane.showInputDialog("Digite nombre de Estado partida:");
+
+        if(name==null || name.isEmpty()){
+            showMessage("No se agrego nada!!");
+            return;
+        }
+        Estado v1 = obtenerEstado(name);
+        if(v1==null){
+            showMessage("No existe etado con ese nombre!");
+            return;
+        }
+        name =JOptionPane.showInputDialog("Digite nombre de Estado destino:");
+        if(name==null || name.isEmpty()){
+            showMessage("No se agrego nada!!");
+            return;
+        }
+        Estado v2 = obtenerEstado(name);
+        if(v2==null){
+            showMessage("No existe etado con ese nombre!");
+            return;
+        }
+        char nombre = escogerTransicion();
+        if(nombre==0){
+            return;
+        }
+        if(!automataDFA.CheckTransition(v1, nombre)){
+            showMessage("No se puede agregar una Transicion con el mismo valor!");
+            return;
+        }
+       // NewTransition add= new NewTransition(v1,v2,nombre);
+    }
+
+    private Estado obtenerEstado(mxCell vertex) {
+        for(Estado estado:automataDFA.getEstados())
+        {
+            if(estado.getVertice().equals(vertex))
+            {
+                return estado;
+
+            }
+        }
+        return null;
+    }
+
+    private Estado obtenerEstado(String nombre){
+        for(Estado estado:automataDFA.getEstados())
+        {
+            if(estado.getNombre().equals(nombre))
+            {
+                return estado;
+
+            }
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         DFA dialog = new DFA(automataDFA);

@@ -1,13 +1,14 @@
 package Automatas
+import com.mxgraph.model.mxCell
 import java.lang.Object;
 
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
 class Estado {
-    var  vertice: Object? = null
-//    get() {return vertice}
-    set(value) {field=vertice}
+    var  vertice: mxCell? = null
+   // get() {return vertice}
+    //set(value) {field=vertice}
 
     var nombre: String = ""
  //   get() {return nombre}
@@ -22,7 +23,7 @@ class Estado {
         get() {return esDeAceptacion}
         set(value) {field = esDeAceptacion}
 */
-    constructor(nombre: String, vertice: Object)  {
+    constructor(nombre: String, vertice: mxCell)  {
         this.nombre = nombre
         this.vertice = vertice
       /*  this.esInicial = esInicial

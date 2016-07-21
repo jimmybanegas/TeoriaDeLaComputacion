@@ -1,16 +1,18 @@
 package Automatas
 
-import java.lang.Object;
+import com.mxgraph.model.mxCell
+
 /**
  * Created by Affisa-Jimmy on 20/7/2016.
  */
 class AutomataDFA : Automata() {
-    override fun agregarEstado(nombre: String,vertice: Object) {
+    override fun agregarEstado(nombre: String,vertice: mxCell) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         estados.add(Estado(nombre,vertice))
+        println("Desde kotlin "+vertice.toString())
     }
 
-    override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: Object) {
+    override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: mxCell) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         transiciones.add(Transicion(origen,destino,nombre,vertice))
     }
@@ -68,13 +70,13 @@ class AutomataDFA : Automata() {
      //   return estadosFinales().anyMatch({ estado -> estado.nombreEstado.equals(estadoInicial.nombreEstado) })
     }
 
-    fun ExisteEstadoInicial() : Boolean{
+    fun ExisteEstadoInicial() : Estado? {
         if (estadoInicial.nombre!=""){
-            println(estadoInicial.nombre)
-            return true
+            //println(estadoInicial.nombre)
+            return estadoInicial
         }
         else
-            return false
+            return null
     }
 
     fun CheckTransition(v1 : Estado, name: Char): Boolean {

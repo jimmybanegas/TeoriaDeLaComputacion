@@ -11,11 +11,11 @@ class MaquinaDeTuring : Automata() {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun agregarEstado(nombre: String, vertice: java.lang.Object) {
+    override fun agregarEstado(nombre: String, vertice: mxCell) {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: java.lang.Object) {
+    override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: mxCell) {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
