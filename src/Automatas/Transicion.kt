@@ -12,7 +12,7 @@ class Transicion {
   //  get() {return destino}
   //  set(value) {field=destino}
 
-    var vertice: mxCell? = null
+    var vertice: Object? = null
   //  get() {return vertice}
   //  set(value) {field=vertice}
 
@@ -23,7 +23,7 @@ class Transicion {
     //Constructor Default
     constructor()
 
-    constructor(origen: Estado, destino: Estado, nombre: String, vertice: mxCell) {
+    constructor(origen: Estado, destino: Estado, nombre: String, vertice: Object) {
         this.origen = origen
         this.destino = destino
         this.vertice = vertice

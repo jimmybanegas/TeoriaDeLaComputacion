@@ -36,5 +36,7 @@ abstract class Automata {
     abstract fun evaluar(cadena:String): Boolean
 
     abstract fun agregarEstadoAceptacion(estado: Estado)
+
+    abstract override fun toString(): String
 }
 

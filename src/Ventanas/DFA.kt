@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent
 import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JLabel
+import javax.swing.JOptionPane
 
 /**
  * Created by Affisa-Jimmy on 22/7/2016.
@@ -61,28 +62,48 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         graphComponent = mxGraphComponent(graph)
         (graphComponent as mxGraphComponent).viewport.background = Color.WHITE
         (graphComponent as mxGraphComponent).connectionHandler?.addListener(mxEvent.CONNECT) { sender: Any, evt: mxEventObject ->
-            val edge = evt.getProperty("cell") as mxCell
-            val origen = edge.getSource() as mxCell
-            val destino = edge.getTarget() as mxCell
-            val v1 = obtenerEstado(origen)
-            val v2 = obtenerEstado(destino)
-            if (v2 == null) {
-                graph.model.remove(evt.getProperty("cell"))
-                //return@graphComponent.getConnectionHandler().addListener
-            }
-            val nombre = escogerTransicion()
-            if (nombre.toInt() == 0) {
-                graph.model.remove(evt.getProperty("cell"))
-              //  return@graphComponent.getConnectionHandler().addListener
-            }
-           /* if (!dfa?.CheckTransition(v1, nombre)) {
-                showMessage("No se puede agregar una Transicion con el mismo valor!")
-                graph.model.remove(evt.getProperty("cell"))
-                return@graphComponent.getConnectionHandler().addListener
-            }*/
-            val name = nombre.toString()
-            edge.setValue(name)
-            dfa?.agregarTransicion(name,v1, v2, edge)
+                val edge = evt.getProperty("cell") as mxCell
+
+                //Validar que el target de la flecha no sea null, si es nulo o no colisiona con otro estado, lo elimino
+                if (edge.target == null  ) {
+                    graph.model.remove(evt.getProperty("cell"))
+                    return@addListener
+                }
+
+               //Los mxCell de orogen y destino
+                val origen = edge.getSource() as mxCell
+                val destino = edge.getTarget() as mxCell
+
+                //Ahora tengo que ver a que estado pertenecen dichos Objetos del grafico
+                val v1 = obtenerEstado(origen)
+                val v2 = obtenerEstado(destino)
+
+                if (v2 == null  ) {
+                    graph.model.remove(evt.getProperty("cell"))
+                    return@addListener
+                }
+
+                val nombre = nombrarTransicion()
+
+                if (nombre.toInt() == 0) {
+                    graph.model.remove(evt.getProperty("cell"))
+                    return@addListener
+                }
+
+                var a = dfa?.verificarTransicion(v1 as Estado, nombre)
+
+                 if ((a as Boolean)) {
+                     showMessage("No se puede agregar una Transicion con el mismo valor!")
+                     graph.model.remove(evt.getProperty("cell"))
+                     return@addListener
+                 }
+                val name = nombre.toString()
+                edge.setValue(" "+name+ " ")
+                dfa?.agregarTransicion(name,v1 as Estado, v2, edge)
+
+                 dfa.toString()
+//            }
+
         }
 
         (graphComponent as mxGraphComponent).getGraphControl().addMouseListener(object : MouseAdapter() {
@@ -101,10 +122,59 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                     try {
                         val parent = graph.defaultParent
                         val name = (contadorEstados++).toString()
-                        val v1 = graph.insertVertex(parent, null, "q" + name, x.toDouble(), y.toDouble(), 50.toDouble(), 50.toDouble(),
-                                "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;" + "fillColor=lightblue")
+                        val esDeAceptacion: Boolean
 
+                        val dialogButton2 = JOptionPane.YES_NO_OPTION
+                        val aceptacion = JOptionPane.showConfirmDialog(graphComponent,"¿Es estado de aceptación?", "Aceptación", dialogButton2)
+                        if (aceptacion == 0) {
+                            esDeAceptacion = true
+                        } else {
+                            esDeAceptacion = false
+                        }
+
+                         var v1 = Any()
+
+                        //Para definir el estado inicial si el contador de estados es cero y pintarlo de otro color
+                        if(contadorEstados-1==0)
+                        {
+                            if(esDeAceptacion){
+                                //Este sería un estado inicial y de aceptacion a la vez
+                                v1 = graph.insertVertex(parent, null, "q" + name, x.toDouble(), y.toDouble(), 50.toDouble(), 50.toDouble(),
+                                        "resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;" + "fillColor=lightyellow")
+
+                                //Agregar a lista de estados de aceptacion
+                                dfa?.agregarEstadoAceptacion(estado = Estado("q"+name,v1 as Object))
+                            }else{
+
+                                //Este sería un estado inicial pero no de aceptacion
+                                v1 = graph.insertVertex(parent, null, "q" + name, x.toDouble(), y.toDouble(), 50.toDouble(), 50.toDouble(),
+                                        "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;" + "fillColor=lightyellow")
+                            }
+                            //Setear el estado inicial a mi DFA, lo haremos sea o no de aceptacion
+                            dfa?.estadoInicial= Estado("q"+name,v1 as Object)
+                        }
+                        else{
+                            if(esDeAceptacion){
+                                //Este sería un estado no inicial pero de aceptacion
+                                v1 = graph.insertVertex(parent, null, "q" + name, x.toDouble(), y.toDouble(), 50.toDouble(), 50.toDouble(),
+                                        "resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;" + "fillColor=lightgreen")
+
+                                //Agregar a lista de estados de aceptacion
+                                dfa?.agregarEstadoAceptacion(estado = Estado("q"+name,v1 as Object))
+
+                            }else
+                            {
+                                //Este sería un estado normal, no de aceptacion y no inicial
+                                v1 = graph.insertVertex(parent, null, "q" + name, x.toDouble(), y.toDouble(), 50.toDouble(), 50.toDouble(),
+                                        "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;" + "fillColor=lightgreen")
+                            }
+                        }
+
+                        //Agregar a la lista general de estados
                         dfa?.agregarEstado("q" + name, v1 as Object)
+
+                        println(dfa.toString())
+
                     } finally {
                         graph.model.endUpdate()
                     }
@@ -155,12 +225,38 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                                 .addComponent(graphComponent, 500, javax.swing.GroupLayout.DEFAULT_SIZE, java.lang.Short.MAX_VALUE.toInt())))
     }
 
-    private fun escogerTransicion(): Char {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun nombrarTransicion(): Char {
+        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings |
+        var nombre: Char = 0.toChar()
+        while (true) {
+            val name = JOptionPane.showInputDialog("Digite nombre de Transicion:")
+            if (name == null || name.isEmpty()) {
+                showMessage("No se guardo nada!!")
+                break
+            }
+            val na = name.toCharArray()
+            if (na.size > 1) {
+                showMessage("Solo puede ingresar una letra o caracter!")
+            } else if (na.size == 1) {
+                nombre = na[0]
+                break
+            }
+        }
+        return nombre
     }
 
-    private fun obtenerEstado(origen: mxCell): Estado {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun showMessage(s: String) {
+        JOptionPane.showMessageDialog(getContentPane(), s, "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
+    private fun obtenerEstado(origen: mxCell): Estado? {
+        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        for (estado in dfa?.estados!!) {
+            if (estado.vertice?.equals(origen)!!) {
+                return estado
+            }
+        }
+        return null
     }
 
     private fun probarCadenaEnAutomata(e: ActionEvent) {
@@ -170,10 +266,11 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
 
 fun main(args : Array<String>) {
-
     val automataDFA = AutomataDFA()
 
     var dfa = DFA(automataDFA)
+
+    automataDFA.toString()
 
     dfa.initComponents()
     dfa.setVisible(true)

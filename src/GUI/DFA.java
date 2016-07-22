@@ -4,7 +4,6 @@ import Automatas.AutomataDFA;
 import Automatas.Estado;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxGraph;
@@ -102,7 +101,7 @@ public class DFA extends JDialog {
                 graph.getModel().remove(evt.getProperty("cell"));
                 return;
             }
-            /*if(!automataDFA.CheckTransition(v1, nombre)){
+            /*if(!automataDFA.verificarTransicion(v1, nombre)){
                 showMessage("No se puede agregar una Transicion con el mismo valor!");
                 graph.getModel().remove(evt.getProperty("cell"));
                 return;
@@ -339,7 +338,7 @@ public class DFA extends JDialog {
         if(nombre==0){
             return;
         }
-        if(!automataDFA.CheckTransition(v1, nombre)){
+        if(!automataDFA.verificarTransicion(v1, nombre)){
             showMessage("No se puede agregar una Transicion con el mismo valor!");
             return;
         }

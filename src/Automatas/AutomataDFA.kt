@@ -6,6 +6,13 @@ import com.mxgraph.model.mxCell
  * Created by Affisa-Jimmy on 20/7/2016.
  */
 class AutomataDFA : Automata() {
+    override fun toString(): String {
+        return (("Tamaño de estados: "+ estados.size) + "\n"+
+                ("Tamaño de estados aceptacion: "+ estadosDeAceptacion.size) +  "\n"+
+                ("Tamaño transiciones : "+ transiciones.size)+ "\n"+
+                ("Inicial : "+ estadoInicial.nombre)+ "\n")
+    }
+
     override fun agregarEstado(nombre: String, vertice: Object) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         estados.add(Estado(nombre,vertice))
@@ -27,7 +34,7 @@ class AutomataDFA : Automata() {
 
     override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: mxCell) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        transiciones.add(Transicion(origen,destino,nombre,vertice))
+        transiciones.add(Transicion(origen,destino,nombre,vertice as Object))
     }
 
     override fun evaluar(cadena: String) : Boolean {
@@ -43,7 +50,7 @@ class AutomataDFA : Automata() {
         var stay = true
 
         for (i in evaluar.indices) {
-            for (transicion in transiciones) {
+            for (transicion in transaccionesItems) {
                 if (transicion.origen?.nombre.equals(fin.nombre) && transicion.nombre.equals(evaluar[i].toString())) {
                     fin = transicion.destino!!
                     stay = true
@@ -92,7 +99,22 @@ class AutomataDFA : Automata() {
             return null
     }
 
-    fun CheckTransition(v1 : Estado, name: Char): Boolean {
+    fun verificarTransicion(v1 : Estado, nombre: Char): Boolean {
+       // return transiciones.({ transicion -> transicion.origen?.nombre.equals(v1.nombre) && transicion.nombre.equals((nombre)) })
+        println("v1 nombre "+v1.nombre)
+        println("char nombre "+nombre)
+        println("transiones size "+transaccionesItems.size)
+
+        for (transicion in transaccionesItems) {
+            println("entre")
+            println("transiones origen nombre "+transicion.origen?.nombre)
+            println("transiones nombre "+transicion.nombre)
+            if (transicion.origen?.nombre.equals(v1.nombre.toString()) && transicion.nombre.equals(nombre.toString())) {
+                return true
+            } else {
+                return false
+            }
+        }
         return false
     }
 
