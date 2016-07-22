@@ -3,7 +3,6 @@
  */
 import Automatas.AutomataDFA
 import Ventanas.ConfigurationForWindows
-import Ventanas.SetConfigurations
 
 fun main(args: Array<String>) {
     println("hola desde Kotlin")

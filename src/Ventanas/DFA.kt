@@ -8,9 +8,9 @@ import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
 import java.awt.Color
-import java.awt.event.ActionEvent
-import java.awt.event.MouseAdapter
-import java.awt.event.MouseEvent
+import java.awt.MenuComponent
+import java.awt.Point
+import java.awt.event.*
 import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JLabel
@@ -61,6 +61,44 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         graph.isEdgeLabelsMovable = false
         graphComponent = mxGraphComponent(graph)
         (graphComponent as mxGraphComponent).viewport.background = Color.WHITE
+        (graphComponent as mxGraphComponent).addKeyListener(object: KeyAdapter() {
+
+            override fun keyReleased(e: KeyEvent) {}
+
+            override fun  keyTyped(e: KeyEvent) { }
+
+            override fun keyPressed(e: KeyEvent){
+                // e.keyCode
+                if (e.getKeyCode() == KeyEvent.VK_DELETE){
+                  //  if (!graph.isSelectionEmpty()) {
+                        delFunction()
+
+                        //graph.model.remove(e.component.remove(e.source as MenuComponent?))
+                       // bar.getdeleteaction().actionPerformed(null);
+                        println("BOORAR")
+                    }
+            }
+
+            private fun delFunction() {
+                graph.model.beginUpdate()
+                try {
+                    var cells = graph.selectionCell
+
+                    println(cells)
+                    //  setEnabledButton(cells, true)
+                  /*  val x = graph.getCellBounds(cells[0]).x
+                    val y = graph.getCellBounds(cells[0]).y*/
+                    var p = Point(x.toInt(), y.toInt())
+                    //  cells = graph.getChildCells(cells)
+                    graph.model.remove(cells)
+                    // statusLabel.setText("Status: Unsaved")
+                }finally{
+                    graph.model.endUpdate()
+                }
+
+            }
+        })
+
         (graphComponent as mxGraphComponent).connectionHandler?.addListener(mxEvent.CONNECT) { sender: Any, evt: mxEventObject ->
                 val edge = evt.getProperty("cell") as mxCell
 
@@ -93,7 +131,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                 var a = dfa?.verificarTransicion(v1 as Estado, nombre)
 
                  if ((a as Boolean)) {
-                     showMessage("No se puede agregar una Transicion con el mismo valor!")
+                     ConfigurationForWindows.messageDialog(contentPane,"No se puede agregar una Transicion con el mismo valor!")
                      graph.model.remove(evt.getProperty("cell"))
                      return@addListener
                  }
@@ -102,7 +140,6 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                 dfa?.agregarTransicion(name,v1 as Estado, v2, edge)
 
                  dfa.toString()
-//            }
 
         }
 
@@ -112,6 +149,8 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                    // jPopupMenuForm.show(contentPane, e.getX(), e.getY())
                 }
             }
+
+
 
             override fun mousePressed(e: MouseEvent) {
                 // TODO Auto-generated method stub
@@ -173,6 +212,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                         //Agregar a la lista general de estados
                         dfa?.agregarEstado("q" + name, v1 as Object)
 
+                        //Imprimir
                         println(dfa.toString())
 
                     } finally {
@@ -186,12 +226,12 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
         (jLabel2 as JLabel).setText("Ingresar cadena:");
 
-      /*  (jLabel4 as JLabel).setText("TIP: No olvidar agregar todo el alfabeto. Es posible que no acepte cadena!");
+      /*(jLabel4 as JLabel).setText("TIP: No olvidar agregar todo el alfabeto. Es posible que no acepte cadena!");
 
         (jLabel3 as JLabel).setText("PROTIP: Doble-Click para agregar Estado!");*/
 
         (jButtonProbarAutomata as JButton).setText("Evaluar Automata")
-        (jButtonProbarAutomata as JButton).addActionListener({ e: ActionEvent -> probarCadenaEnAutomata(e) })
+        (jButtonProbarAutomata as JButton).addActionListener({ e: ActionEvent -> evaluarCadena(e) })
 
         val layout = javax.swing.GroupLayout(contentPane)
         contentPane.layout = layout
@@ -229,24 +269,20 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings |
         var nombre: Char = 0.toChar()
         while (true) {
-            val name = JOptionPane.showInputDialog("Digite nombre de Transicion:")
+            val name = JOptionPane.showInputDialog("Nombre de transicion:")
             if (name == null || name.isEmpty()) {
-                showMessage("No se guardo nada!!")
+                ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
                 break
             }
             val na = name.toCharArray()
             if (na.size > 1) {
-                showMessage("Solo puede ingresar una letra o caracter!")
+                ConfigurationForWindows.messageDialog(contentPane,"Solo un caracter es permitido")
             } else if (na.size == 1) {
                 nombre = na[0]
                 break
             }
         }
         return nombre
-    }
-
-    private fun showMessage(s: String) {
-        JOptionPane.showMessageDialog(getContentPane(), s, "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
     private fun obtenerEstado(origen: mxCell): Estado? {
@@ -259,8 +295,8 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         return null
     }
 
-    private fun probarCadenaEnAutomata(e: ActionEvent) {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun evaluarCadena(e: ActionEvent) {
+        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
 

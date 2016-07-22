@@ -1,7 +1,8 @@
 package Automatas
 
-import com.mxgraph.model.mxCell
-import java.lang.Object
+/**
+ * Created by Jimmy Banegas on 19-Jul-16.
+ */
 
 class Transicion {
     var origen: Estado? = null
@@ -19,9 +20,6 @@ class Transicion {
     var nombre: String = ""
 //    get() {return nombre}
   //  set(value) {field=nombre}
-
-    //Constructor Default
-    constructor()
 
     constructor(origen: Estado, destino: Estado, nombre: String, vertice: Object) {
         this.origen = origen

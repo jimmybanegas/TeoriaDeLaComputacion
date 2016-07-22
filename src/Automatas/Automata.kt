@@ -8,8 +8,8 @@ import com.mxgraph.model.mxCell
  */
 abstract class Automata {
 
-    val alfabeto = mutableListOf(String)
-    //val alfabetoItems: List<String> get() = alfabeto.toList()
+    val alfabeto = mutableListOf(Char)
+    //val alfabetoItems: List<Char> get() = alfabeto
 
     val transiciones = mutableListOf<Transicion>()
     val transaccionesItems: List<Transicion> get() = transiciones.toList()
@@ -19,10 +19,10 @@ abstract class Automata {
 
     var estadosDeAceptacion = mutableListOf<Estado>()
     val aceptacionItems: List<Estado> get() = estadosDeAceptacion.toList()
-       // set(value) {field = estadosDeAceptacion}
+    // set(value) {field = estadosDeAceptacion}
 
     var estadoInicial = Estado()
-//    get() {return estadoInicial}
+   // get() {return estadoInicial}
    // set(value) {field = estadoInicial}
 
     abstract fun agregarEstado(nombre: String, vertice: mxCell)

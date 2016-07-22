@@ -54,7 +54,7 @@ public class Principal extends JDialog {
                 DFA dfaWindow = new DFA(automataDFA);
 
                 //Mostrar ventana de DFA
-                ConfigurationForWindows.SetConfigurations(dfaWindow);
+                //ConfigurationForWindows.SetConfigurations(dfaWindow);
                 break;
             case 1:
                /* Turing turingWindow = new Turing();

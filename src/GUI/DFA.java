@@ -371,7 +371,7 @@ public class DFA extends JDialog {
 
     public static void main(String[] args) {
         DFA dialog = new DFA(automataDFA);
-        ConfigurationForWindows.SetConfigurations(dialog);
+      //  ConfigurationForWindows.SetConfigurations(dialog);
        // ConfigurationForWindows.setGraph(graph, graphComponent);
         System.exit(0);
     }

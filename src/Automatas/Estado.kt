@@ -1,6 +1,4 @@
 package Automatas
-import com.mxgraph.model.mxCell
-import java.lang.Object;
 
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
@@ -31,6 +29,4 @@ class Estado {
     }
 
     constructor()
-
-    //   constructor() : this()
 }

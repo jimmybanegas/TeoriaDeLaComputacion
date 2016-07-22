@@ -2,8 +2,7 @@ package Automatas
 
 import com.mxgraph.model.mxCell
 
-/**
- * Created by Affisa-Jimmy on 20/7/2016.
+/**Created by Jimmy Banegas on 19-Jul-16.
  */
 class AutomataDFA : Automata() {
     override fun toString(): String {
@@ -40,8 +39,9 @@ class AutomataDFA : Automata() {
     override fun evaluar(cadena: String) : Boolean {
      //   throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         if (cadena.isEmpty()) {
-            return estadoInicialEsDeAceptacion()
+           // return estadoInicialEsDeAceptacion()
         }
+
         val evaluar = cadena.toCharArray()
         if (!verificarCadena(evaluar))
             return false
@@ -76,18 +76,12 @@ class AutomataDFA : Automata() {
             for (c in alfabeto) {
                 if (c.equals( evaluar[i])) {
                     return true
-                    break
                 } else {
                    return false
                 }
             }
         }
         return true
-    }
-
-    private fun estadoInicialEsDeAceptacion(): Boolean {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-     //   return estadosFinales().anyMatch({ estado -> estado.nombreEstado.equals(estadoInicial.nombreEstado) })
     }
 
     fun ExisteEstadoInicial() : Estado? {
