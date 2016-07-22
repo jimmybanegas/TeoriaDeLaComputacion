@@ -8,7 +8,7 @@ import com.mxgraph.model.mxCell
  */
 abstract class Automata {
 
-    val alfabeto = mutableListOf(Char)
+    var alfabeto = mutableListOf<Char>()
     //val alfabetoItems: List<Char> get() = alfabeto
 
     val transiciones = mutableListOf<Transicion>()

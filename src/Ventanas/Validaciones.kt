@@ -5,5 +5,7 @@ package Ventanas
  */
 open class Validaciones {
     companion object {}
+
+
 }
 

@@ -11,6 +11,7 @@ import java.awt.Color
 import java.awt.MenuComponent
 import java.awt.Point
 import java.awt.event.*
+import java.util.*
 import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JLabel
@@ -149,9 +150,6 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                    // jPopupMenuForm.show(contentPane, e.getX(), e.getY())
                 }
             }
-
-
-
             override fun mousePressed(e: MouseEvent) {
                 // TODO Auto-generated method stub
                 if (e.getClickCount() === 2 && e.getButton() === MouseEvent.BUTTON1) {
@@ -297,6 +295,58 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
     private fun evaluarCadena(e: ActionEvent) {
         //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(prologoAntesDeProbar())
+            return;
+        if(!((seCreaAlfabeto(jTextFieldAlfabeto?.getText()?.toCharArray() as CharArray)) as Boolean))
+            return;
+
+        if(dfa?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
+            JOptionPane.showMessageDialog(getContentPane(),"EL AUTOMATA ACEPTA LA CADENA!", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        ConfigurationForWindows.messageDialog(contentPane,"EL AUTOMATA NO ACEPTA LA CADENA");
+    }
+
+    private fun seCreaAlfabeto(alfabeto: CharArray): Any {
+           // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        for (i in 0..alfabeto.size - 1) {
+            for (j in i + 1..alfabeto.size - 1) {
+                if (alfabeto[j] === alfabeto[i]) {
+                    ConfigurationForWindows.messageDialog(contentPane,"No es necesario agregar dos veces el mismo digito o letra!")
+                    return false
+                }
+            }
+        }
+
+       /* if (!(dfa?.alfabeto?.isEmpty() as Boolean)) {
+            dfa?.alfabeto = ArrayList()
+        }*/
+        for (i in 0..alfabeto.size - 1) {
+            dfa?.alfabeto?.add( alfabeto[i].toChar())
+        }
+        return true
+    }
+
+    private fun prologoAntesDeProbar(): Boolean {
+        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (dfa?.estados?.isEmpty() as Boolean) {
+            ConfigurationForWindows.messageDialog(contentPane,"No hay estado!");
+            return true;
+        }
+        if (dfa?.estadoInicial?.nombre?.isEmpty() as Boolean) {
+            ConfigurationForWindows.messageDialog(contentPane,"Debe existir un estado inicial!");
+            return true;
+        }
+        if(dfa?.estadosDeAceptacion?.isEmpty() as Boolean){
+            ConfigurationForWindows.messageDialog(contentPane,"Estado de aceptacion Oblogatorio");
+            return true;
+        }
+        if (jTextFieldAlfabeto?.getText()?.isEmpty() as Boolean) {
+            ConfigurationForWindows.messageDialog(contentPane,"No hay alfabeto!");
+            return true;
+        }
+        return false;
     }
 }
 

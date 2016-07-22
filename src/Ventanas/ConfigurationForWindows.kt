@@ -26,7 +26,7 @@ open class ConfigurationForWindows {
         }
 
         fun  messageDialog(contentPane: Container?, s: String) {
-            JOptionPane.showMessageDialog(contentPane, s, "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(contentPane, s, "Informacion", JOptionPane.ERROR_MESSAGE);
         }
 
 
