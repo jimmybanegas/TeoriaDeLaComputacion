@@ -29,6 +29,10 @@ abstract class Automata {
 
     abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: mxCell)
 
+    abstract fun agregarEstado(nombre: String, vertice: Object)
+
+    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: Object)
+
     abstract fun evaluar(cadena:String): Boolean
 
     abstract fun agregarEstadoAceptacion(estado: Estado)

@@ -6,7 +6,7 @@ import java.lang.Object;
  * Created by Jimmy Banegas on 19-Jul-16.
  */
 class Estado {
-    var  vertice: mxCell? = null
+    var  vertice: Object? = null
    // get() {return vertice}
     //set(value) {field=vertice}
 
@@ -23,7 +23,7 @@ class Estado {
         get() {return esDeAceptacion}
         set(value) {field = esDeAceptacion}
 */
-    constructor(nombre: String, vertice: mxCell)  {
+    constructor(nombre: String, vertice: Object)  {
         this.nombre = nombre
         this.vertice = vertice
       /*  this.esInicial = esInicial

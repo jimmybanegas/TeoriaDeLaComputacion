@@ -57,10 +57,10 @@ public class Principal extends JDialog {
                 ConfigurationForWindows.SetConfigurations(dfaWindow);
                 break;
             case 1:
-                Turing turingWindow = new Turing();
+               /* Turing turingWindow = new Turing();
 
                 //Mostrar ventana de Turing
-                ConfigurationForWindows.SetConfigurations(turingWindow);
+                ConfigurationForWindows.SetConfigurations(turingWindow);*/
                 break;
             default:
                 dispose();

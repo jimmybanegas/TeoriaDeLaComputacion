@@ -6,10 +6,23 @@ import com.mxgraph.model.mxCell
  * Created by Affisa-Jimmy on 20/7/2016.
  */
 class AutomataDFA : Automata() {
-    override fun agregarEstado(nombre: String,vertice: mxCell) {
+    override fun agregarEstado(nombre: String, vertice: Object) {
        // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         estados.add(Estado(nombre,vertice))
-        println("Desde kotlin "+vertice.toString())
+
+        println("Desde kotlin object "+vertice.toString())
+        println("Desde kotlin object "+nombre)
+    }
+
+    override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: Object) {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun agregarEstado(nombre: String,vertice: mxCell) {
+       // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+     //   estados.add(Estado(nombre,vertice))
+        println("Desde kotlin mxcell "+vertice.toString())
+        println("Desde kotlin mxcell "+nombre)
     }
 
     override fun agregarTransicion(nombre: String, origen: Estado, destino: Estado, vertice: mxCell) {
