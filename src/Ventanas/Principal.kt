@@ -19,7 +19,10 @@ class Principal {
 }
 
 fun main(args : Array<String>) {
-    var principal = PrincipalPrueba("Hola")
+    var principal = Principal()
+
     principal.initComponents()
-    principal.setVisible(true)
+
+ /*   principal.initComponents()
+    principal.setVisible(true)*/
 }

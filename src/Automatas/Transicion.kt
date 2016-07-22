@@ -13,7 +13,7 @@ class Transicion {
   //  get() {return destino}
   //  set(value) {field=destino}
 
-    var vertice: Object? = null
+    var arista: Object? = null
   //  get() {return vertice}
   //  set(value) {field=vertice}
 
@@ -21,10 +21,10 @@ class Transicion {
 //    get() {return nombre}
   //  set(value) {field=nombre}
 
-    constructor(origen: Estado, destino: Estado, nombre: String, vertice: Object) {
+    constructor(origen: Estado, destino: Estado, nombre: String, arista: Object) {
         this.origen = origen
         this.destino = destino
-        this.vertice = vertice
+        this.arista = arista
         this.nombre = nombre
     }
 }

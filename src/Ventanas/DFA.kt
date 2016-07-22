@@ -4,9 +4,11 @@ import Automatas.AutomataDFA
 import Automatas.Estado
 import com.mxgraph.model.mxCell
 import com.mxgraph.swing.mxGraphComponent
+import com.mxgraph.util.mxConstants
 import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
+import com.mxgraph.view.mxStylesheet
 import java.awt.Color
 import java.awt.MenuComponent
 import java.awt.Point
@@ -52,7 +54,9 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         jButtonProbarAutomata = javax.swing.JButton()
 
         defaultCloseOperation = javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+
         title = "Automata Finito Deterministico"
+
         contentPane.background = Color.WHITE
         (jButtonProbarAutomata as JButton).setBackground(Color.WHITE)
         graph = mxGraph()
@@ -73,10 +77,9 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                 if (e.getKeyCode() == KeyEvent.VK_DELETE){
                   //  if (!graph.isSelectionEmpty()) {
                         delFunction()
-
                         //graph.model.remove(e.component.remove(e.source as MenuComponent?))
                        // bar.getdeleteaction().actionPerformed(null);
-                        println("BOORAR")
+                        println("BORRAR")
                     }
             }
 
@@ -89,7 +92,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                     //  setEnabledButton(cells, true)
                   /*  val x = graph.getCellBounds(cells[0]).x
                     val y = graph.getCellBounds(cells[0]).y*/
-                    var p = Point(x.toInt(), y.toInt())
+                    //var p = Point(x.toInt(), y.toInt())
                     //  cells = graph.getChildCells(cells)
                     graph.model.remove(cells)
                     // statusLabel.setText("Status: Unsaved")
@@ -103,7 +106,25 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         (graphComponent as mxGraphComponent).connectionHandler?.addListener(mxEvent.CONNECT) { sender: Any, evt: mxEventObject ->
                 val edge = evt.getProperty("cell") as mxCell
 
-                //Validar que el target de la flecha no sea null, si es nulo o no colisiona con otro estado, lo elimino
+               val style = graph.stylesheet.defaultEdgeStyle
+                style.put(mxConstants.STYLE_ROUNDED, true)
+                style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_LOOP)
+            // Settings for edges
+          //  edge = HashMap<String, Any>()
+          /*  style.put(mxConstants.STYLE_ROUNDED, true)
+            style.put(mxConstants.STYLE_ORTHOGONAL, false)
+            style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_LOOP)
+            style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_CONNECTOR)
+            style.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_CLASSIC)
+            style.put(mxConstants.STYLE_VERTICAL_ALIGN, mxConstants.ARROW_SPACING)
+            style.put(mxConstants.STYLE_ALIGN, mxConstants.ARROW_OVAL)
+            style.put(mxConstants.STYLE_STROKECOLOR, "#000000") // default is #6482B9
+            style.put(mxConstants.STYLE_FONTCOLOR, "#446299")*/
+
+            graph.stylesheet.setDefaultEdgeStyle(style)
+
+
+                //Validar que el target de la arista no sea null, si es nulo o no colisiona con otro estado, lo elimino
                 if (edge.target == null  ) {
                     graph.model.remove(evt.getProperty("cell"))
                     return@addListener
@@ -114,8 +135,8 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                 val destino = edge.getTarget() as mxCell
 
                 //Ahora tengo que ver a que estado pertenecen dichos Objetos del grafico
-                val v1 = obtenerEstado(origen)
-                val v2 = obtenerEstado(destino)
+                val v1 = dfa?.obtenerEstadoPorVertice(origen)
+                val v2 = dfa?.obtenerEstadoPorVertice(destino)
 
                 if (v2 == null  ) {
                     graph.model.remove(evt.getProperty("cell"))
@@ -136,21 +157,17 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                      graph.model.remove(evt.getProperty("cell"))
                      return@addListener
                  }
-                val name = nombre.toString()
-                edge.setValue(" "+name+ " ")
+                val name = edge.value.toString() +" "+ nombre.toString()
+                edge.setValue(name)
+
                 dfa?.agregarTransicion(name,v1 as Estado, v2, edge)
 
-                 dfa.toString()
+                print(dfa.toString())
 
         }
 
         (graphComponent as mxGraphComponent).getGraphControl().addMouseListener(object : MouseAdapter() {
-            override fun mouseReleased(e: MouseEvent) {
-                if (e.isPopupTrigger()) {
-                   // jPopupMenuForm.show(contentPane, e.getX(), e.getY())
-                }
-            }
-            override fun mousePressed(e: MouseEvent) {
+                override fun mousePressed(e: MouseEvent) {
                 // TODO Auto-generated method stub
                 if (e.getClickCount() === 2 && e.getButton() === MouseEvent.BUTTON1) {
                     val x = e.getX()
@@ -274,7 +291,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
             }
             val na = name.toCharArray()
             if (na.size > 1) {
-                ConfigurationForWindows.messageDialog(contentPane,"Solo un caracter es permitido")
+                ConfigurationForWindows.messageDialog(contentPane,"Escriba solo un caracter")
             } else if (na.size == 1) {
                 nombre = na[0]
                 break
@@ -283,65 +300,23 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
         return nombre
     }
 
-    private fun obtenerEstado(origen: mxCell): Estado? {
-        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        for (estado in dfa?.estados!!) {
-            if (estado.vertice?.equals(origen)!!) {
-                return estado
-            }
-        }
-        return null
-    }
-
     private fun evaluarCadena(e: ActionEvent) {
         //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         if(prologoAntesDeProbar())
             return;
-        if(!((seCreaAlfabeto(jTextFieldAlfabeto?.getText()?.toCharArray() as CharArray)) as Boolean))
+        if(!((dfa?.crearAlfabeto(jTextFieldAlfabeto?.getText()?.toCharArray() as CharArray)) as Boolean))
             return;
 
         if(dfa?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
-            JOptionPane.showMessageDialog(getContentPane(),"EL AUTOMATA ACEPTA LA CADENA!", "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(getContentPane(),"Cadena Aceptada", "Success",JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        ConfigurationForWindows.messageDialog(contentPane,"EL AUTOMATA NO ACEPTA LA CADENA");
-    }
-
-    private fun seCreaAlfabeto(alfabeto: CharArray): Any {
-           // throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        for (i in 0..alfabeto.size - 1) {
-            for (j in i + 1..alfabeto.size - 1) {
-                if (alfabeto[j] === alfabeto[i]) {
-                    ConfigurationForWindows.messageDialog(contentPane,"No es necesario agregar dos veces el mismo digito o letra!")
-                    return false
-                }
-            }
-        }
-
-       /* if (!(dfa?.alfabeto?.isEmpty() as Boolean)) {
-            dfa?.alfabeto = ArrayList()
-        }*/
-        for (i in 0..alfabeto.size - 1) {
-            dfa?.alfabeto?.add( alfabeto[i].toChar())
-        }
-        return true
+        ConfigurationForWindows.messageDialog(contentPane,"Cadena no aceptada");
     }
 
     private fun prologoAntesDeProbar(): Boolean {
         //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        if (dfa?.estados?.isEmpty() as Boolean) {
-            ConfigurationForWindows.messageDialog(contentPane,"No hay estado!");
-            return true;
-        }
-        if (dfa?.estadoInicial?.nombre?.isEmpty() as Boolean) {
-            ConfigurationForWindows.messageDialog(contentPane,"Debe existir un estado inicial!");
-            return true;
-        }
-        if(dfa?.estadosDeAceptacion?.isEmpty() as Boolean){
-            ConfigurationForWindows.messageDialog(contentPane,"Estado de aceptacion Oblogatorio");
-            return true;
-        }
+
         if (jTextFieldAlfabeto?.getText()?.isEmpty() as Boolean) {
             ConfigurationForWindows.messageDialog(contentPane,"No hay alfabeto!");
             return true;

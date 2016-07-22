@@ -25,17 +25,23 @@ abstract class Automata {
    // get() {return estadoInicial}
    // set(value) {field = estadoInicial}
 
-    abstract fun agregarEstado(nombre: String, vertice: mxCell)
-
-    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: mxCell)
+    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, arista: mxCell)
 
     abstract fun agregarEstado(nombre: String, vertice: Object)
-
-    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, vertice: Object)
 
     abstract fun evaluar(cadena:String): Boolean
 
     abstract fun agregarEstadoAceptacion(estado: Estado)
+
+    abstract fun obtenerEstadoPorVertice(vertice: mxCell):Estado?
+
+    abstract fun estadosEstanVacios():Boolean
+
+    abstract fun estadoInicialEstaVacio(): Boolean
+
+    abstract fun estadosDeAceptacionEstanVacios(): Boolean
+
+    abstract fun crearAlfabeto(alfabeto: CharArray): Boolean
 
     abstract override fun toString(): String
 }
