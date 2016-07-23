@@ -25,24 +25,77 @@ abstract class Automata {
    // get() {return estadoInicial}
    // set(value) {field = estadoInicial}
 
-    abstract fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, arista: mxCell)
-
-    abstract fun agregarEstado(nombre: String, vertice: Object)
-
     abstract fun evaluar(cadena:String): Boolean
 
-    abstract fun agregarEstadoAceptacion(estado: Estado)
+    open fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, arista: mxCell){
+        transiciones.add(Transicion(origen,destino,nombre,arista as Object))
+    }
 
-    abstract fun obtenerEstadoPorVertice(vertice: mxCell):Estado?
+    open fun agregarEstado(nombre: String, vertice: Object)  {
+        estados.add(Estado(nombre,vertice))
+    }
 
-    abstract fun estadosEstanVacios():Boolean
+    open fun agregarEstadoAceptacion(estado: Estado){
+        estadosDeAceptacion.add(estado)
+    }
 
-    abstract fun estadoInicialEstaVacio(): Boolean
+    open fun obtenerEstadoPorVertice(vertice: mxCell):Estado?{
+        for (estado in this?.estados!!) {
+            if (estado.vertice?.equals(vertice)!!) {
+                return estado
+            }
+        }
+        return null
+    }
 
-    abstract fun estadosDeAceptacionEstanVacios(): Boolean
+    open fun estadosEstanVacios():Boolean {
+        if (estados?.isEmpty())
+            return true
+        return false
+    }
 
-    abstract fun crearAlfabeto(alfabeto: CharArray): Boolean
+    open fun estadoInicialEstaVacio(): Boolean{
+        if (estadoInicial?.nombre.isEmpty())
+            return true
+        return false
+    }
 
-    abstract override fun toString(): String
+    open fun estadosDeAceptacionEstanVacios(): Boolean{
+        if (estadosDeAceptacion?.isEmpty())
+            return true
+        return false
+    }
+
+    open fun transicionesEstanVacias(): Boolean{
+        if (transiciones?.isEmpty())
+            return true
+        return false
+    }
+
+    open fun crearAlfabeto(alfabeto: CharArray): Boolean{
+        //Validar que no vengan letras repetidas en el array de char porque no es necesario
+        for (i in 0..alfabeto.size -1) {
+            for (j in i + 1..alfabeto.size-1) {
+                if (alfabeto[j] === alfabeto[i]) {
+                    return false
+                }
+            }
+        }
+
+        // Si pasa ese filtro, procedemos a llenar el arreglo de chars
+        if(alfabeto.isEmpty()){
+            for (i in 0..alfabeto.size -1) {
+                this.alfabeto .add(alfabeto[i].toChar())
+            }
+        }
+        return true
+    }
+
+    override fun toString(): String{
+        return (("Tamaño de estados: "+ estados.size) + "\n"+
+                ("Tamaño de estados aceptacion: "+ estadosDeAceptacion.size) +  "\n"+
+                ("Tamaño transiciones : "+ transiciones.size)+ "\n"+
+                ("Inicial : "+ estadoInicial.nombre)+ "\n")
+    }
 }
 

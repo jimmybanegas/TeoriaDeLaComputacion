@@ -108,7 +108,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
                val style = graph.stylesheet.defaultEdgeStyle
                 style.put(mxConstants.STYLE_ROUNDED, true)
-                style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_LOOP)
+                style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ELBOW)
             // Settings for edges
           //  edge = HashMap<String, Any>()
           /*  style.put(mxConstants.STYLE_ROUNDED, true)
@@ -152,12 +152,14 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
                 var a = dfa?.verificarTransicion(v1 as Estado, nombre)
 
+                println(" resultado de a " +a)
+
                  if ((a as Boolean)) {
                      ConfigurationForWindows.messageDialog(contentPane,"No se puede agregar una Transicion con el mismo valor!")
                      graph.model.remove(evt.getProperty("cell"))
                      return@addListener
                  }
-                val name = edge.value.toString() +" "+ nombre.toString()
+                val name = nombre.toString()
                 edge.setValue(name)
 
                 dfa?.agregarTransicion(name,v1 as Estado, v2, edge)
@@ -302,16 +304,37 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
     private fun evaluarCadena(e: ActionEvent) {
         //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        if(prologoAntesDeProbar())
-            return;
-        if(!((dfa?.crearAlfabeto(jTextFieldAlfabeto?.getText()?.toCharArray() as CharArray)) as Boolean))
-            return;
-
+        if ((jTextFieldAlfabeto?.getText()?.isNullOrEmpty() as Boolean || jTextFieldCadena?.getText().isNullOrEmpty())) {
+            ConfigurationForWindows.messageDialog(contentPane,"No hay alfabeto o cadena");
+            return
+        }
+        if(dfa?.estadosEstanVacios() as Boolean){
+            ConfigurationForWindows.messageDialog(contentPane,"No hay ningun estado ");
+            return
+        }
+        if(dfa?.estadoInicialEstaVacio() as Boolean){
+            ConfigurationForWindows.messageDialog(contentPane,"Estado inicial vacio");
+            return
+        }
+        if(dfa?.estadosDeAceptacionEstanVacios() as Boolean){
+            ConfigurationForWindows.messageDialog(contentPane,"No hay ningún estado de aceptacion");
+            return
+        }
+        if(dfa?.transicionesEstanVacias() as Boolean){
+            ConfigurationForWindows.messageDialog(contentPane,"No hay transiciones");
+            return
+        }
+        if(!((dfa?.crearAlfabeto(jTextFieldAlfabeto?.getText()?.toCharArray() as CharArray)) as Boolean)){
+            ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido");
+            return
+        }
         if(dfa?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
             JOptionPane.showMessageDialog(getContentPane(),"Cadena Aceptada", "Success",JOptionPane.INFORMATION_MESSAGE);
             return;
+        }else
+        {
+            ConfigurationForWindows.messageDialog(contentPane,"Cadena no aceptada");
         }
-        ConfigurationForWindows.messageDialog(contentPane,"Cadena no aceptada");
     }
 
     private fun prologoAntesDeProbar(): Boolean {
