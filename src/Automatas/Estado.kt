@@ -20,6 +20,8 @@ class Estado {
     var esDeAceptacion: Boolean = false
         get() {return esDeAceptacion}
         set(value) {field = esDeAceptacion}
+
+
 */
     constructor(nombre: String, vertice: Object)  {
         this.nombre = nombre

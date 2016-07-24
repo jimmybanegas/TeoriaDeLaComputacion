@@ -2,11 +2,12 @@ package Automatas
 
 
 import com.mxgraph.model.mxCell
+import java.io.Serializable
 
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
-abstract class Automata {
+abstract class Automata : Serializable {
 
     var alfabeto = mutableListOf<Char>()
     val alfabetoItems: List<Char> get() = alfabeto
@@ -18,7 +19,7 @@ abstract class Automata {
     val estadosItems: List<Estado> get() = estados.toList()
 
     var estadosDeAceptacion = mutableListOf<Estado>()
-    val aceptacionItems: List<Estado> get() = estadosDeAceptacion.toList()
+    val estadosDeAceptacionItems: List<Estado> get() = estadosDeAceptacion.toList()
     // set(value) {field = estadosDeAceptacion}
 
     var estadoInicial = Estado()
@@ -48,6 +49,25 @@ abstract class Automata {
             }
         }
         return null
+    }
+
+    open fun obtenerEstadoPorNombre(nombre: String):Estado?{
+        this.estados.forEach { estado ->
+            if (estado.nombre.equals(nombre)) {
+                return estado
+            }
+        }
+        return null
+    }
+
+    fun setStateWithAttributes(name: String, posX: Double, posY: Double) {
+        var state: Estado? = null
+        for (s in estados) {
+            if (s.nombre.equals(name)) {
+                state = s
+              //  s.setPoint(posX, posY)
+            }
+        }
     }
 
     open fun estadosEstanVacios():Boolean {

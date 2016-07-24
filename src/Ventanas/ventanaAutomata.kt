@@ -3,6 +3,7 @@ package Ventanas
 import Automatas.Automata
 import Automatas.AutomataDFA
 import Automatas.Estado
+import Automatas.Transicion
 import com.mxgraph.model.mxCell
 import com.mxgraph.swing.mxGraphComponent
 import com.mxgraph.util.mxConstants
@@ -10,7 +11,10 @@ import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
 import java.awt.Color
+import java.awt.Rectangle
 import java.awt.event.*
+import java.io.FileOutputStream
+import java.io.ObjectOutputStream
 import javax.swing.*
 
 /**
@@ -19,6 +23,7 @@ import javax.swing.*
 class ventanaAutomata(automata: Automata) : JFrame() {
     // Variables declaration - do not modify
     private var jButtonEvaluarAutomata: javax.swing.JButton? = null
+    private var fc: JFileChooser? = null
     private var jLabel1: javax.swing.JLabel? = null
     private var jLabel2: javax.swing.JLabel? = null
     private var jLabel3: javax.swing.JLabel? = null
@@ -93,7 +98,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
             override fun keyPressed(e: KeyEvent){
                 // e.keyCode
-                if (e.getKeyCode() == KeyEvent.VK_DELETE){
+                if (e.keyCode == KeyEvent.VK_DELETE){
                   //  if (!graph.isSelectionEmpty()) {
                         delFunction()
                         //graph.model.remove(e.component.remove(e.source as MenuComponent?))
@@ -105,16 +110,57 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             private fun delFunction() {
                 graph.model.beginUpdate()
                 try {
-                    var cells = graph.selectionCell
+                    var cell = graph.selectionCell
 
-                    println(cells)
-                    //  setEnabledButton(cells, true)
-                  /*  val x = graph.getCellBounds(cells[0]).x
-                    val y = graph.getCellBounds(cells[0]).y*/
-                    //var p = Point(x.toInt(), y.toInt())
-                    //  cells = graph.getChildCells(cells)
-                    graph.model.remove(cells)
-                    // statusLabel.setText("Status: Unsaved")
+                   // println(cell.toString())
+
+                    for (estado in automata?.estadosItems!!){
+                        if(estado.vertice == cell){
+
+                            //Si borramos el estado inicial tenemos que resetearlo
+                            if(automata?.estadoInicial?.vertice == cell){
+                                automata?.estadoInicial = Estado()
+                            }
+
+                            //Borrar el estado si está en estados de aceptacion
+                            for (estado in automata?.estadosDeAceptacionItems!!){
+                                if(estado.vertice == cell){
+                                    (automata?.estadosDeAceptacion as MutableList<Estado>).remove(estado)
+                                }
+                            }
+
+                            //Luego borrarlo de el arreglo de estados general
+                            (automata?.estados as MutableList<Estado>).remove(estado)
+
+                            //Cuando un estado a borrar tenga una transicion asociada esta o estas se borrarán con él
+                            for (transicion in automata?.transaccionesItems!!){
+                                if(transicion.destino?.vertice == cell || transicion.origen?.vertice == cell){
+                                    (automata?.transiciones as MutableList<Transicion>).remove(transicion)
+                                    println("Transicion asociada borrada "+ transicion.simbolo)
+                                }
+                            }
+
+                            //Remover la representación gráfica
+                            graph.model.remove(cell)
+                            println("Estado borrado")
+
+                            println("\n"+ automata.toString())
+                        }
+                    }
+
+                    for (transicion in automata?.transaccionesItems!!){
+                        if(transicion.arista == cell){
+
+                            (automata?.transiciones as MutableList<Transicion>).remove(transicion)
+
+                            graph.model.remove(cell)
+
+                            println("Transicion borrada")
+
+                            println("\n"+ automata.toString())
+                        }
+                    }
+
                 }finally{
                     graph.model.endUpdate()
                 }
@@ -188,8 +234,8 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                 override fun mousePressed(e: MouseEvent) {
                 // TODO Auto-generated method stub
                 if (e.clickCount === 2 && e.button === MouseEvent.BUTTON1) {
-                    val x = e.getX()
-                    val y = e.getY()
+                    val x = e.x
+                    val y = e.y
                     graph.model.beginUpdate()
                     try {
                         val parent = graph.defaultParent
@@ -207,7 +253,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                          var v1 = Any()
 
                         //Para definir el estado inicial si el contador de estados es cero y pintarlo de otro color
-                        if(contadorEstados-1==0)
+                        if(automata?.estadoInicialEstaVacio() as Boolean)
                         {
                             if(esDeAceptacion){
                                 //Este sería un estado inicial y de aceptacion a la vez
@@ -312,11 +358,46 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         val guardarMenuItem = JMenuItem("Guardar")
         guardarMenuItem.mnemonic = KeyEvent.VK_G
         guardarMenuItem.toolTipText = "Guardar Automata"
-        guardarMenuItem.addActionListener(object : ActionListener {
-            override fun actionPerformed(event: ActionEvent) {
-               // System.exit(0)
+        guardarMenuItem.addActionListener {
+            println("Guardar")
+
+            val parent = graph.defaultParent
+            val cells = graphComponent?.getCells(Rectangle(1000, 500), parent)
+
+            /*   for (obj in cells) {
+                    val cell = obj
+                    if (automata?.obtenerEstadoPorNombre(cell.value.toString()) != null) {
+                        if (cell.value.toString() == automata?.obtenerEstadoPorNombre(cell.value.toString())?.nombre) {
+
+                            automata?.setStateWithAttributes(cell.value.toString(), cell.geometry.x, cell.geometry.y)
+                        }
+                    }
+                }*/
+            //  automata.printStatePositions()
+            //Handle save button action.
+            //      if (event.source === guardarMenuItem) {
+
+            val returnVal = fc?.showSaveDialog(this@ventanaAutomata)
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                val file = fc?.selectedFile
+                //This is where a real application would save the file.
+                try {
+                    //  automata.updateTransitions()
+                    val fos = FileOutputStream(file?.absolutePath + ".ser")
+                    val oos = ObjectOutputStream(fos)
+                    oos.writeObject(automata)
+                    oos.close()
+                } catch (ex: Exception) {
+                    println("Exception thrown during Saving: " + ex.toString())
+                }
+
+                //log.append("Saving: " + file.getName() + "." + "\n")
+            } else {
+                //log.append("Save command cancelled" + "\n")
             }
-        })
+            // log.setCaretPosition(log.getDocument().getLength())
+            //  }
+        }
 
         val abrirMenuItem = JMenuItem("Abrir")
         abrirMenuItem.mnemonic = KeyEvent.VK_A
@@ -333,7 +414,10 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         instrucciones.addActionListener {
             val instrucciones = "1. Debe agregar primero el alfabeto\r\n" +
                     "2. Deberá agregar la cadena a evaluar\r\n" +
-                    "3. Para agregar un nuevo estado debe dar doble clic sobre el panel"
+                    "3. Para agregar un nuevo estado debe dar doble clic sobre el panel\r\n"+
+                    "4. Para borrar una transicion o estado, seleccionarlo y luego presionar tecla delete\r\n"+
+                    "\n El estado inicial se marca en amarillo, los demás en verde y con doble círculo \n" +
+                    "si es de aceptación, si se borra el inicial, el próximo agregado se tomará como inicial"
 
             JOptionPane.showMessageDialog(contentPane,instrucciones, "Instrucciones",JOptionPane.INFORMATION_MESSAGE);
         }
