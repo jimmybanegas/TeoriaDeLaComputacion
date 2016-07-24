@@ -29,7 +29,7 @@ abstract class Automata {
 
     abstract fun validarTransicion(v1 : Estado, nombre: Char) : Boolean
 
-    open fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, arista: mxCell){
+    open fun agregarTransicion(nombre:Char, origen: Estado, destino:Estado, arista: mxCell){
         transiciones.add(Transicion(origen,destino,nombre,arista as Object))
     }
 
@@ -76,7 +76,6 @@ abstract class Automata {
 
     open fun crearAlfabeto(alfabeto: CharArray): Boolean{
         //Validar que no vengan letras repetidas en el array de char porque no es necesario
-
         for (i in 0..alfabeto.size -1) {
             for (j in i + 1..alfabeto.size-1) {
                 if (alfabeto[j] === alfabeto[i]) {
@@ -86,12 +85,21 @@ abstract class Automata {
         }
         this.alfabeto.clear()
         // Si pasa ese filtro, procedemos a llenar el arreglo de chars
-      //  if(this.alfabeto.isEmpty()){
             for (i in 0..alfabeto.size -1) {
                 this.alfabeto.add(alfabeto[i].toChar())
             }
-        //}
         println("\r\nTamano alfabeto creado : "+this.alfabeto.size)
+        return true
+    }
+
+    open fun simbolosDeTransicionesEstanEnAlfabeto() : Boolean{
+        println("\nsibolos tamaño : "+this.alfabeto.size)
+        for(transicion in transiciones){
+            if(!alfabeto.contains(transicion.nombre)){
+                println("\nSimbolo : "+transicion.nombre)
+                return false
+            }
+        }
         return true
     }
 
@@ -99,6 +107,7 @@ abstract class Automata {
         return (("Tamaño de estados: "+ estados.size) + "\n"+
                 ("Tamaño de estados aceptacion: "+ estadosDeAceptacion.size) +  "\n"+
                 ("Tamaño transiciones : "+ transiciones.size)+ "\n"+
+                ("Tamaño alfabeto : "+ alfabeto.size)+ "\n"+
                 ("Inicial : "+ estadoInicial.nombre)+ "\n")
     }
 }

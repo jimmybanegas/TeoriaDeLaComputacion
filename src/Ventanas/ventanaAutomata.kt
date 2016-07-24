@@ -171,14 +171,12 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
                 var a = automata?.validarTransicion(v1 as Estado, nombre)
 
-                println(" resultado de a " +a)
-
                  if ((a as Boolean)) {
                      ConfigurationForWindows.messageDialog(contentPane,"Ya existe transicion")
                      graph.model.remove(evt.getProperty("cell"))
                      return@addListener
                  }
-                val name = nombre.toString()
+                val name = nombre
                 edge.setValue(name)
 
                 automata?.agregarTransicion(name,v1 as Estado, v2, edge)
@@ -380,9 +378,12 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             ConfigurationForWindows.messageDialog(contentPane, msg);
             return
         }
-
         if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
             ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido");
+            return
+        }
+        if(!(automata?.simbolosDeTransicionesEstanEnAlfabeto() as Boolean)){
+            ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
             return
         }
         if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){

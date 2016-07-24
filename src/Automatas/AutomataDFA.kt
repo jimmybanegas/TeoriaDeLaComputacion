@@ -15,9 +15,6 @@ class AutomataDFA : Automata() {
         println(" evaluar cadena.tochararry "+evaluar.size)
         println("\r\nTamano alfabeto en evaluar : "+alfabeto.size)
 
-      /*  if (!verificarCadena(evaluar))
-            return false*/
-
         var fin = estadoInicial
         var stay = true
 
@@ -44,46 +41,20 @@ class AutomataDFA : Automata() {
         return false
     }
 
-    private fun verificarCadena(evaluar: CharArray): Boolean {
-        println(evaluar.size)
-        println(alfabeto.size)
-        /*for (i in 0..evaluar.size-1 ) {
-            for (c in alfabeto) {
-                if (c.equals( evaluar[i])) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        }*/
-        return true
-    }
-
     private fun estadoInicialEsDeAceptacion(): Boolean {
         for (estado in estados){
-            if(estado.nombre.toString().equals(estadoInicial.nombre.toString()))
-                return true
-            return false
+            when {
+                estado.nombre.toString().equals(estadoInicial.nombre.toString()) -> return true
+                else -> return false
+            }
         }
         return false
-        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun validarTransicion(v1 : Estado, nombre: Char): Boolean {
-       // return transiciones.({ transicion -> transicion.origen?.nombre.equals(v1.nombre) && transicion.nombre.equals((nombre)) })
-        println("v1 nombre "+v1.nombre)
-        println("char nombre "+nombre)
-        println("transiones size "+transaccionesItems.size)
-
         for (transicion in transaccionesItems) {
-            println("entre")
-            println("transiones origen nombre "+transicion.origen?.nombre)
-            println("transiones nombre "+transicion.nombre)
-            if (transicion.origen?.nombre.equals(v1.nombre.toString()) && transicion.nombre.equals(nombre.toString())) {
-                return true
-            } else {
-                return false
-            }
+            if (transicion.origen?.nombre.equals(v1.nombre) && transicion.nombre.equals(nombre)) return true
+            else return false
         }
         return false
     }
