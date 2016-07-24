@@ -52,9 +52,9 @@ class AutomataDFA : Automata() {
     }
 
     override fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char): Boolean {
-        println(" v1" +v1.nombre)
-        println(" v2" +v2.nombre)
-        println(" simbolo" +simbolo)
+        println(" v1 " +v1.nombre)
+        println(" v2 " +v2.nombre)
+        println(" simbolo " +simbolo)
 
         for (transicion in transaccionesItems) {
          /*if((transicion.origen?.nombre.equals(v1.nombre) && transicion.simbolo.equals(simbolo)) || (transicion.origen?.nombre.equals(v1.nombre)

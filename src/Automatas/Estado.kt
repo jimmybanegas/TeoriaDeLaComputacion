@@ -1,9 +1,11 @@
 package Automatas
 
+import java.io.Serializable
+
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
-class Estado {
+class Estado : Serializable {
     var  vertice: Object? = null
    // get() {return vertice}
     //set(value) {field=vertice}
@@ -20,8 +22,6 @@ class Estado {
     var esDeAceptacion: Boolean = false
         get() {return esDeAceptacion}
         set(value) {field = esDeAceptacion}
-
-
 */
     constructor(nombre: String, vertice: Object)  {
         this.nombre = nombre
@@ -31,4 +31,19 @@ class Estado {
     }
 
     constructor()
+
+    var posX: Double = 0.0
+    var posY: Double = 0.0
+
+    fun definirPosicionEnGrafico(posX: Double, posY: Double) {
+        this.posX = posX
+        this.posY = posY
+    }
+
+    override fun toString(): String {
+        return " Nombre: " +this.nombre +"\r\n"+
+                " Vertice: "+ this.vertice.toString()+ "\r\n"+
+                " Pos x :"+this.posX +"\r\n"+
+                " Pos y: "+ this.posX
+    }
 }

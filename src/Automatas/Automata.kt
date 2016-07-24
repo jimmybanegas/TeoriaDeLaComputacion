@@ -2,6 +2,8 @@ package Automatas
 
 
 import com.mxgraph.model.mxCell
+import com.mxgraph.util.mxConstants
+import com.mxgraph.view.mxGraph
 import java.io.Serializable
 
 /**
@@ -60,12 +62,15 @@ abstract class Automata : Serializable {
         return null
     }
 
-    fun setStateWithAttributes(name: String, posX: Double, posY: Double) {
-        var state: Estado? = null
+    fun ponerPosicionEstado(name: String, posX: Double, posY: Double) {
         for (s in estados) {
             if (s.nombre.equals(name)) {
-                state = s
-              //  s.setPoint(posX, posY)
+                s.definirPosicionEnGrafico(posX, posY)
+            }
+        }
+        for (s in estadosDeAceptacion) {
+            if (s.nombre.equals(name)) {
+                s.definirPosicionEnGrafico(posX, posY)
             }
         }
     }
@@ -113,7 +118,7 @@ abstract class Automata : Serializable {
     }
 
     open fun simbolosDeTransicionesEstanEnAlfabeto() : Boolean{
-        println("\nsibolos tamaño : "+this.alfabeto.size)
+        println("\nsimbolos tamaño : "+this.alfabeto.size)
         for(transicion in transiciones){
             if(!alfabeto.contains(transicion.simbolo)){
                 println("\nSimbolo : "+transicion.simbolo)
@@ -121,6 +126,55 @@ abstract class Automata : Serializable {
             }
         }
         return true
+    }
+
+    open fun dibujarAutomata(graph: mxGraph) {
+        val parent = graph.defaultParent
+
+        for (s in this.estados) {
+            graph.model.beginUpdate()
+            if (estadoInicial.nombre.equals(s.nombre) && this.estadosDeAceptacion.any { it.nombre == s.nombre }){
+                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow")
+            }else if (estadoInicial.nombre.equals(s.nombre) && !this.estadosDeAceptacion.any { it.nombre == s.nombre }) {
+                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow")
+            }else if(this.estadosDeAceptacion.any { it.nombre == s.nombre } && !estadoInicial.nombre.equals(s.nombre)) {
+                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightgreen")
+            }
+            else if(!this.estadosDeAceptacion.any { it.nombre == s.nombre }  && !estadoInicial.nombre.equals(s.nombre)){
+                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightgreen")
+            }
+
+            graph.model.endUpdate()
+        }
+
+        for (t in this.transaccionesItems) {
+            val style = graph.stylesheet.defaultEdgeStyle
+            style.put(mxConstants.STYLE_ROUNDED, true)
+            style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ELBOW)
+            graph.stylesheet.defaultEdgeStyle = style
+
+            val vertex = getVertexInGraph(t.origen?.nombre,graph )
+
+            val vertex2 = getVertexInGraph(t.destino?.nombre,graph )
+
+            graph.model.beginUpdate()
+
+            graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
+
+            graph.model.endUpdate()
+        }
+    }
+
+    private fun getVertexInGraph(nombre: String?, graph: mxGraph): Object? {
+        var vertex = Object()
+        val parent = graph.getDefaultParent()
+        for (i in 0..graph.model.getChildCount(parent) - 1) {
+
+            vertex = graph.model.getChildAt(parent, i) as Object
+            if ((vertex as mxCell).value.toString() == nombre)
+                return vertex
+        }
+        return vertex
     }
 
     override fun toString(): String{

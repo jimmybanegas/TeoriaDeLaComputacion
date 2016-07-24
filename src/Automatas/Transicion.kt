@@ -1,10 +1,12 @@
 package Automatas
 
+import java.io.Serializable
+
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
  */
 
-class Transicion {
+class Transicion : Serializable {
     var origen: Estado? = null
 //    get() {return origen}
    // set(value) {field=origen}
@@ -26,5 +28,12 @@ class Transicion {
         this.destino = destino
         this.arista = arista
         this.simbolo = simbolo
+    }
+
+    override fun toString():String {
+       return " Origen: " +this.origen.toString() +"\r\n"+
+               " Destino: "+ this.destino.toString()+ "\r\n"+
+               " Arista :"+this.arista +"\r\n"+
+               " Simbolo: "+ this.simbolo
     }
 }
