@@ -13,9 +13,10 @@ class AutomataDFA : Automata() {
         val evaluar = cadena.toCharArray()
 
         println(" evaluar cadena.tochararry "+evaluar.size)
+        println("\r\nTamano alfabeto en evaluar : "+alfabeto.size)
 
-        if (!verificarCadena(evaluar))
-            return false
+      /*  if (!verificarCadena(evaluar))
+            return false*/
 
         var fin = estadoInicial
         var stay = true
@@ -45,8 +46,8 @@ class AutomataDFA : Automata() {
 
     private fun verificarCadena(evaluar: CharArray): Boolean {
         println(evaluar.size)
-        println(alfabeto)
-        for (i in 0..evaluar.size-1 ) {
+        println(alfabeto.size)
+        /*for (i in 0..evaluar.size-1 ) {
             for (c in alfabeto) {
                 if (c.equals( evaluar[i])) {
                     return true
@@ -54,7 +55,7 @@ class AutomataDFA : Automata() {
                     return false
                 }
             }
-        }
+        }*/
         return true
     }
 
@@ -68,7 +69,7 @@ class AutomataDFA : Automata() {
         //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun verificarTransicion(v1 : Estado, nombre: Char): Boolean {
+    override fun validarTransicion(v1 : Estado, nombre: Char): Boolean {
        // return transiciones.({ transicion -> transicion.origen?.nombre.equals(v1.nombre) && transicion.nombre.equals((nombre)) })
         println("v1 nombre "+v1.nombre)
         println("char nombre "+nombre)

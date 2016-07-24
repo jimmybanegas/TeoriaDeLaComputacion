@@ -1,5 +1,6 @@
 package Ventanas
 
+import Automatas.Automata
 import Automatas.AutomataDFA
 import Automatas.Estado
 import com.mxgraph.model.mxCell
@@ -8,23 +9,16 @@ import com.mxgraph.util.mxConstants
 import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
-import com.mxgraph.view.mxStylesheet
 import java.awt.Color
-import java.awt.MenuComponent
-import java.awt.Point
 import java.awt.event.*
-import java.util.*
-import javax.swing.JButton
-import javax.swing.JFrame
-import javax.swing.JLabel
-import javax.swing.JOptionPane
+import javax.swing.*
 
 /**
  * Created by Affisa-Jimmy on 22/7/2016.
  */
-class DFA (automataDFA: AutomataDFA) : JFrame() {
+class ventanaAutomata(automata: Automata) : JFrame() {
     // Variables declaration - do not modify
-    private var jButtonProbarAutomata: javax.swing.JButton? = null
+    private var jButtonEvaluarAutomata: javax.swing.JButton? = null
     private var jLabel1: javax.swing.JLabel? = null
     private var jLabel2: javax.swing.JLabel? = null
     private var jLabel3: javax.swing.JLabel? = null
@@ -36,29 +30,55 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
     private var graphComponent: mxGraphComponent? = null
 
     protected var contadorEstados = 0
-    protected var dfa: AutomataDFA? = null
+    protected var automata: Automata? = null
     // End of variables declaration
 
     init {
         initComponents()
-        dfa = automataDFA
+        this.automata = automata
     }
 
     fun initComponents() {
+        createMenuBar();
+
         jLabel1 = javax.swing.JLabel()
         jLabel3 = javax.swing.JLabel()
         jLabel4 = javax.swing.JLabel()
         jTextFieldAlfabeto = javax.swing.JTextField()
+        (jTextFieldAlfabeto as JTextField).addKeyListener( object: KeyAdapter() {
+            override fun keyReleased(event: KeyEvent) {
+                val content = (jTextFieldAlfabeto as JTextField).text
+                if (content != "") {
+                    jTextFieldCadena?.isEnabled = true
+                } else {
+                    jTextFieldCadena?.isEnabled = false
+                }
+            }
+        });
+
         jTextFieldCadena = javax.swing.JTextField()
+        (jTextFieldCadena as JTextField).isEnabled = false
+
+        (jTextFieldCadena as JTextField).addKeyListener( object: KeyAdapter() {
+            override fun keyReleased(event: KeyEvent) {
+                val content = (jTextFieldCadena as JTextField).text
+                if (content != "") {
+                    jButtonEvaluarAutomata?.isEnabled = true
+                } else {
+                    jButtonEvaluarAutomata?.isEnabled = false
+                }
+            }
+        });
         jLabel2 = javax.swing.JLabel()
-        jButtonProbarAutomata = javax.swing.JButton()
+        jButtonEvaluarAutomata = javax.swing.JButton()
+        (jButtonEvaluarAutomata as JButton).isEnabled = false
 
         defaultCloseOperation = javax.swing.WindowConstants.DISPOSE_ON_CLOSE
 
         title = "Automata Finito Deterministico"
 
         contentPane.background = Color.WHITE
-        (jButtonProbarAutomata as JButton).setBackground(Color.WHITE)
+        (jButtonEvaluarAutomata as JButton).background = Color.WHITE
         graph = mxGraph()
         graph.isAllowLoops = true
         graph.isDisconnectOnMove = false
@@ -121,8 +141,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
             style.put(mxConstants.STYLE_STROKECOLOR, "#000000") // default is #6482B9
             style.put(mxConstants.STYLE_FONTCOLOR, "#446299")*/
 
-            graph.stylesheet.setDefaultEdgeStyle(style)
-
+            graph.stylesheet.defaultEdgeStyle = style
 
                 //Validar que el target de la arista no sea null, si es nulo o no colisiona con otro estado, lo elimino
                 if (edge.target == null  ) {
@@ -135,8 +154,8 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                 val destino = edge.getTarget() as mxCell
 
                 //Ahora tengo que ver a que estado pertenecen dichos Objetos del grafico
-                val v1 = dfa?.obtenerEstadoPorVertice(origen)
-                val v2 = dfa?.obtenerEstadoPorVertice(destino)
+                val v1 = automata?.obtenerEstadoPorVertice(origen)
+                val v2 = automata?.obtenerEstadoPorVertice(destino)
 
                 if (v2 == null  ) {
                     graph.model.remove(evt.getProperty("cell"))
@@ -150,28 +169,28 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                     return@addListener
                 }
 
-                var a = dfa?.verificarTransicion(v1 as Estado, nombre)
+                var a = automata?.validarTransicion(v1 as Estado, nombre)
 
                 println(" resultado de a " +a)
 
                  if ((a as Boolean)) {
-                     ConfigurationForWindows.messageDialog(contentPane,"No se puede agregar una Transicion con el mismo valor!")
+                     ConfigurationForWindows.messageDialog(contentPane,"Ya existe transicion")
                      graph.model.remove(evt.getProperty("cell"))
                      return@addListener
                  }
                 val name = nombre.toString()
                 edge.setValue(name)
 
-                dfa?.agregarTransicion(name,v1 as Estado, v2, edge)
+                automata?.agregarTransicion(name,v1 as Estado, v2, edge)
 
-                print(dfa.toString())
+                print(automata.toString())
 
         }
 
-        (graphComponent as mxGraphComponent).getGraphControl().addMouseListener(object : MouseAdapter() {
+        (graphComponent as mxGraphComponent).graphControl.addMouseListener(object : MouseAdapter() {
                 override fun mousePressed(e: MouseEvent) {
                 // TODO Auto-generated method stub
-                if (e.getClickCount() === 2 && e.getButton() === MouseEvent.BUTTON1) {
+                if (e.clickCount === 2 && e.button === MouseEvent.BUTTON1) {
                     val x = e.getX()
                     val y = e.getY()
                     graph.model.beginUpdate()
@@ -199,7 +218,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                                         "resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;" + "fillColor=lightyellow")
 
                                 //Agregar a lista de estados de aceptacion
-                                dfa?.agregarEstadoAceptacion(estado = Estado("q"+name,v1 as Object))
+                                automata?.agregarEstadoAceptacion(estado = Estado("q"+name,v1 as Object))
                             }else{
 
                                 //Este sería un estado inicial pero no de aceptacion
@@ -207,7 +226,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                                         "resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;" + "fillColor=lightyellow")
                             }
                             //Setear el estado inicial a mi DFA, lo haremos sea o no de aceptacion
-                            dfa?.estadoInicial= Estado("q"+name,v1 as Object)
+                            automata?.estadoInicial= Estado("q"+name,v1 as Object)
                         }
                         else{
                             if(esDeAceptacion){
@@ -216,7 +235,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                                         "resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;" + "fillColor=lightgreen")
 
                                 //Agregar a lista de estados de aceptacion
-                                dfa?.agregarEstadoAceptacion(estado = Estado("q"+name,v1 as Object))
+                                automata?.agregarEstadoAceptacion(estado = Estado("q"+name,v1 as Object))
 
                             }else
                             {
@@ -227,10 +246,10 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                         }
 
                         //Agregar a la lista general de estados
-                        dfa?.agregarEstado("q" + name, v1 as Object)
+                        automata?.agregarEstado("q" + name, v1 as Object)
 
                         //Imprimir
-                        println(dfa.toString())
+                        println(automata.toString())
 
                     } finally {
                         graph.model.endUpdate()
@@ -243,12 +262,9 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
 
         (jLabel2 as JLabel).setText("Ingresar cadena:");
 
-      /*(jLabel4 as JLabel).setText("TIP: No olvidar agregar todo el alfabeto. Es posible que no acepte cadena!");
 
-        (jLabel3 as JLabel).setText("PROTIP: Doble-Click para agregar Estado!");*/
-
-        (jButtonProbarAutomata as JButton).setText("Evaluar Automata")
-        (jButtonProbarAutomata as JButton).addActionListener({ e: ActionEvent -> evaluarCadena(e) })
+        (jButtonEvaluarAutomata as JButton).text = "Evaluar Automata"
+        (jButtonEvaluarAutomata as JButton).addActionListener({ e: ActionEvent -> evaluarCadena(e) })
 
         val layout = javax.swing.GroupLayout(contentPane)
         contentPane.layout = layout
@@ -264,7 +280,7 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                                 .addGap(25, 25, 25)
                                 .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(jButtonProbarAutomata)
+                                .addComponent(jButtonEvaluarAutomata)
                                 .addContainerGap(30, java.lang.Short.MAX_VALUE.toInt()))
                         .addComponent(jLabel4).addComponent(jLabel3)
                         .addComponent(graphComponent, 500, javax.swing.GroupLayout.DEFAULT_SIZE, java.lang.Short.MAX_VALUE.toInt()))
@@ -275,18 +291,74 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
                                 .addComponent(jLabel1)
                                 .addComponent(jTextFieldAlfabeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2).addComponent(jButtonProbarAutomata))
+                                .addComponent(jLabel2).addComponent(jButtonEvaluarAutomata))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel3)
                                 .addComponent(graphComponent, 500, javax.swing.GroupLayout.DEFAULT_SIZE, java.lang.Short.MAX_VALUE.toInt())))
     }
 
+    private fun createMenuBar() {
+        val menubar = JMenuBar()
+
+        val file = JMenu("Archivo")
+        file.mnemonic = KeyEvent.VK_F
+
+        val ayuda = JMenu("Ayuda")
+        ayuda.mnemonic = KeyEvent.VK_H
+
+        val eMenuItem = JMenuItem("Salir")
+        eMenuItem.mnemonic = KeyEvent.VK_E
+        eMenuItem.toolTipText = "Salir de la application"
+        eMenuItem.addActionListener { System.exit(0) }
+
+        val guardarMenuItem = JMenuItem("Guardar")
+        guardarMenuItem.mnemonic = KeyEvent.VK_G
+        guardarMenuItem.toolTipText = "Guardar Automata"
+       /* guardarMenuItem.addActionListener(object : ActionListener {
+            override fun actionPerformed(event: ActionEvent) {
+                System.exit(0)
+            }
+        })*/
+
+        val abrirMenuItem = JMenuItem("Abrir")
+        abrirMenuItem.mnemonic = KeyEvent.VK_A
+        abrirMenuItem.toolTipText = "Abrir Automata"
+        /* guardarMenuItem.addActionListener(object : ActionListener {
+             override fun actionPerformed(event: ActionEvent) {
+                 System.exit(0)
+             }
+         })*/
+
+        val instrucciones = JMenuItem("Instrucciones")
+        instrucciones.mnemonic = KeyEvent.VK_I
+        instrucciones.toolTipText = "Cómo usarlo"
+        instrucciones.addActionListener {
+            val instrucciones = "1. Debe agregar primero el alfabeto\r\n" +
+                    "2. Deberá agregar la cadena a evaluar\r\n" +
+                    "3. Para agregar un nuevo estado debe dar doble clic sobre el panel"
+
+            JOptionPane.showMessageDialog(contentPane,instrucciones, "Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        //Submenus de Archivo
+        file.add(guardarMenuItem)
+        file.add(abrirMenuItem)
+        file.add(eMenuItem)
+
+        //Submenus de Ayuda
+        ayuda.add(instrucciones)
+
+        menubar.add(file)
+        menubar.add(ayuda)
+
+        jMenuBar = menubar
+    }
+
     private fun nombrarTransicion(): Char {
-        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings |
         var nombre: Char = 0.toChar()
         while (true) {
-            val name = JOptionPane.showInputDialog("Nombre de transicion:")
+            val name = JOptionPane.showInputDialog("Simbolo / nombre:")
             if (name == null || name.isEmpty()) {
                 ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
                 break
@@ -303,59 +375,36 @@ class DFA (automataDFA: AutomataDFA) : JFrame() {
     }
 
     private fun evaluarCadena(e: ActionEvent) {
-        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-        if ((jTextFieldAlfabeto?.getText()?.isNullOrEmpty() as Boolean || jTextFieldCadena?.getText().isNullOrEmpty())) {
-            ConfigurationForWindows.messageDialog(contentPane,"No hay alfabeto o cadena");
+        val msg =  Validaciones.validarDatosDeAutomata(automata!!)
+        if( msg != ""){
+            ConfigurationForWindows.messageDialog(contentPane, msg);
             return
         }
-        if(dfa?.estadosEstanVacios() as Boolean){
-            ConfigurationForWindows.messageDialog(contentPane,"No hay ningun estado ");
-            return
-        }
-        if(dfa?.estadoInicialEstaVacio() as Boolean){
-            ConfigurationForWindows.messageDialog(contentPane,"Estado inicial vacio");
-            return
-        }
-        if(dfa?.estadosDeAceptacionEstanVacios() as Boolean){
-            ConfigurationForWindows.messageDialog(contentPane,"No hay ningún estado de aceptacion");
-            return
-        }
-        if(dfa?.transicionesEstanVacias() as Boolean){
-            ConfigurationForWindows.messageDialog(contentPane,"No hay transiciones");
-            return
-        }
-        if(!((dfa?.crearAlfabeto(jTextFieldAlfabeto?.getText()?.toCharArray() as CharArray)) as Boolean)){
+
+        if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
             ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido");
             return
         }
-        if(dfa?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
-            JOptionPane.showMessageDialog(getContentPane(),"Cadena Aceptada", "Success",JOptionPane.INFORMATION_MESSAGE);
+        if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
+            JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
             return;
         }else
         {
-            ConfigurationForWindows.messageDialog(contentPane,"Cadena no aceptada");
+            ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
         }
     }
 
-    private fun prologoAntesDeProbar(): Boolean {
-        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-
-        if (jTextFieldAlfabeto?.getText()?.isEmpty() as Boolean) {
-            ConfigurationForWindows.messageDialog(contentPane,"No hay alfabeto!");
-            return true;
-        }
-        return false;
-    }
 }
 
 
 fun main(args : Array<String>) {
     val automataDFA = AutomataDFA()
 
-    var dfa = DFA(automataDFA)
+    var dfa = ventanaAutomata(automataDFA)
 
     automataDFA.toString()
 
     dfa.initComponents()
-    dfa.setVisible(true)
+
+    dfa.isVisible = true
 }

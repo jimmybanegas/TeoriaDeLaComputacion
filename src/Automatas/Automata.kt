@@ -9,7 +9,7 @@ import com.mxgraph.model.mxCell
 abstract class Automata {
 
     var alfabeto = mutableListOf<Char>()
-    //val alfabetoItems: List<Char> get() = alfabeto
+    val alfabetoItems: List<Char> get() = alfabeto
 
     val transiciones = mutableListOf<Transicion>()
     val transaccionesItems: List<Transicion> get() = transiciones.toList()
@@ -27,6 +27,8 @@ abstract class Automata {
 
     abstract fun evaluar(cadena:String): Boolean
 
+    abstract fun validarTransicion(v1 : Estado, nombre: Char) : Boolean
+
     open fun agregarTransicion(nombre:String, origen: Estado, destino:Estado, arista: mxCell){
         transiciones.add(Transicion(origen,destino,nombre,arista as Object))
     }
@@ -40,7 +42,7 @@ abstract class Automata {
     }
 
     open fun obtenerEstadoPorVertice(vertice: mxCell):Estado?{
-        for (estado in this?.estados!!) {
+        this.estados.forEach { estado ->
             if (estado.vertice?.equals(vertice)!!) {
                 return estado
             }
@@ -49,31 +51,32 @@ abstract class Automata {
     }
 
     open fun estadosEstanVacios():Boolean {
-        if (estados?.isEmpty())
+        if (estados.isEmpty())
             return true
         return false
     }
 
     open fun estadoInicialEstaVacio(): Boolean{
-        if (estadoInicial?.nombre.isEmpty())
+        if (estadoInicial.nombre.isEmpty())
             return true
         return false
     }
 
     open fun estadosDeAceptacionEstanVacios(): Boolean{
-        if (estadosDeAceptacion?.isEmpty())
+        if (estadosDeAceptacion.isEmpty())
             return true
         return false
     }
 
     open fun transicionesEstanVacias(): Boolean{
-        if (transiciones?.isEmpty())
+        if (transiciones.isEmpty())
             return true
         return false
     }
 
     open fun crearAlfabeto(alfabeto: CharArray): Boolean{
         //Validar que no vengan letras repetidas en el array de char porque no es necesario
+
         for (i in 0..alfabeto.size -1) {
             for (j in i + 1..alfabeto.size-1) {
                 if (alfabeto[j] === alfabeto[i]) {
@@ -81,13 +84,14 @@ abstract class Automata {
                 }
             }
         }
-
+        this.alfabeto.clear()
         // Si pasa ese filtro, procedemos a llenar el arreglo de chars
-        if(alfabeto.isEmpty()){
+      //  if(this.alfabeto.isEmpty()){
             for (i in 0..alfabeto.size -1) {
-                this.alfabeto .add(alfabeto[i].toChar())
+                this.alfabeto.add(alfabeto[i].toChar())
             }
-        }
+        //}
+        println("\r\nTamano alfabeto creado : "+this.alfabeto.size)
         return true
     }
 

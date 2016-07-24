@@ -3,14 +3,14 @@
  */
 import Automatas.AutomataDFA
 import Ventanas.ConfigurationForWindows
-import Ventanas.DFA
+import Ventanas.ventanaAutomata
 
 fun main(args: Array<String>) {
     println("hola desde Kotlin")
 
     var automataDFA = AutomataDFA()
 
-    val dialog = DFA(automataDFA)
+    val dialog = ventanaAutomata(automataDFA)
 
     ConfigurationForWindows.SetConfigurations(dialog)
     //dialog.pack()

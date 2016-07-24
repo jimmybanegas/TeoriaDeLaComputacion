@@ -13,7 +13,7 @@ open class ConfigurationForWindows {
     //Clase creada para tener en un solo lugar la configuración de tamaños de ventanas, posición y demás configuraciones
     companion object {
 
-        fun SetConfigurations(dialog: DFA){
+        fun SetConfigurations(dialog: ventanaAutomata){
             dialog.pack()
             dialog.setSize(1000, 500)
             val toolkit = Toolkit.getDefaultToolkit()
