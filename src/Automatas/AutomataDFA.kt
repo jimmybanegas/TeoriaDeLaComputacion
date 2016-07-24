@@ -22,7 +22,7 @@ class AutomataDFA : Automata() {
         for (i in evaluar.indices) {
             for (transicion in transiciones) {
                 if (transicion.origen?.nombre.toString().equals(fin.nombre.toString()) &&
-                        transicion.nombre.toString().equals(evaluar[i].toString())) {
+                        transicion.simbolo.toString().equals(evaluar[i].toString())) {
                     fin = transicion.destino as Estado
                     stay = true
                     break
@@ -51,10 +51,17 @@ class AutomataDFA : Automata() {
         return false
     }
 
-    override fun validarTransicion(v1 : Estado, nombre: Char): Boolean {
+    override fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char): Boolean {
+        println(" v1" +v1.nombre)
+        println(" v2" +v2.nombre)
+        println(" simbolo" +simbolo)
+
         for (transicion in transaccionesItems) {
-            if (transicion.origen?.nombre.equals(v1.nombre) && transicion.nombre.equals(nombre)) return true
-            else return false
+         /*if((transicion.origen?.nombre.equals(v1.nombre) && transicion.simbolo.equals(simbolo)) || (transicion.origen?.nombre.equals(v1.nombre)
+                 && transicion.destino?.nombre.equals(v2.nombre) && transicion.simbolo.equals(simbolo)) )
+         {*/
+            if(transicion.origen?.nombre.equals(v1.nombre) &&transicion.simbolo.equals(simbolo) )
+                return true
         }
         return false
     }

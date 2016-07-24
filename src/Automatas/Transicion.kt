@@ -17,14 +17,14 @@ class Transicion {
   //  get() {return vertice}
   //  set(value) {field=vertice}
 
-    var nombre: Char
+    var simbolo: Char
 //    get() {return nombre}
   //  set(value) {field=nombre}
 
-    constructor(origen: Estado, destino: Estado, nombre: Char, arista: Object) {
+    constructor(origen: Estado, destino: Estado, simbolo: Char, arista: Object) {
         this.origen = origen
         this.destino = destino
         this.arista = arista
-        this.nombre = nombre
+        this.simbolo = simbolo
     }
 }

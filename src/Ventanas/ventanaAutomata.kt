@@ -39,7 +39,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
     }
 
     fun initComponents() {
-        createMenuBar();
+        createMenuBar()
 
         jLabel1 = javax.swing.JLabel()
         jLabel3 = javax.swing.JLabel()
@@ -54,7 +54,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                     jTextFieldCadena?.isEnabled = false
                 }
             }
-        });
+        })
 
         jTextFieldCadena = javax.swing.JTextField()
         (jTextFieldCadena as JTextField).isEnabled = false
@@ -68,14 +68,13 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                     jButtonEvaluarAutomata?.isEnabled = false
                 }
             }
-        });
+        })
+
         jLabel2 = javax.swing.JLabel()
         jButtonEvaluarAutomata = javax.swing.JButton()
         (jButtonEvaluarAutomata as JButton).isEnabled = false
 
         defaultCloseOperation = javax.swing.WindowConstants.DISPOSE_ON_CLOSE
-
-        title = "Automata Finito Deterministico"
 
         contentPane.background = Color.WHITE
         (jButtonEvaluarAutomata as JButton).background = Color.WHITE
@@ -162,21 +161,21 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                     return@addListener
                 }
 
-                val nombre = nombrarTransicion()
+                val simbolo = nombrarTransicion()
 
-                if (nombre.toInt() == 0) {
+                if (simbolo.toInt() == 0) {
                     graph.model.remove(evt.getProperty("cell"))
                     return@addListener
                 }
 
-                var a = automata?.validarTransicion(v1 as Estado, nombre)
+                var a = automata?.transicionYaExiste(v1 as Estado, v2, simbolo)
 
                  if ((a as Boolean)) {
                      ConfigurationForWindows.messageDialog(contentPane,"Ya existe transicion")
                      graph.model.remove(evt.getProperty("cell"))
                      return@addListener
                  }
-                val name = nombre
+                val name = simbolo
                 edge.setValue(name)
 
                 automata?.agregarTransicion(name,v1 as Estado, v2, edge)
@@ -313,20 +312,20 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         val guardarMenuItem = JMenuItem("Guardar")
         guardarMenuItem.mnemonic = KeyEvent.VK_G
         guardarMenuItem.toolTipText = "Guardar Automata"
-       /* guardarMenuItem.addActionListener(object : ActionListener {
+        guardarMenuItem.addActionListener(object : ActionListener {
             override fun actionPerformed(event: ActionEvent) {
-                System.exit(0)
+               // System.exit(0)
             }
-        })*/
+        })
 
         val abrirMenuItem = JMenuItem("Abrir")
         abrirMenuItem.mnemonic = KeyEvent.VK_A
         abrirMenuItem.toolTipText = "Abrir Automata"
-        /* guardarMenuItem.addActionListener(object : ActionListener {
+        abrirMenuItem.addActionListener(object : ActionListener {
              override fun actionPerformed(event: ActionEvent) {
-                 System.exit(0)
+                // System.exit(0)
              }
-         })*/
+         })
 
         val instrucciones = JMenuItem("Instrucciones")
         instrucciones.mnemonic = KeyEvent.VK_I
@@ -404,6 +403,8 @@ fun main(args : Array<String>) {
     var dfa = ventanaAutomata(automataDFA)
 
     automataDFA.toString()
+
+    dfa.title = "Automata Finito Deterministico"
 
     dfa.initComponents()
 

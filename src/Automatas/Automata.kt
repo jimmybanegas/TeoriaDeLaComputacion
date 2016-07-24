@@ -27,7 +27,7 @@ abstract class Automata {
 
     abstract fun evaluar(cadena:String): Boolean
 
-    abstract fun validarTransicion(v1 : Estado, nombre: Char) : Boolean
+    abstract fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char) : Boolean
 
     open fun agregarTransicion(nombre:Char, origen: Estado, destino:Estado, arista: mxCell){
         transiciones.add(Transicion(origen,destino,nombre,arista as Object))
@@ -95,8 +95,8 @@ abstract class Automata {
     open fun simbolosDeTransicionesEstanEnAlfabeto() : Boolean{
         println("\nsibolos tamaño : "+this.alfabeto.size)
         for(transicion in transiciones){
-            if(!alfabeto.contains(transicion.nombre)){
-                println("\nSimbolo : "+transicion.nombre)
+            if(!alfabeto.contains(transicion.simbolo)){
+                println("\nSimbolo : "+transicion.simbolo)
                 return false
             }
         }
