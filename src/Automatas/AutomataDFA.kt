@@ -11,10 +11,6 @@ class AutomataDFA : Automata() {
             return estadoInicialEsDeAceptacion()
         }
         val evaluar = cadena.toCharArray()
-
-        println(" evaluar cadena.tochararry "+evaluar.size)
-        println("\r\nTamano alfabeto en evaluar : "+alfabeto.size)
-
         var fin = estadoInicial
         var stay = true
 
@@ -27,7 +23,7 @@ class AutomataDFA : Automata() {
                 if (transicion.origen?.nombre.toString().equals(fin.nombre.toString()) &&
                         transicion.simbolo.toString().equals(evaluar[i].toString())) {
 
-                    println(" fin cambió :")
+                    println(" fin cambió")
                     fin = transicion.destino as Estado
                     stay = true
                     break
@@ -58,10 +54,6 @@ class AutomataDFA : Automata() {
     }
 
     override fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char): Boolean {
-        println(" v1 " +v1.nombre)
-        println(" v2 " +v2.nombre)
-        println(" simbolo " +simbolo)
-
         for (transicion in transaccionesItems) {
          /*if((transicion.origen?.nombre.equals(v1.nombre) && transicion.simbolo.equals(simbolo)) || (transicion.origen?.nombre.equals(v1.nombre)
                  && transicion.destino?.nombre.equals(v2.nombre) && transicion.simbolo.equals(simbolo)) )

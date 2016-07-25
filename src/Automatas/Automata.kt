@@ -22,11 +22,8 @@ abstract class Automata : Serializable {
 
     var estadosDeAceptacion = mutableListOf<Estado>()
     val estadosDeAceptacionItems: List<Estado> get() = estadosDeAceptacion.toList()
-    // set(value) {field = estadosDeAceptacion}
 
     var estadoInicial = Estado()
-   // get() {return estadoInicial}
-   // set(value) {field = estadoInicial}
 
     abstract fun evaluar(cadena:String): Boolean
 
@@ -183,5 +180,17 @@ abstract class Automata : Serializable {
                 ("Tamaño alfabeto : "+ alfabeto.size)+ "\n"+
                 ("Inicial : "+ estadoInicial.nombre)+ "\n")
     }
+
+    open fun Clear(){
+        this.estados.clear()
+        this.estadosDeAceptacion.clear()
+        this.transiciones.clear()
+        this.alfabeto.clear()
+        this.estadoInicial.nombre=""
+        this.estadoInicial.vertice = null
+        this.estadoInicial.posX = 0.0
+        this.estadoInicial.posY = 0.0
+    }
+
 }
 

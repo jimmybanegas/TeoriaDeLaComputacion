@@ -8,20 +8,9 @@ import java.io.Serializable
 
 class Transicion : Serializable {
     var origen: Estado? = null
-//    get() {return origen}
-   // set(value) {field=origen}
-
     var destino: Estado? = null
-  //  get() {return destino}
-  //  set(value) {field=destino}
-
     var arista: Object? = null
-  //  get() {return vertice}
-  //  set(value) {field=vertice}
-
     var simbolo: Char
-//    get() {return nombre}
-  //  set(value) {field=nombre}
 
     constructor(origen: Estado, destino: Estado, simbolo: Char, arista: Object) {
         this.origen = origen

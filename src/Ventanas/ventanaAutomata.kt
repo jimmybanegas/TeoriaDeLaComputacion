@@ -104,12 +104,8 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             override fun keyPressed(e: KeyEvent){
                 // e.keyCode
                 if (e.keyCode == KeyEvent.VK_DELETE){
-                  //  if (!graph.isSelectionEmpty()) {
-                        Validaciones.delFunction(graph, automata as Automata)
-                        //graph.model.remove(e.component.remove(e.source as MenuComponent?))
-                       // bar.getdeleteaction().actionPerformed(null);
-                        println("BORRAR")
-                    }
+                    Validaciones.delFunction(graph, automata as Automata)
+                }
             }
         })
 
@@ -120,19 +116,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                 style.put(mxConstants.STYLE_ROUNDED, true)
                 style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ELBOW)
                 graph.stylesheet.defaultEdgeStyle = style
-            // Settings for edges
-          //  edge = HashMap<String, Any>()
-          /*  style.put(mxConstants.STYLE_ROUNDED, true)
-            style.put(mxConstants.STYLE_ORTHOGONAL, false)
-            style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_LOOP)
-            style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_CONNECTOR)
-            style.put(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_CLASSIC)
-            style.put(mxConstants.STYLE_VERTICAL_ALIGN, mxConstants.ARROW_SPACING)
-            style.put(mxConstants.STYLE_ALIGN, mxConstants.ARROW_OVAL)
-            style.put(mxConstants.STYLE_STROKECOLOR, "#000000") // default is #6482B9
-            style.put(mxConstants.STYLE_FONTCOLOR, "#446299")*/
-
-
 
                 //Validar que el target de la arista no sea null, si es nulo o no colisiona con otro estado, lo elimino
                 if (edge.target == null  ) {
@@ -303,15 +286,18 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         eMenuItem.addActionListener { System.exit(0) }
 
         val limpiarMenuItem = JMenuItem("Limpiar")
-        eMenuItem.mnemonic = KeyEvent.VK_E
-        eMenuItem.toolTipText = "Limpiar datos"
-        eMenuItem.addActionListener {
-          /*  this.initComponents()
-            this.frameInit()
-            this.repaint()
-            this.removeAll()
-            this.contentPane.removeAll()//or remove(JComponent)
-            this.contentPane.repaint()*/
+        limpiarMenuItem.mnemonic = KeyEvent.VK_E
+        limpiarMenuItem.toolTipText = "Limpiar datos"
+        limpiarMenuItem.addActionListener {
+            graph.model.beginUpdate()
+            graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
+            graph.model.endUpdate()
+
+            automata?.Clear()
+
+            this.contadorEstados = 0
+
+            println(automata)
         }
 
         val guardarMenuItem = JMenuItem("Guardar")
