@@ -60,8 +60,10 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                 val content = (jTextFieldAlfabeto as JTextField).text
                 if (content != "") {
                     jTextFieldCadena?.isEnabled = true
+                    jButtonEvaluarAutomata?.isEnabled = true
                 } else {
                     jTextFieldCadena?.isEnabled = false
+                    jButtonEvaluarAutomata?.isEnabled = false
                 }
             }
         })
@@ -71,12 +73,12 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
         (jTextFieldCadena as JTextField).addKeyListener( object: KeyAdapter() {
             override fun keyReleased(event: KeyEvent) {
-                val content = (jTextFieldCadena as JTextField).text
+                /*val content = (jTextFieldCadena as JTextField).text
                 if (content != "") {
                     jButtonEvaluarAutomata?.isEnabled = true
                 } else {
                     jButtonEvaluarAutomata?.isEnabled = false
-                }
+                }*/
             }
         })
 
