@@ -7,50 +7,30 @@ import com.mxgraph.model.mxCell
 class AutomataDFA : Automata() {
 
     override fun evaluar(cadena: String) : Boolean {
-        if (cadena.isEmpty()) {
-            return estadoInicialEsDeAceptacion()
-        }
-        val evaluar = cadena.toCharArray()
-        var fin = estadoInicial
-        var stay = true
 
-        for (i in evaluar.indices) {
-            for (transicion in transiciones) {
-                println("\n Transicion actual" +transicion.toString())
-                println(" i actual :"+i)
-                println(" fin actual :"+fin.toString())
+        var estadoActual = this.estadoInicial
 
-                if (transicion.origen?.nombre.toString().equals(fin.nombre.toString()) &&
-                        transicion.simbolo.toString().equals(evaluar[i].toString())) {
+        for (i in 0..cadena.length - 1) {
 
-                    println(" fin cambió")
-                    fin = transicion.destino as Estado
-                    stay = true
-                    break
-                } else {
-                    stay = false
-                }
-            }
+            val transicionActual = obtenerTransicionConSimbolo(estadoActual.nombre, cadena[i]) ?: return false
+
+            estadoActual = transicionActual.destino!!
         }
-        if (!stay) {
-            return false
-        }
-        for (estado in estadosDeAceptacion) {
-            println(" fin actual en estado de aceptacion :"+fin.toString())
-            if (estado.nombre.toString().equals(fin.nombre.toString()))
+
+        for (State in estadosDeAceptacion) {
+            if (State.nombre.equals(estadoActual.nombre))
                 return true
         }
+
         return false
     }
 
-    private fun estadoInicialEsDeAceptacion(): Boolean {
-        for (estado in estados){
-            when {
-                estado.nombre.toString().equals(estadoInicial.nombre.toString()) -> return true
-                else -> return false
-            }
+    private fun obtenerTransicionConSimbolo(nombre: String, simbolo: Char): Transicion? {
+        for (trans in transiciones) {
+            if (trans.origen?.nombre.equals(nombre) && trans.simbolo.equals(simbolo))
+                return trans
         }
-        return false
+        return null
     }
 
     override fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char): Boolean {
