@@ -18,11 +18,16 @@ class AutomataDFA : Automata() {
         var fin = estadoInicial
         var stay = true
 
-        println(" stay "+ stay)
         for (i in evaluar.indices) {
             for (transicion in transiciones) {
+                println("\n Transicion actual" +transicion.toString())
+                println(" i actual :"+i)
+                println(" fin actual :"+fin.toString())
+
                 if (transicion.origen?.nombre.toString().equals(fin.nombre.toString()) &&
                         transicion.simbolo.toString().equals(evaluar[i].toString())) {
+
+                    println(" fin cambió :")
                     fin = transicion.destino as Estado
                     stay = true
                     break
@@ -35,6 +40,7 @@ class AutomataDFA : Automata() {
             return false
         }
         for (estado in estadosDeAceptacion) {
+            println(" fin actual en estado de aceptacion :"+fin.toString())
             if (estado.nombre.toString().equals(fin.nombre.toString()))
                 return true
         }
