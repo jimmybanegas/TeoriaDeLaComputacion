@@ -51,12 +51,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         if(automata is AutomataDFA){
             menubar.getComponent(2).isVisible = false
         }
-
-        println(automata)
-        if(automata is AutomataDFA)
-            println("Este es un DFA")
-        else if (automata is AutomataNFA)
-            println("Este es un NFA")
     }
 
     fun initComponents() {
@@ -126,8 +120,8 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                 val edge = evt.getProperty("cell") as mxCell
 
                 val style = graph.stylesheet.defaultEdgeStyle
-                style.put(mxConstants.STYLE_ROUNDED, true)
-                style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ELBOW)
+            //    style.put(mxConstants.STYLE_ROUNDED, true)
+                style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_SEGMENT)
                 graph.stylesheet.defaultEdgeStyle = style
 
                 //Validar que el target de la arista no sea null, si es nulo o no colisiona con otro estado, lo elimino
@@ -306,7 +300,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
             automata?.Clear()
 
-            this.contadorEstados = 0
+            //this.contadorEstados = 0
 
             println(automata)
         }
@@ -418,7 +412,28 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         convertirADFAMenuItem.toolTipText = "Convertir a DFA"
         convertirADFAMenuItem.addActionListener {
           // System.exit(0)
-            automata?.ConvertiraDFA()
+
+            if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
+                ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido");
+
+
+            }
+
+            graph.model.beginUpdate()
+            graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
+            graph.model.endUpdate()
+
+            this.contadorEstados = 0
+
+            var nuevo = automata?.ConvertiraDFA()
+
+            automata?.Clear()
+
+            automata = nuevo
+
+            automata?.dibujarAutomata(graph)
+
+            println(automata)
         }
 
         //Submenus de Archivo

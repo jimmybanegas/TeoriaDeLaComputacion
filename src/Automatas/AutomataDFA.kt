@@ -6,15 +6,19 @@ import com.mxgraph.model.mxCell
  */
 class AutomataDFA : Automata() {
 
+    override fun ConvertiraDFA(): AutomataDFA {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun evaluar(cadena: String, estadoActual: Estado): Boolean {
 
-        var estadoActual = estadoActual
+        var actual = estadoActual
 
         for (i in 0..cadena.length - 1) {
 
-            val transicionActual = obtenerTransicionConSimbolo(estadoActual.nombre, cadena[i]) ?: return false
+            val transicionActual = obtenerTransicionConSimbolo(actual.nombre, cadena[i]) ?: return false
 
-            estadoActual = transicionActual.destino!!
+            actual = transicionActual.destino!!
         }
 
         for (State in estadosDeAceptacion) {
@@ -25,9 +29,6 @@ class AutomataDFA : Automata() {
         return false
     }
 
-    override fun ConvertiraDFA() {
-        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     override fun evaluar(cadena: String) : Boolean {
 
@@ -58,9 +59,6 @@ class AutomataDFA : Automata() {
 
     override fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char): Boolean {
         for (transicion in transaccionesItems) {
-         /*if((transicion.origen?.nombre.equals(v1.nombre) && transicion.simbolo.equals(simbolo)) || (transicion.origen?.nombre.equals(v1.nombre)
-                 && transicion.destino?.nombre.equals(v2.nombre) && transicion.simbolo.equals(simbolo)) )
-         {*/
             if(transicion.origen?.nombre.equals(v1.nombre) &&transicion.simbolo.equals(simbolo) )
                 return true
         }

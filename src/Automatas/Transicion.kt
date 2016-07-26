@@ -10,7 +10,7 @@ class Transicion : Serializable {
     var origen: Estado? = null
     var destino: Estado? = null
     var arista: Object? = null
-    var simbolo: Char
+    var simbolo: Char = '\u0000'
 
     constructor(origen: Estado, destino: Estado, simbolo: Char, arista: Object) {
         this.origen = origen
@@ -25,4 +25,6 @@ class Transicion : Serializable {
               // " Arista :"+this.arista +"\r\n"+
                " Simbolo: "+ this.simbolo
     }
+
+    constructor()
 }

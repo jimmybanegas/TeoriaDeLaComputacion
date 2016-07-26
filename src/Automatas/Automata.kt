@@ -147,7 +147,7 @@ abstract class Automata : Serializable {
         for (t in this.transaccionesItems) {
             val style = graph.stylesheet.defaultEdgeStyle
             style.put(mxConstants.STYLE_ROUNDED, true)
-            style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_ELBOW)
+            style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_SEGMENT)
             graph.stylesheet.defaultEdgeStyle = style
 
             val vertex = getVertexInGraph(t.origen?.nombre,graph )
@@ -207,7 +207,7 @@ abstract class Automata : Serializable {
         return  nextTransitions;
     }
 
-    abstract fun ConvertiraDFA()
+    abstract fun ConvertiraDFA() : AutomataDFA
 
 }
 
