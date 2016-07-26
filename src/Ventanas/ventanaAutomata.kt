@@ -2,17 +2,15 @@ package Ventanas
 
 import Automatas.Automata
 import Automatas.AutomataDFA
+import Automatas.AutomataNFA
 import Automatas.Estado
-import Automatas.Transicion
 import com.mxgraph.model.mxCell
 import com.mxgraph.swing.mxGraphComponent
 import com.mxgraph.util.mxConstants
 import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
-import java.awt.BorderLayout
 import java.awt.Color
-import java.awt.Insets
 import java.awt.Rectangle
 import java.awt.event.*
 import java.io.FileInputStream
@@ -36,6 +34,8 @@ class ventanaAutomata(automata: Automata) : JFrame() {
     private var jTextFieldAlfabeto: javax.swing.JTextField? = null
     private var jTextFieldCadena: javax.swing.JTextField? = null
 
+    private var menubar = JMenuBar()
+
     protected var graph = mxGraph()
     private var graphComponent: mxGraphComponent? = null
 
@@ -46,6 +46,17 @@ class ventanaAutomata(automata: Automata) : JFrame() {
     init {
         initComponents()
         this.automata = automata
+
+        //Hacer las conversiones visibles para los automatas NFA Solamente
+        if(automata is AutomataDFA){
+            menubar.getComponent(2).isVisible = false
+        }
+
+        println(automata)
+        if(automata is AutomataDFA)
+            println("Este es un DFA")
+        else if (automata is AutomataNFA)
+            println("Este es un NFA")
     }
 
     fun initComponents() {
@@ -157,8 +168,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
                 automata?.agregarTransicion(name,v1 as Estado, v2, edge)
 
-                print(automata.toString())
-
         }
 
         (graphComponent as mxGraphComponent).graphControl.addMouseListener(object : MouseAdapter() {
@@ -222,9 +231,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                         //Agregar a la lista general de estados
                         automata?.agregarEstado("q" + name, v1 as Object)
 
-                        //Imprimir
-                        println(automata.toString())
-
                     } finally {
                         graph.model.endUpdate()
                     }
@@ -274,13 +280,16 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
 
     private fun createMenuBar() {
-        val menubar = JMenuBar()
+        menubar = JMenuBar()
 
         val file = JMenu("Archivo")
         file.mnemonic = KeyEvent.VK_F
 
         val ayuda = JMenu("Ayuda")
         ayuda.mnemonic = KeyEvent.VK_H
+
+        val conversiones = JMenu("Conversiones")
+        conversiones.mnemonic = KeyEvent.VK_C
 
         val eMenuItem = JMenuItem("Salir")
         eMenuItem.mnemonic = KeyEvent.VK_E
@@ -347,10 +356,10 @@ class ventanaAutomata(automata: Automata) : JFrame() {
               }
         }
 
-      val abrirMenuItem = JMenuItem("Abrir")
-      abrirMenuItem.mnemonic = KeyEvent.VK_A
-      abrirMenuItem.toolTipText = "Abrir Automata"
-      abrirMenuItem.addActionListener(object : ActionListener {
+        val abrirMenuItem = JMenuItem("Abrir")
+        abrirMenuItem.mnemonic = KeyEvent.VK_A
+        abrirMenuItem.toolTipText = "Abrir Automata"
+        abrirMenuItem.addActionListener(object : ActionListener {
            override fun actionPerformed(event: ActionEvent) {
                fc = JFileChooser()
                val returnVal =  (fc as JFileChooser).showOpenDialog(this@ventanaAutomata)
@@ -387,36 +396,48 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
                }
            }
-      })
+        })
 
 
-      val instrucciones = JMenuItem("Instrucciones")
-      instrucciones.mnemonic = KeyEvent.VK_I
-      instrucciones.toolTipText = "Cómo usarlo"
-      instrucciones.addActionListener {
-          val instrucciones = "1. Debe agregar primero el alfabeto\r\n" +
-                  "2. Deberá agregar la cadena a evaluar\r\n" +
-                  "3. Para agregar un nuevo estado debe dar doble clic sobre el panel\r\n"+
-                  "4. Para borrar una transicion o estado, seleccionarlo y luego presionar tecla delete\r\n"+
-                  "\n El estado inicial se marca en amarillo, los demás en verde y con doble círculo \n" +
-                  "si es de aceptación, si se borra el inicial, el próximo agregado se tomará como inicial"
+        val instrucciones = JMenuItem("Instrucciones")
+        instrucciones.mnemonic = KeyEvent.VK_I
+        instrucciones.toolTipText = "Cómo usarlo"
+        instrucciones.addActionListener {
+        val instrucciones = "1. Debe agregar primero el alfabeto\r\n" +
+              "2. Deberá agregar la cadena a evaluar\r\n" +
+              "3. Para agregar un nuevo estado debe dar doble clic sobre el panel\r\n"+
+              "4. Para borrar una transicion o estado, seleccionarlo y luego presionar tecla delete\r\n"+
+              "\n El estado inicial se marca en amarillo, los demás en verde y con doble círculo \n" +
+              "si es de aceptación, si se borra el inicial, el próximo agregado se tomará como inicial"
 
-          JOptionPane.showMessageDialog(contentPane,instrucciones, "Instrucciones",JOptionPane.INFORMATION_MESSAGE);
-      }
+        JOptionPane.showMessageDialog(contentPane,instrucciones, "Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+        }
 
-    //Submenus de Archivo
+        val convertirADFAMenuItem = JMenuItem("Convertir a DFA")
+        //convertirADFAMenuItem.mnemonic = KeyEvent.VK_
+        convertirADFAMenuItem.toolTipText = "Convertir a DFA"
+        convertirADFAMenuItem.addActionListener {
+          // System.exit(0)
+            automata?.ConvertiraDFA()
+        }
+
+        //Submenus de Archivo
         file.add(guardarMenuItem)
         file.add(abrirMenuItem)
         file.add(limpiarMenuItem)
         file.add(eMenuItem)
 
-      //Submenus de Ayuda
-      ayuda.add(instrucciones)
+        //Submenus de Ayuda
+        ayuda.add(instrucciones)
 
-      menubar.add(file)
-      menubar.add(ayuda)
+        //Submenus de Conversiones
+        conversiones.add(convertirADFAMenuItem)
 
-      jMenuBar = menubar
+        menubar.add(file)
+        menubar.add(ayuda)
+        menubar.add(conversiones)
+
+        jMenuBar = menubar
 }
 
 private fun nombrarTransicion(): Char {
@@ -452,19 +473,23 @@ private fun evaluarCadena(e: ActionEvent) {
           ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
           return
       }
-      if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
-          JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
-          return;
-      }else
-      {
-          ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
-      }
+       // if(automata is AutomataNFA){
+         //   automata?.evaluar(jTextFieldCadena?.text.toString(), automata?.estadoInicial!!)
+      //  }else{
+        if(automata?.evaluar(jTextFieldCadena?.text.toString(), automata!!.estadoInicial) as Boolean){
+            JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }else
+        {
+            ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
+        }
+       // }
     }
 }
 
 
 fun main(args : Array<String>) {
-    val automataDFA = AutomataDFA()
+ /*   val automataDFA = AutomataDFA()
 
     var dfa = ventanaAutomata(automataDFA)
 
@@ -474,5 +499,5 @@ fun main(args : Array<String>) {
 
     dfa.initComponents()
 
-    dfa.isVisible = true
+    dfa.isVisible = true*/
 }

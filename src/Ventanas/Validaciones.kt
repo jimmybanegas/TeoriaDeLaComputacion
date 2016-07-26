@@ -24,7 +24,6 @@ open class Validaciones {
             if(automata.transicionesEstanVacias()){
                 return "No hay transiciones"
             }
-
             return ""
         }
 
@@ -33,8 +32,6 @@ open class Validaciones {
             graph.model.beginUpdate()
             try {
                 var cell = graph.selectionCell
-
-                // println(cell.toString())
 
                 for (estado in automata.estadosItems){
                     if(estado.vertice == cell){
@@ -64,9 +61,6 @@ open class Validaciones {
 
                         //Remover la representación gráfica
                         graph.model.remove(cell)
-                        println("Estado borrado")
-
-                        println("\n"+ automata.toString())
                     }
                 }
 
@@ -76,10 +70,6 @@ open class Validaciones {
                         (automata.transiciones as MutableList<Transicion>).remove(transicion)
 
                         graph.model.remove(cell)
-
-                        println("Transicion borrada")
-
-                        println("\n"+ automata.toString())
                     }
                 }
 

@@ -1,48 +1,188 @@
 package Ventanas
 
+import Automatas.Automata
+import Automatas.AutomataDFA
+import Automatas.AutomataNFA
+import java.awt.Color
+import java.awt.event.ActionEvent
+import java.awt.event.ActionListener
+import java.awt.event.WindowAdapter
+import java.awt.event.WindowEvent
 import javax.swing.JButton
 import javax.swing.JComboBox
+import javax.swing.JFrame
 import javax.swing.JLabel
-import javax.swing.JMenuBar
 
 /**
  * Created by Affisa-Jimmy on 22/7/2016.
  */
-class Principal {
-    // Variables declaration - do not modify
+class Principal : JFrame(){
 
-    // Variables declaration - do not modify
-    private var jButtonCerrar : JButton? = null ;
-    private var jButtonOK : JButton? = null ;
-    private var jComboBoxAutomata = null ;
-    private var jLabel1 : javax.swing.JLabel? =null ;
-    private var jLabel2: JLabel? = null ;
-    private var jLabel3: JLabel? = null ;
-    private var jLabel4: JLabel? = null ;
-    private var jMenuBar1: JMenuBar? = null ;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private var jButtonCerrar: javax.swing.JButton? = null
+    private var jButtonOK: javax.swing.JButton? = null
+    private var jComboBoxAutomata: JComboBox<*>? = null
+    private var jLabel1: javax.swing.JLabel? = null
+    private var jLabel2: javax.swing.JLabel? = null
+    private var jLabel3: javax.swing.JLabel? = null
+    private var jLabel4: javax.swing.JLabel? = null
+    private var jMenuBar1: javax.swing.JMenuBar? = null
+    // End of variables declaration//GEN-END:variables
 
     init {
         initComponents()
     }
 
     public fun initComponents() {
+        //jComboBoxAutomata = javax.swing.JComboBox()
+        jButtonOK = javax.swing.JButton()
+        jButtonCerrar = javax.swing.JButton()
         jLabel1 = javax.swing.JLabel()
         jLabel2 = javax.swing.JLabel()
         jLabel3 = javax.swing.JLabel()
         jLabel4 = javax.swing.JLabel()
-        jButtonCerrar = javax.swing.JButton()
-        jButtonOK = javax.swing.JButton()
-     //   jComboBoxAutomata = JComboBox<>()
+        jMenuBar1 = javax.swing.JMenuBar()
+
+        defaultCloseOperation = javax.swing.WindowConstants.EXIT_ON_CLOSE
+
+        var AutomatonStrings = arrayOf("Autotomata Finito Deterministico (DFA)",
+                                        "Automata Finito No Determinista (NFA)")
+
+        jComboBoxAutomata = JComboBox(AutomatonStrings)
 
 
+        (jButtonOK as JButton).text = "OK"
+        setLocationRelativeTo(null)
+        contentPane.background = Color.WHITE
+        (jButtonCerrar as JButton).background = Color.WHITE
+        (jButtonOK as JButton).background = Color.WHITE
+        (jComboBoxAutomata as JComboBox<*>).setBackground(Color.WHITE)
+        (jButtonOK as JButton).addActionListener({ evt -> jButtonOKActionPerformed(evt) })
+
+        (jButtonCerrar as JButton).text = "Cerrar"
+        (jButtonCerrar as JButton).addActionListener({ evt -> jButtonCerrarActionPerformed(evt) })
+
+        (jLabel1 as JLabel).text = "Teoría de la computacion - UNITEC SPS "
+
+        (jLabel2 as JLabel).text = "Proyecto desarrollado por: Jimmy Ramos - 2114116 "
+
+        (jLabel3 as JLabel).text = "Lenguaje: Kotlins y JGrpah"
+
+        (jLabel4 as JLabel).text = "Seleccione el tipo de Autómata que quiere probar:"
+
+        jMenuBar = jMenuBar1
+
+        val layout = javax.swing.GroupLayout(contentPane)
+        contentPane.layout = layout
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jComboBoxAutomata, 0, 777, java.lang.Short.MAX_VALUE.toInt())
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel1)
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(jLabel3)
+                                                        .addComponent(jLabel4)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                        .addGap(120, 120, 120)
+                                                        .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(193, 193, 193).addComponent(jButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(0, 0, java.lang.Short.MAX_VALUE.toInt()))).addContainerGap()))
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jLabel1)
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, java.lang.Short.MAX_VALUE.toInt())
+                                .addComponent(jLabel4)
+                                .addGap(27, 27, 27)
+                                .addComponent(jComboBoxAutomata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jButtonOK)
+                                .addComponent(jButtonCerrar))
+                                .addGap(148, 148, 148)))
+
+
+        pack()
+
+        (jComboBoxAutomata as JComboBox<*>).addActionListener { e ->
+            val cb = e.source as JComboBox<*>
+            val index = cb.selectedIndex
+
+            when (index) {
+                0 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
+                }
+                1 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 1
+                }
+                else ->
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
+            }
+        }
     }
+
+    private fun jButtonCerrarActionPerformed(evt: ActionEvent?) {
+        this.setVisible(false);
+        this.dispose();
+    }
+
+    private fun jButtonOKActionPerformed(evt: ActionEvent?) {
+
+        if (jComboBoxAutomata?.selectedIndex == 0) {
+            //Este va a crear un automata DFA
+            val automataDFA = AutomataDFA()
+            val frame = ventanaAutomata(automataDFA)
+
+            ConfigurationForWindows.SetConfigurations(frame, "Automata Finito Determinístico")
+
+            frame.addWindowListener(object : WindowAdapter() {
+                override fun windowClosing(windowEvent: WindowEvent) {
+                    this@Principal.setVisible(true)
+                }
+            })
+            frame.pack()
+            frame.setVisible(true)
+            this.isVisible = false
+            this.dispose()
+
+        } else if (jComboBoxAutomata?.selectedIndex == 1) {
+
+            //Este va a crear un automata NFA
+            val automataNFA = AutomataNFA()
+            val frame = ventanaAutomata(automataNFA)
+
+            ConfigurationForWindows.SetConfigurations(frame,"Automata Finito No Deterministico")
+
+            frame.addWindowListener(object : WindowAdapter() {
+                override fun windowClosing(windowEvent: WindowEvent) {
+                    this@Principal.setVisible(true)
+                }
+            })
+
+            frame.pack()
+            frame.setVisible(true)
+            this.isVisible = false
+            this.dispose()
+        }
+    }
+
+
 }
 
+
 fun main(args : Array<String>) {
+
     var principal = Principal()
 
     principal.initComponents()
 
- /*   principal.initComponents()
-    principal.setVisible(true)*/
+    principal.setVisible(true)
 }

@@ -28,6 +28,8 @@ abstract class Automata : Serializable {
 
     abstract fun evaluar(cadena:String): Boolean
 
+    abstract fun evaluar(cadena: String, estadoActual: Estado): Boolean
+
     abstract fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char) : Boolean
 
     open fun agregarTransicion(nombre:Char, origen: Estado, destino:Estado, arista: mxCell){
@@ -111,15 +113,13 @@ abstract class Automata : Serializable {
             for (i in 0..alfabeto.size -1) {
                 this.alfabeto.add(alfabeto[i].toChar())
             }
-        println("\r\nTamano alfabeto creado : "+this.alfabeto.size)
+
         return true
     }
 
     open fun simbolosDeTransicionesEstanEnAlfabeto() : Boolean{
-        println("\nsimbolos tamaño : "+this.alfabeto.size)
         for(transicion in transiciones){
             if(!alfabeto.contains(transicion.simbolo)){
-                println("\nSimbolo : "+transicion.simbolo)
                 return false
             }
         }
@@ -206,6 +206,8 @@ abstract class Automata : Serializable {
         }
         return  nextTransitions;
     }
+
+    abstract fun ConvertiraDFA()
 
 }
 

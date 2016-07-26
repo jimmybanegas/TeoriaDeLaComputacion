@@ -6,9 +6,9 @@ import com.mxgraph.model.mxCell
  */
 class AutomataDFA : Automata() {
 
-    override fun evaluar(cadena: String) : Boolean {
+    override fun evaluar(cadena: String, estadoActual: Estado): Boolean {
 
-        var estadoActual = this.estadoInicial
+        var estadoActual = estadoActual
 
         for (i in 0..cadena.length - 1) {
 
@@ -23,6 +23,29 @@ class AutomataDFA : Automata() {
         }
 
         return false
+    }
+
+    override fun ConvertiraDFA() {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun evaluar(cadena: String) : Boolean {
+
+        var estadoActual = this.estadoInicial
+        for (i in 0..cadena.length - 1) {
+
+            val transicionActual = obtenerTransicionConSimbolo(estadoActual.nombre, cadena[i]) ?: return false
+
+            estadoActual = transicionActual.destino!!
+        }
+
+        for (State in estadosDeAceptacion) {
+            if (State.nombre.equals(estadoActual.nombre))
+                return true
+        }
+
+        return false
+
     }
 
     private fun obtenerTransicionConSimbolo(nombre: String, simbolo: Char): Transicion? {

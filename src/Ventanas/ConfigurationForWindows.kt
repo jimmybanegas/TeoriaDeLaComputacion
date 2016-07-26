@@ -13,7 +13,7 @@ open class ConfigurationForWindows {
     //Clase creada para tener en un solo lugar la configuración de tamaños de ventanas, posición y demás configuraciones
     companion object {
 
-        fun SetConfigurations(dialog: ventanaAutomata){
+        fun SetConfigurations(dialog: ventanaAutomata, title: String){
             dialog.pack()
             dialog.setSize(1000, 500)
             val toolkit = Toolkit.getDefaultToolkit()
@@ -21,6 +21,8 @@ open class ConfigurationForWindows {
             val x = (screenSize.width - dialog.width) / 2
             val y = (screenSize.height - dialog.height) / 2
             dialog.setLocation(x, y)
+
+            dialog.title = title
 
             dialog.isVisible = true
         }

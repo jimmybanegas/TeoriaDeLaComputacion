@@ -3,16 +3,18 @@
  */
 import Automatas.AutomataDFA
 import Ventanas.ConfigurationForWindows
+import Ventanas.Principal
 import Ventanas.ventanaAutomata
 
 fun main(args: Array<String>) {
     println("hola desde Kotlin")
 
-    var automataDFA = AutomataDFA()
 
-    val dialog = ventanaAutomata(automataDFA)
+    val principal = Principal()
 
-    ConfigurationForWindows.SetConfigurations(dialog)
+    principal.isVisible = true
+
+
     //dialog.pack()
 
  //   dialog.setSize(720, 600);
