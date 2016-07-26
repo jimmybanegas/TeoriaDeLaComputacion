@@ -5,6 +5,7 @@ import com.mxgraph.model.mxCell
 import com.mxgraph.util.mxConstants
 import com.mxgraph.view.mxGraph
 import java.io.Serializable
+import java.util.*
 
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
@@ -190,6 +191,20 @@ abstract class Automata : Serializable {
         this.estadoInicial.vertice = null
         this.estadoInicial.posX = 0.0
         this.estadoInicial.posY = 0.0
+    }
+
+    fun getNextTransitions(currentState: Estado): MutableList<Transicion> {
+
+       var nextTransitions = mutableListOf<Transicion>();
+
+        if(currentState!=null) {
+            for (t in transiciones) {
+                if (t.origen?.nombre.equals(currentState.nombre)) {
+                    nextTransitions.add(t);
+                }
+            }
+        }
+        return  nextTransitions;
     }
 
 }
