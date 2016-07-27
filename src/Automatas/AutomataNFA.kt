@@ -49,16 +49,17 @@ class AutomataNFA : Automata() {
     }
 
     private fun obtenerEstadosTransicionesDFA(dfa: AutomataDFA, actuales: MutableList<Estado>, i: Int) {
-      //  val nuevosActuales: mutableListOf<Estado>
+        //  val nuevosActuales: mutableListOf<Estado>
         val nuevosActuales = mutableListOf<Estado>()
 
-       // nuevosActuales = mutableListOf()
+        // nuevosActuales = mutableListOf()
         if (i == alfabeto.size)
             return
+
         for (transicion in transiciones) {
             for (estado in actuales)
-                if (transicion.origen?.nombre.equals(estado.nombre) && transicion.simbolo.equals(alfabeto[i])) {
-                    nuevosActuales.add(transicion.destino!!)
+                if (transicion.origen?.nombre.equals(estado.nombre) && transicion.simbolo.equals(alfabeto[i].toChar())) {
+                    nuevosActuales.add(transicion.destino as Estado)
                     break
                 }
         }
@@ -113,7 +114,7 @@ class AutomataNFA : Automata() {
 
                     val v1 = obtenerEstado(nombre, dfa)
 
-                    dfa.estadosDeAceptacion.add(v1!!)
+                    dfa.estadosDeAceptacion.add(v1 as Estado)
                 }
             }
     }
@@ -130,8 +131,9 @@ class AutomataNFA : Automata() {
     private fun crearTransicionDFA(nuevosActuales: MutableList<Estado>, dfa: AutomataDFA, actuales: MutableList<Estado>, i: Int) {
         val nuevaTransicion = Transicion()
         var nombre = ""
+        nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
       //  nombre = nuevosActuales.map({ estado -> estado.nombre }).toString()
-        nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
+       // nombre =
        // nombre =  nuevosActuales.map { estado -> estado.nombre }.reduce { plus, nuevoEstado -> nuevoEstado };
 
         nuevaTransicion.destino = obtenerEstado(nombre, dfa)
@@ -139,10 +141,10 @@ class AutomataNFA : Automata() {
         nombre = ""
        // nombre = actuales.map({ estado -> estado.nombre }).toString()
        // nuevosActuales.map { estado -> estado.nombre }.reduce { plus, nuevoEstado -> nuevoEstado };
-        nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
+        nombre = actuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
 
         nuevaTransicion.origen = obtenerEstado(nombre, dfa)
-        nuevaTransicion.simbolo = (alfabeto[i])
+        nuevaTransicion.simbolo = (alfabeto[i].toChar())
 
       /*  if(nuevaTransicion.destino != null && nuevaTransicion.origen!= null ){
             if(!transicionYaExiste(nuevaTransicion.origen!!, nuevaTransicion.destino!!,nuevaTransicion.simbolo))*/

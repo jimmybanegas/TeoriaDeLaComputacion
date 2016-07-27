@@ -192,10 +192,7 @@ abstract class Automata : Serializable {
         this.estadosDeAceptacion.clear()
         this.transiciones.clear()
         this.alfabeto.clear()
-        this.estadoInicial.nombre=""
-        this.estadoInicial.vertice = null
-        this.estadoInicial.posX = 0.0
-        this.estadoInicial.posY = 0.0
+        this.estadoInicial = Estado()
     }
 
     fun getNextTransitions(currentState: Estado): MutableList<Transicion> {

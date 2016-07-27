@@ -64,8 +64,12 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             override fun keyReleased(event: KeyEvent) {
                 val content = (jTextFieldAlfabeto as JTextField).text
                 if (content != "") {
-                    jTextFieldCadena?.isEnabled = true
-                    jButtonEvaluarAutomata?.isEnabled = true
+                    if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
+                        ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido")
+                    }else{
+                        jTextFieldCadena?.isEnabled = true
+                        jButtonEvaluarAutomata?.isEnabled = true
+                    }
                 } else {
                     jTextFieldCadena?.isEnabled = false
                     jButtonEvaluarAutomata?.isEnabled = false
@@ -300,7 +304,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
             automata?.Clear()
 
-            //this.contadorEstados = 0
+            this.contadorEstados = 0
 
             println(automata)
         }
@@ -408,32 +412,24 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         }
 
         val convertirADFAMenuItem = JMenuItem("Convertir a DFA")
-        //convertirADFAMenuItem.mnemonic = KeyEvent.VK_
+        convertirADFAMenuItem.mnemonic = KeyEvent.VK_T
         convertirADFAMenuItem.toolTipText = "Convertir a DFA"
         convertirADFAMenuItem.addActionListener {
-          // System.exit(0)
-
-            if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
-                ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido");
-
-
-            }
-
             graph.model.beginUpdate()
             graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
             graph.model.endUpdate()
-
-            this.contadorEstados = 0
 
             var nuevo = automata?.ConvertiraDFA()
 
             automata?.Clear()
 
-            automata = nuevo
+            this.automata = nuevo
+
+            this.contadorEstados = 0
 
             automata?.dibujarAutomata(graph)
 
-            println(automata)
+            println(this.automata)
         }
 
         //Submenus de Archivo
@@ -480,17 +476,10 @@ private fun evaluarCadena(e: ActionEvent) {
           ConfigurationForWindows.messageDialog(contentPane, msg);
           return
       }
-      if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
-          ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido");
-          return
-      }
       if(!(automata?.simbolosDeTransicionesEstanEnAlfabeto() as Boolean)){
           ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
           return
       }
-       // if(automata is AutomataNFA){
-         //   automata?.evaluar(jTextFieldCadena?.text.toString(), automata?.estadoInicial!!)
-      //  }else{
         if(automata?.evaluar(jTextFieldCadena?.text.toString(), automata!!.estadoInicial) as Boolean){
             JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -498,21 +487,11 @@ private fun evaluarCadena(e: ActionEvent) {
         {
             ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
         }
-       // }
+
     }
 }
 
 
 fun main(args : Array<String>) {
- /*   val automataDFA = AutomataDFA()
 
-    var dfa = ventanaAutomata(automataDFA)
-
-    automataDFA.toString()
-
-    dfa.title = "Automata Finito Deterministico"
-
-    dfa.initComponents()
-
-    dfa.isVisible = true*/
 }
