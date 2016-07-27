@@ -59,7 +59,7 @@ class AutomataNFA : Automata() {
         for (transicion in transiciones) {
             for (estado in actuales)
                 if (transicion.origen?.nombre.equals(estado.nombre) && transicion.simbolo.equals(alfabeto[i].toChar())) {
-                    nuevosActuales.add(transicion.destino as Estado)
+                    nuevosActuales.add(transicion.destino!!)
                     break
                 }
         }

@@ -50,7 +50,9 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         //Hacer las conversiones visibles para los automatas NFA Solamente
         if(automata is AutomataDFA){
             menubar.getComponent(2).isVisible = false
-        }
+        }else
+            menubar.getComponent(2).isEnabled = false
+
     }
 
     fun initComponents() {
@@ -66,13 +68,16 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                 if (content != "") {
                     if(!((automata?.crearAlfabeto(jTextFieldAlfabeto?.text?.toCharArray() as CharArray)) as Boolean)){
                         ConfigurationForWindows.messageDialog(contentPane,"Alfabeto invalido")
+                        menubar.getComponent(2).isEnabled = false
                     }else{
                         jTextFieldCadena?.isEnabled = true
                         jButtonEvaluarAutomata?.isEnabled = true
+                        menubar.getComponent(2).isEnabled = true
                     }
                 } else {
                     jTextFieldCadena?.isEnabled = false
                     jButtonEvaluarAutomata?.isEnabled = false
+                    menubar.getComponent(2).isEnabled = false
                 }
             }
         })

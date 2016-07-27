@@ -66,7 +66,7 @@ class Principal : JFrame(){
 
         (jLabel2 as JLabel).text = "Proyecto desarrollado por: Jimmy Ramos - 2114116 "
 
-        (jLabel3 as JLabel).text = "Lenguaje: Kotlins y JGrpah"
+        (jLabel3 as JLabel).text = "Lenguaje: Kotlins y JGraph"
 
         (jLabel4 as JLabel).text = "Seleccione el tipo de Autómata que quiere probar:"
 
