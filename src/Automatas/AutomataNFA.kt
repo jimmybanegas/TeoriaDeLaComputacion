@@ -49,10 +49,10 @@ class AutomataNFA : Automata() {
     }
 
     private fun obtenerEstadosTransicionesDFA(dfa: AutomataDFA, actuales: MutableList<Estado>, i: Int) {
-      //  val nuevosActuales: ArrayList<Estado>
+      //  val nuevosActuales: mutableListOf<Estado>
         val nuevosActuales = mutableListOf<Estado>()
 
-       // nuevosActuales = ArrayList()
+       // nuevosActuales = mutableListOf()
         if (i == alfabeto.size)
             return
         for (transicion in transiciones) {
@@ -73,12 +73,13 @@ class AutomataNFA : Automata() {
 
             val nuevoEstado = Estado()
 
-           // nuevoEstado.nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
-            nuevoEstado.nombre += nuevosActuales.map { estado -> estado.nombre }.toString()
+            nuevoEstado.nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
+         //   nuevoEstado.nombre = nuevosActuales.map { estado -> estado.nombre }.reduce { plus, nuevoEstado -> nuevoEstado };
+            // nuevoEstado.nombre = nuevosActuales
 
-            if(nuevoEstado.nombre != ""){
+      //      if(nuevoEstado.nombre.contains("[")){
                 dfa.estados.add(nuevoEstado)
-            }
+          //  }
 
             agregarEstadosFinalesDFA(nuevosActuales, dfa)
             crearTransicionDFA(nuevosActuales, dfa, actuales, i)
@@ -88,7 +89,10 @@ class AutomataNFA : Automata() {
 
     private fun siEsIgualAlgunEstadoDFA(nuevosActuales: MutableList<Estado>, dfa: AutomataDFA): Boolean {
         var nombre = ""
-        nombre += nuevosActuales.map({ estado -> estado.nombre }).toString()
+
+//        nombre = nuevosActuales.map({ estado -> estado.nombre }).toString()//
+            nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
+
         for (estado in dfa.estados) {
             if (estado.nombre.equals(nombre)) {
                 return true
@@ -103,7 +107,9 @@ class AutomataNFA : Automata() {
                 if (estadofin.nombre.equals(estado.nombre)) {
                     var nombre = ""
 
-                    nombre += nuevosActuales.map({ estadotemp -> estadotemp.nombre }).toString()
+                   //nombre = nuevosActuales.map({ estadotemp -> estadotemp.nombre }).toString()
+                    //nombre =  nuevosActuales.map { estado -> estado.nombre }.reduce { plus, nuevoEstado -> nuevoEstado };
+                    nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
 
                     val v1 = obtenerEstado(nombre, dfa)
 
@@ -124,20 +130,24 @@ class AutomataNFA : Automata() {
     private fun crearTransicionDFA(nuevosActuales: MutableList<Estado>, dfa: AutomataDFA, actuales: MutableList<Estado>, i: Int) {
         val nuevaTransicion = Transicion()
         var nombre = ""
-        nombre += nuevosActuales.map({ estado -> estado.nombre }).toString()
+      //  nombre = nuevosActuales.map({ estado -> estado.nombre }).toString()
+        nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
+       // nombre =  nuevosActuales.map { estado -> estado.nombre }.reduce { plus, nuevoEstado -> nuevoEstado };
 
         nuevaTransicion.destino = obtenerEstado(nombre, dfa)
 
         nombre = ""
-        nombre += actuales.map({ estado -> estado.nombre }).toString()
+       // nombre = actuales.map({ estado -> estado.nombre }).toString()
+       // nuevosActuales.map { estado -> estado.nombre }.reduce { plus, nuevoEstado -> nuevoEstado };
+        nombre = nuevosActuales.map({ estado -> estado.nombre }).reduce {  a, b -> a + b  }
 
         nuevaTransicion.origen = obtenerEstado(nombre, dfa)
         nuevaTransicion.simbolo = (alfabeto[i])
 
-        if(nuevaTransicion.destino != null && nuevaTransicion.origen!= null ){
-            if(!transicionYaExiste(nuevaTransicion.origen!!, nuevaTransicion.destino!!,nuevaTransicion.simbolo))
+      /*  if(nuevaTransicion.destino != null && nuevaTransicion.origen!= null ){
+            if(!transicionYaExiste(nuevaTransicion.origen!!, nuevaTransicion.destino!!,nuevaTransicion.simbolo))*/
                 dfa.transiciones.add(nuevaTransicion)
-        }
+    //    }
 
     }
 

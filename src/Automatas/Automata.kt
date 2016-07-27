@@ -130,6 +130,11 @@ abstract class Automata : Serializable {
         val parent = graph.defaultParent
 
         for (s in this.estados) {
+            if(s.posX == 0.0&& s.posY ==0.0){
+                val rand = Random()
+                 s.posX = (rand.nextInt(600) + 1).toDouble()
+                 s.posY = (rand.nextInt(300) + 1).toDouble()
+            }
             graph.model.beginUpdate()
             if (estadoInicial.nombre.equals(s.nombre) && this.estadosDeAceptacion.any { it.nombre == s.nombre }){
                 graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow")
