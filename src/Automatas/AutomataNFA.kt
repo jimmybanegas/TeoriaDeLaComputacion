@@ -7,7 +7,7 @@ import java.util.*
  */
 class AutomataNFA : Automata() {
 
-    override fun ConvertiraDFA(): AutomataDFA {
+    override fun convertirADFA(): AutomataDFA {
         val dfa = AutomataDFA()
 
         dfa.estadoInicial = this.estadoInicial
@@ -139,29 +139,28 @@ class AutomataNFA : Automata() {
     }
 
     override fun evaluar(cadena: String): Boolean {
-       // throw UnsupportedOperationException()
-        var currentState = this.estadoInicial
+        var estadoActual = this.estadoInicial
 
-        val trans =  this.getNextTransitions(currentState) as ArrayList<Transicion>;
+        val trans =  this.obtenerTransicionesSiguientes(estadoActual) as ArrayList<Transicion>;
 
         if(!cadena.isEmpty()){
-            val first = cadena[0];
-            val results =  hashSetOf<Boolean>();
+            val primero = cadena[0];
+            val resultados =  hashSetOf<Boolean>();
 
             for (t in trans){
-                if(t.simbolo ==first ){
-                    currentState = t.destino!!;
-                    results.add(evaluar(cadena.substring(1), currentState)) ;
+                if(t.simbolo ==primero ){
+                    estadoActual = t.destino!!;
+                    resultados.add(evaluar(cadena.substring(1), estadoActual)) ;
                 }
             }
 
-            for( value in results){
+            for( value in resultados){
                 if(value){ return true;}
             }
 
         }else{
             for (s in  estadosDeAceptacion) {
-                if (currentState.nombre.equals(s.nombre)) {
+                if (estadoActual.nombre.equals(s.nombre)) {
                     return true;
                 }
             }
@@ -173,7 +172,7 @@ class AutomataNFA : Automata() {
 
         var currentState = estadoActual
 
-        var trans = this.getNextTransitions(currentState) as ArrayList<Transicion>;
+        var trans = this.obtenerTransicionesSiguientes(currentState) as ArrayList<Transicion>;
 
         if(!cadena.isEmpty()){
             var first = cadena[0];
@@ -201,7 +200,7 @@ class AutomataNFA : Automata() {
     }
 
     override fun transicionYaExiste(v1: Estado, v2: Estado, simbolo: Char): Boolean {
-        for (transicion in transaccionesItems) {
+        for (transicion in transicionesItems) {
             if (transicion.origen?.nombre.equals(v1.nombre)
                     && transicion.destino?.nombre.equals(v2.nombre)
                     && transicion.simbolo.equals(simbolo))

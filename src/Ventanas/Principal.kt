@@ -35,7 +35,6 @@ class Principal : JFrame(){
     }
 
     fun initComponents() {
-        //jComboBoxAutomata = javax.swing.JComboBox()
         jButtonOK = javax.swing.JButton()
         jButtonCerrar = javax.swing.JButton()
         jLabel1 = javax.swing.JLabel()

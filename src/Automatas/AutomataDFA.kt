@@ -6,7 +6,7 @@ import com.mxgraph.model.mxCell
  */
 class AutomataDFA : Automata() {
 
-    override fun ConvertiraDFA(): AutomataDFA {
+    override fun convertirADFA(): AutomataDFA {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -42,7 +42,7 @@ class AutomataDFA : Automata() {
     }
 
     override fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char): Boolean {
-        for (transicion in transaccionesItems) {
+        for (transicion in transicionesItems) {
             if(transicion.origen?.nombre.equals(v1.nombre) &&transicion.simbolo.equals(simbolo) )
                 return true
         }

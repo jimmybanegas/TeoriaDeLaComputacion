@@ -44,17 +44,17 @@ open class Validaciones {
                         //Borrar el estado si está en estados de aceptacion
                         for (estado in automata.estadosDeAceptacionItems){
                             if(estado.vertice == cell){
-                                (automata.estadosDeAceptacion as MutableList<Estado>).remove(estado)
+                                automata.estadosDeAceptacion.remove(estado)
                             }
                         }
 
                         //Luego borrarlo de el arreglo de estados general
-                        (automata.estados as MutableList<Estado>).remove(estado)
+                        automata.estados.remove(estado)
 
                         //Cuando un estado a borrar tenga una transicion asociada esta o estas se borrarán con él
-                        for (transicion in automata.transaccionesItems){
+                        for (transicion in automata.transicionesItems){
                             if(transicion.destino?.vertice == cell || transicion.origen?.vertice == cell){
-                                (automata.transiciones as MutableList<Transicion>).remove(transicion)
+                                automata.transiciones.remove(transicion)
                                 println("Transicion asociada borrada "+ transicion.simbolo)
                             }
                         }
@@ -64,10 +64,10 @@ open class Validaciones {
                     }
                 }
 
-                for (transicion in automata.transaccionesItems){
+                for (transicion in automata.transicionesItems){
                     if(transicion.arista == cell){
 
-                        (automata.transiciones as MutableList<Transicion>).remove(transicion)
+                        automata.transiciones.remove(transicion)
 
                         graph.model.remove(cell)
                     }

@@ -13,12 +13,11 @@ import java.util.*
 abstract class Automata : Serializable {
 
     var alfabeto = mutableListOf<Char>()
-    val alfabetoItems: List<Char> get() = alfabeto
 
-    val transiciones = mutableListOf<Transicion>()
-    val transaccionesItems: List<Transicion> get() = transiciones.toList()
+    var transiciones = mutableListOf<Transicion>()
+    val transicionesItems: List<Transicion> get() = transiciones.toList()
 
-    val estados = mutableListOf<Estado>()
+    var estados = mutableListOf<Estado>()
     val estadosItems: List<Estado> get() = estados.toList()
 
     var estadosDeAceptacion = mutableListOf<Estado>()
@@ -149,7 +148,7 @@ abstract class Automata : Serializable {
                 }
             }
 
-            for (t in this.transaccionesItems) {
+            for (t in this.transicionesItems) {
                 val style = graph.stylesheet.defaultEdgeStyle
                 style.put(mxConstants.STYLE_ROUNDED, true)
                 style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_SEGMENT)
@@ -186,7 +185,7 @@ abstract class Automata : Serializable {
                 ("Inicial : "+ estadoInicial.nombre)+ "\n")
     }
 
-    open fun Clear(){
+    open fun Limpiar(){
         this.estados.clear()
         this.estadosDeAceptacion.clear()
         this.transiciones.clear()
@@ -194,21 +193,21 @@ abstract class Automata : Serializable {
         this.estadoInicial = Estado()
     }
 
-    fun getNextTransitions(currentState: Estado): MutableList<Transicion> {
+    fun obtenerTransicionesSiguientes(estadoActual: Estado): MutableList<Transicion> {
 
-       var nextTransitions = mutableListOf<Transicion>();
+       val transicionesSiguientes = mutableListOf<Transicion>();
 
-        if(currentState!=null) {
+        if(true) {
             for (t in transiciones) {
-                if (t.origen?.nombre.equals(currentState.nombre)) {
-                    nextTransitions.add(t);
+                if (t.origen?.nombre.equals(estadoActual.nombre)) {
+                    transicionesSiguientes.add(t);
                 }
             }
         }
-        return  nextTransitions;
+        return  transicionesSiguientes;
     }
 
-    abstract fun ConvertiraDFA() : AutomataDFA
+    abstract fun convertirADFA() : AutomataDFA
 
 }
 

@@ -303,7 +303,10 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         val eMenuItem = JMenuItem("Salir")
         eMenuItem.mnemonic = KeyEvent.VK_E
         eMenuItem.toolTipText = "Salir de la application"
-        eMenuItem.addActionListener { System.exit(0) }
+        eMenuItem.addActionListener {
+            this.isVisible = false
+            this.dispose()
+        }
 
         val limpiarMenuItem = JMenuItem("Limpiar")
         limpiarMenuItem.mnemonic = KeyEvent.VK_E
@@ -313,7 +316,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             graph.removeCells(graph.getChildVertices(graph.defaultParent));
             graph.model.endUpdate()
 
-            automata?.Clear()
+            automata?.Limpiar()
 
             this.contadorEstados = 0
 
@@ -335,10 +338,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                         automata?.ponerPosicionEstado(cell.value.toString(), cell.geometry.x, cell.geometry.y)
                     }
                 }
-            }
-
-            for (s in automata?.estados!!) {
-                println(s.nombre + " " + s.posX + " " + s.posY)
             }
 
             val fileFilter = FileNameExtensionFilter("ser files (*.ser)", "ser")
@@ -430,11 +429,11 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
             graph.model.endUpdate()*/
 
-            val nuevo = automata?.ConvertiraDFA()
+            val nuevo = automata?.convertirADFA()
 
             println(" nuevo resultado"+ nuevo)
 
-           // automata?.Clear()
+           // automata?.Limpiar()
 
            // this.automata = nuevo
 
@@ -472,11 +471,16 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 private fun nombrarTransicion(): Char {
   var nombre: Char = 0.toChar()
   while (true) {
-      val name = JOptionPane.showInputDialog("Simbolo / nombre:")
-      if (name == null || name.isEmpty()) {
+      var name = JOptionPane.showInputDialog("Simbolo / nombre:")
+      if (name.isEmpty() && (automata is AutomataNFAe)) {
+          name = 'ε'.toString()
+      }
+
+      if (name == null || name.isEmpty() && (automata is AutomataDFA || automata is AutomataNFA)) {
           ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
           break
       }
+
       val na = name.toCharArray()
       if (na.size > 1) {
           ConfigurationForWindows.messageDialog(contentPane,"Escriba solo un caracter")
