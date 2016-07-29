@@ -1,9 +1,6 @@
 package Ventanas
 
-import Automatas.Automata
-import Automatas.AutomataDFA
-import Automatas.AutomataNFA
-import Automatas.Estado
+import Automatas.*
 import com.mxgraph.model.mxCell
 import com.mxgraph.swing.mxGraphComponent
 import com.mxgraph.util.mxConstants
@@ -54,6 +51,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             contadorEstados = automata.estados.size
         }
 
+     //   initComponents()
 
         //Hacer las conversiones visibles para los automatas NFA Solamente
         if(automata is AutomataDFA){
@@ -450,7 +448,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             frame.pack()
             frame.isVisible = true
 
-           // println(this.automata)
         }
 
         //Submenus de Archivo
@@ -501,7 +498,7 @@ private fun evaluarCadena(e: ActionEvent) {
           ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
           return
       }
-        if(automata is AutomataDFA){
+        if(automata is AutomataDFA || automata is AutomataNFAe){
             if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
                 JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
                 return;

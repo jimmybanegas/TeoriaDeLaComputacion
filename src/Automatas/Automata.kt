@@ -131,6 +131,7 @@ abstract class Automata : Serializable {
         graph.model.beginUpdate()
 
         try {
+
             for (s in this.estados) {
                 if(s.posX == 0.0&& s.posY ==0.0){
                     val rand = Random()
