@@ -11,27 +11,11 @@ class AutomataDFA : Automata() {
     }
 
     override fun evaluar(cadena: String, estadoActual: Estado): Boolean {
-
-        var actual = estadoActual
-
-        for (i in 0..cadena.length - 1) {
-
-            val transicionActual = obtenerTransicionConSimbolo(actual.nombre, cadena[i]) ?: return false
-
-            actual = transicionActual.destino!!
-        }
-
-        for (State in estadosDeAceptacion) {
-            if (State.nombre.equals(estadoActual.nombre))
-                return true
-        }
-
-        return false
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
     override fun evaluar(cadena: String) : Boolean {
-
         var estadoActual = this.estadoInicial
         for (i in 0..cadena.length - 1) {
 
@@ -40,8 +24,8 @@ class AutomataDFA : Automata() {
             estadoActual = transicionActual.destino!!
         }
 
-        for (State in estadosDeAceptacion) {
-            if (State.nombre.equals(estadoActual.nombre))
+        for (estado in estadosDeAceptacion) {
+            if (estado.nombre.equals(estadoActual.nombre))
                 return true
         }
 

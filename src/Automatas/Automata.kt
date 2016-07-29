@@ -128,48 +128,46 @@ abstract class Automata : Serializable {
 
     open fun dibujarAutomata(graph: mxGraph) {
         val parent = graph.defaultParent
+        graph.model.beginUpdate()
 
-        for (s in this.estados) {
-            if(s.posX == 0.0&& s.posY ==0.0){
-                val rand = Random()
-                 s.posX = (rand.nextInt(600) + 1).toDouble()
-                 s.posY = (rand.nextInt(300) + 1).toDouble()
+        try {
+            for (s in this.estados) {
+                if(s.posX == 0.0&& s.posY ==0.0){
+                    val rand = Random()
+                    s.posX = (rand.nextInt(600) + 1).toDouble()
+                    s.posY = (rand.nextInt(300) + 1).toDouble()
+                }
+                if (estadoInicial.nombre.equals(s.nombre) && this.estadosDeAceptacion.any { it.nombre == s.nombre }){
+                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow")
+                }else if (estadoInicial.nombre.equals(s.nombre) && !this.estadosDeAceptacion.any { it.nombre == s.nombre }) {
+                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow")
+                }else if(this.estadosDeAceptacion.any { it.nombre == s.nombre } && !estadoInicial.nombre.equals(s.nombre)) {
+                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightgreen")
+                }else if(!this.estadosDeAceptacion.any { it.nombre == s.nombre }  && !estadoInicial.nombre.equals(s.nombre)){
+                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightgreen")
+                }
             }
-            graph.model.beginUpdate()
-            if (estadoInicial.nombre.equals(s.nombre) && this.estadosDeAceptacion.any { it.nombre == s.nombre }){
-                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow")
-            }else if (estadoInicial.nombre.equals(s.nombre) && !this.estadosDeAceptacion.any { it.nombre == s.nombre }) {
-                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow")
-            }else if(this.estadosDeAceptacion.any { it.nombre == s.nombre } && !estadoInicial.nombre.equals(s.nombre)) {
-                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightgreen")
-            }else if(!this.estadosDeAceptacion.any { it.nombre == s.nombre }  && !estadoInicial.nombre.equals(s.nombre)){
-                graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightgreen")
+
+            for (t in this.transaccionesItems) {
+                val style = graph.stylesheet.defaultEdgeStyle
+                style.put(mxConstants.STYLE_ROUNDED, true)
+                style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_SEGMENT)
+                graph.stylesheet.defaultEdgeStyle = style
+
+                val vertex = getVertexInGraph(t.origen?.nombre,graph )
+
+                val vertex2 = getVertexInGraph(t.destino?.nombre,graph )
+
+                graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
             }
-
-            graph.model.endUpdate()
-        }
-
-        for (t in this.transaccionesItems) {
-            val style = graph.stylesheet.defaultEdgeStyle
-            style.put(mxConstants.STYLE_ROUNDED, true)
-            style.put(mxConstants.STYLE_EDGE, mxConstants.EDGESTYLE_SEGMENT)
-            graph.stylesheet.defaultEdgeStyle = style
-
-            val vertex = getVertexInGraph(t.origen?.nombre,graph )
-
-            val vertex2 = getVertexInGraph(t.destino?.nombre,graph )
-
-            graph.model.beginUpdate()
-
-            graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
-
+        }finally {
             graph.model.endUpdate()
         }
     }
 
     private fun getVertexInGraph(nombre: String?, graph: mxGraph): Object? {
         var vertex = Object()
-        val parent = graph.getDefaultParent()
+        val parent = graph.defaultParent
         for (i in 0..graph.model.getChildCount(parent) - 1) {
 
             vertex = graph.model.getChildAt(parent, i) as Object

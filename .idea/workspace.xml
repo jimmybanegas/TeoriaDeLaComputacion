@@ -2,10 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="467645c4-9e07-4ed3-8ade-e51f933cda5d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$jButtonOKActionPerformed$2.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Automata.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Automata.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataNFA.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataNFA.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$initComponents$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$initComponents$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$initComponents$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$initComponents$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$initComponents$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$initComponents$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$jButtonOKActionPerformed$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal$jButtonOKActionPerformed$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/Principal.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/PrincipalKt.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/PrincipalKt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/VentanaAutomataKt.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/VentanaAutomataKt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$4.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$5.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$6.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$4.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$5.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$6.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/Automata.kt" afterPath="$PROJECT_DIR$/src/Automatas/Automata.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" afterPath="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" afterPath="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ventanas/Principal.kt" afterPath="$PROJECT_DIR$/src/Ventanas/Principal.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" afterPath="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,6 +45,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/TeoriaDeLaComputacion$Ventanas_PrincipalKt.coverage" NAME="Ventanas.PrincipalKt Coverage Results" MODIFIED="1469818629983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/TeoriaDeLaComputacion$MainKt.coverage" NAME="MainKt Coverage Results" MODIFIED="1469134529746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/untitled$MainKt.coverage" NAME="MainKt Coverage Results" MODIFIED="1468901403278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
@@ -31,22 +58,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="ventanaAutomata.kt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ventanaAutomata.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Estado.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Automatas/Estado.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="138">
+              <caret line="49" column="6" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
+              <folding>
+                <element signature="n#!!block;n#initComponents#0;n#!!block;n#ventanaAutomata#0" expanded="false" />
+                <element signature="e#3389#3745#0" expanded="false" />
+                <element signature="e#3445#3735#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,20 +75,20 @@
       <file leaf-file-name="Principal.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ventanas/Principal.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+            <state relative-caret-position="395">
+              <caret line="161" column="49" selection-start-line="161" selection-start-column="49" selection-end-line="161" selection-end-column="49" />
               <folding>
-                <element signature="e#18#372#0" expanded="true" />
+                <element signature="e#18#402#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutomataNFA.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AutomataNFA.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFA.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="94" column="20" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+            <state relative-caret-position="68">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding>
                 <element signature="n#!!block;n#evaluar#0;n#!!block;n#AutomataNFA#0" expanded="false" />
                 <element signature="n#!!block;n#evaluar#1;n#!!block;n#AutomataNFA#0" expanded="false" />
@@ -120,11 +141,13 @@
         <option value="$PROJECT_DIR$/src/Ventanas/ConfigurationForWindows.kt" />
         <option value="$PROJECT_DIR$/src/Ventanas/Validaciones.kt" />
         <option value="$PROJECT_DIR$/src/Automatas/Transicion.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/Automata.kt" />
-        <option value="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/AutomataNFAε.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt" />
         <option value="$PROJECT_DIR$/src/Ventanas/Principal.kt" />
         <option value="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/Automata.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
+        <option value="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" />
       </list>
     </option>
   </component>
@@ -151,7 +174,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
@@ -365,6 +388,65 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
       <method />
     </configuration>
     <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
@@ -716,12 +798,12 @@
       <workItem from="1469544695239" duration="27147000" />
       <workItem from="1469589336998" duration="4595000" />
       <workItem from="1469633284623" duration="9650000" />
-      <workItem from="1469807950159" duration="3804000" />
+      <workItem from="1469807950159" duration="9974000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202597000" />
+    <option name="totallyTimeSpent" value="208767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -735,7 +817,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32506528" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33647376" sideWeight="0.49305555" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33647376" sideWeight="0.49305555" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879657" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -752,7 +835,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293872" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -778,7 +860,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -787,13 +869,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Automatas/Transicion.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/DFA.java" />
     <entry file="file://$PROJECT_DIR$/src/Automatas/Estado.kt">
       <provider selected="true" editor-type-id="text-editor">
@@ -885,16 +960,6 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/src.zip!/java/util/ArrayList.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_05/src.zip!/javax/swing/JComboBox.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_05/src.zip!/javax/swing/DefaultComboBoxModel.java" />
-    <entry file="file://$PROJECT_DIR$/src/Main.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding>
-            <element signature="e#50#176#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ventanas/Validaciones.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -925,43 +990,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_05/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="573">
           <caret line="382" column="63" selection-start-line="382" selection-start-column="63" selection-end-line="382" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/Automata.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="34" column="67" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ventanas/Principal.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <element signature="e#18#372#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -973,14 +1005,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFA.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="94" column="20" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+        <state relative-caret-position="68">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#evaluar#0;n#!!block;n#AutomataNFA#0" expanded="false" />
             <element signature="n#!!block;n#evaluar#1;n#!!block;n#AutomataNFA#0" expanded="false" />
             <element signature="n#!!block;n#transicionYaExiste#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automatas/Automata.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="182" column="68" selection-start-line="182" selection-start-column="68" selection-end-line="182" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ventanas/Principal.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="161" column="49" selection-start-line="161" selection-start-column="49" selection-end-line="161" selection-end-column="49" />
+          <folding>
+            <element signature="e#18#402#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="49" column="6" selection-start-line="49" selection-start-column="6" selection-end-line="49" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!block;n#initComponents#0;n#!!block;n#ventanaAutomata#0" expanded="false" />
+            <element signature="e#3389#3745#0" expanded="false" />
+            <element signature="e#3445#3735#0" expanded="false" />
           </folding>
         </state>
       </provider>

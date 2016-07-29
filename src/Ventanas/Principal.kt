@@ -3,6 +3,7 @@ package Ventanas
 import Automatas.Automata
 import Automatas.AutomataDFA
 import Automatas.AutomataNFA
+import Automatas.AutomataNFAe
 import java.awt.Color
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
@@ -33,7 +34,7 @@ class Principal : JFrame(){
         initComponents()
     }
 
-    public fun initComponents() {
+    fun initComponents() {
         //jComboBoxAutomata = javax.swing.JComboBox()
         jButtonOK = javax.swing.JButton()
         jButtonCerrar = javax.swing.JButton()
@@ -46,7 +47,8 @@ class Principal : JFrame(){
         defaultCloseOperation = javax.swing.WindowConstants.EXIT_ON_CLOSE
 
         var AutomatonStrings = arrayOf("Autotomata Finito Deterministico (DFA)",
-                                        "Automata Finito No Determinista (NFA)")
+                                        "Automata Finito No Determinista (NFA)",
+                                        "Automata Finito No Determinista Epsilon (NFAε)")
 
         jComboBoxAutomata = JComboBox(AutomatonStrings)
 
@@ -64,7 +66,7 @@ class Principal : JFrame(){
 
         (jLabel1 as JLabel).text = "Teoría de la computacion - UNITEC SPS "
 
-        (jLabel2 as JLabel).text = "Proyecto desarrollado por: Jimmy Ramos - 2114116 "
+        (jLabel2 as JLabel).text = "Proyecto desarrollado por: Jimmy Ramos - 21141016 "
 
         (jLabel3 as JLabel).text = "Lenguaje: Kotlins y JGraph"
 
@@ -123,6 +125,9 @@ class Principal : JFrame(){
                 1 -> {
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 1
                 }
+                2 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 2
+                }
                 else ->
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
             }
@@ -135,45 +140,41 @@ class Principal : JFrame(){
     }
 
     private fun jButtonOKActionPerformed(evt: ActionEvent?) {
+        var frame = JFrame()
 
         if (jComboBoxAutomata?.selectedIndex == 0) {
             //Este va a crear un automata DFA
             val automataDFA = AutomataDFA()
-            val frame = ventanaAutomata(automataDFA)
+            frame = ventanaAutomata(automataDFA)
 
             ConfigurationForWindows.SetConfigurations(frame, "Automata Finito Determinístico")
 
-            frame.addWindowListener(object : WindowAdapter() {
-                override fun windowClosing(windowEvent: WindowEvent) {
-                    this@Principal.setVisible(true)
-                }
-            })
-            frame.pack()
-            frame.setVisible(true)
-            this.isVisible = false
-            this.dispose()
-
         } else if (jComboBoxAutomata?.selectedIndex == 1) {
-
             //Este va a crear un automata NFA
             val automataNFA = AutomataNFA()
-            val frame = ventanaAutomata(automataNFA)
+            frame = ventanaAutomata(automataNFA)
 
             ConfigurationForWindows.SetConfigurations(frame,"Automata Finito No Deterministico")
 
-            frame.addWindowListener(object : WindowAdapter() {
-                override fun windowClosing(windowEvent: WindowEvent) {
-                    this@Principal.setVisible(true)
-                }
-            })
+        } else if (jComboBoxAutomata?.selectedIndex == 2) {
+            //Este va a crear un automata NFA epsilon
+            val automataNFAe = AutomataNFAe()
+            frame = ventanaAutomata(automataNFAe)
 
-            frame.pack()
-            frame.setVisible(true)
-            this.isVisible = false
-            this.dispose()
+            ConfigurationForWindows.SetConfigurations(frame,"Automata Finito No Deterministico Epsilon")
         }
-    }
 
+        frame.addWindowListener(object : WindowAdapter() {
+           override fun windowClosing(windowEvent: WindowEvent) {
+               this@Principal.setVisible(true)
+           }
+       })
+
+       frame.pack()
+       frame.isVisible = true
+       this.isVisible = false
+       this.dispose()
+    }
 
 }
 

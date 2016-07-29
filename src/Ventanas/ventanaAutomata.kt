@@ -47,6 +47,14 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         initComponents()
         this.automata = automata
 
+        println(automata)
+
+        if(!automata.estadosEstanVacios()){
+            automata.dibujarAutomata(this.graph)
+            contadorEstados = automata.estados.size
+        }
+
+
         //Hacer las conversiones visibles para los automatas NFA Solamente
         if(automata is AutomataDFA){
             menubar.getComponent(2).isVisible = false
@@ -167,7 +175,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                      return@addListener
                  }
                 val name = simbolo
-                edge.setValue(name)
+                edge.value = name
 
                 automata?.agregarTransicion(name,v1 as Estado, v2, edge)
 
@@ -304,7 +312,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         limpiarMenuItem.toolTipText = "Limpiar datos"
         limpiarMenuItem.addActionListener {
             graph.model.beginUpdate()
-            graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
+            graph.removeCells(graph.getChildVertices(graph.defaultParent));
             graph.model.endUpdate()
 
             automata?.Clear()
@@ -413,28 +421,36 @@ class ventanaAutomata(automata: Automata) : JFrame() {
               "\n El estado inicial se marca en amarillo, los demás en verde y con doble círculo \n" +
               "si es de aceptación, si se borra el inicial, el próximo agregado se tomará como inicial"
 
-        JOptionPane.showMessageDialog(contentPane,instrucciones, "Instrucciones",JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(contentPane,instrucciones, "Instrucciones",JOptionPane.INFORMATION_MESSAGE);
         }
 
         val convertirADFAMenuItem = JMenuItem("Convertir a DFA")
         convertirADFAMenuItem.mnemonic = KeyEvent.VK_T
         convertirADFAMenuItem.toolTipText = "Convertir a DFA"
         convertirADFAMenuItem.addActionListener {
-            graph.model.beginUpdate()
+            /*graph.model.beginUpdate()
             graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
-            graph.model.endUpdate()
+            graph.model.endUpdate()*/
 
-            var nuevo = automata?.ConvertiraDFA()
+            val nuevo = automata?.ConvertiraDFA()
 
-            automata?.Clear()
+            println(" nuevo resultado"+ nuevo)
 
-            this.automata = nuevo
+           // automata?.Clear()
 
-            this.contadorEstados = 0
+           // this.automata = nuevo
 
-            automata?.dibujarAutomata(graph)
+          //  this.contadorEstados = 0
 
-            println(this.automata)
+           // automata?.dibujarAutomata(graph)
+            val frame = nuevo?.let { it1 -> ventanaAutomata(it1) }
+
+            ConfigurationForWindows.SetConfigurations(frame!!, "Automata Finito Determinístico")
+
+            frame.pack()
+            frame.isVisible = true
+
+           // println(this.automata)
         }
 
         //Submenus de Archivo
@@ -485,12 +501,23 @@ private fun evaluarCadena(e: ActionEvent) {
           ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
           return
       }
-        if(automata?.evaluar(jTextFieldCadena?.text.toString(), automata!!.estadoInicial) as Boolean){
-            JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }else
-        {
-            ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
+        if(automata is AutomataDFA){
+            if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
+                JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }else
+            {
+                ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
+            }
+        }
+        else{
+            if(automata?.evaluar(jTextFieldCadena?.text.toString(), automata!!.estadoInicial) as Boolean){
+                JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }else
+            {
+                ConfigurationForWindows.messageDialog(contentPane,"No se acepta la cadena");
+            }
         }
 
     }
