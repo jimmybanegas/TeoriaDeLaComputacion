@@ -227,6 +227,15 @@ class AutomataNFAe : Automata() {
         return nuevosActuales
     }
 
+    fun Unir(nfaepsilon: AutomataNFAe) {
+        for (a in nfaepsilon.estados) {
+            this.estados.add(a)
+        }
+        for (t in nfaepsilon.transiciones) {
+            this.transiciones.add(t)
+        }
+    }
+
     override fun simbolosDeTransicionesEstanEnAlfabeto() : Boolean{
         for(transicion in transiciones){
             if(transicion.simbolo != 'ε'){

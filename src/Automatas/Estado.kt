@@ -25,8 +25,12 @@ class Estado : Serializable {
 
     override fun toString(): String {
         return "\nNombre: " +this.nombre +"\r\n"
-               // " Vertice: "+ this.vertice.toString()+ "\r\n"+
+                " Vertice: "+ this.vertice.toString()+ "\r\n"
               //  " Pos x :"+this.posX +"\r\n"+
                // " Pos y: "+ this.posX
+    }
+
+    constructor(nombre: String){
+        this.vertice = null
     }
 }

@@ -22,9 +22,13 @@ class Transicion : Serializable {
     override fun toString():String {
        return " \nOrigen: " +this.origen.toString() +"\r\n"+
                " Destino: "+ this.destino.toString()+ "\r\n"+
-              // " Arista :"+this.arista +"\r\n"+
+               " Arista :"+this.arista +"\r\n"+
                " Simbolo: "+ this.simbolo
     }
 
     constructor()
+
+    constructor(origen: Estado, destino: Estado, simbolo: Char){
+        this.arista = null
+    }
 }

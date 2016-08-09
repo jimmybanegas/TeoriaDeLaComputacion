@@ -22,11 +22,9 @@ open class ExpresionRegular {
 
                 rootNode = RegularExpressionParser().Parse(expresion)
 
-
             } catch (e: Exception) {
 
                 e.printStackTrace()
-
             }
 
             return obtenerNFAE(rootNode)
@@ -34,10 +32,9 @@ open class ExpresionRegular {
 
         private fun obtenerNFAE(rootNode: Node?): AutomataNFAe? {
             if (rootNode is CharNode) {
-                val estadoOrigen = Estado(nombresEstados[index++],null!!)
-                val estadoDestino = Estado(nombresEstados[index++],null!!)
-                val transicion = Transicion(estadoOrigen, estadoDestino, rootNode.toString()[0],null!!)
-
+                val estadoOrigen = Estado(nombresEstados[index++])
+                val estadoDestino = Estado(nombresEstados[index++])
+                val transicion = Transicion(estadoOrigen, estadoDestino, rootNode as Char)
 
                 val nfaEpislon = AutomataNFAe()
                 nfaEpislon.estados.add(estadoOrigen)
@@ -48,58 +45,79 @@ open class ExpresionRegular {
 
                 return nfaEpislon
             } else if (rootNode is ORNode) {
-                val orNode = rootNode as ORNode
+                val orNode = rootNode
                 val nuevoNfa = AutomataNFAe()
-                val estadoInicial = Estado(nombresEstados[index++],null!!)
-                val estadoFinal = Estado(nombresEstados[index++],null!!)
+                val estadoInicial = Estado(nombresEstados[index++])
+                val estadoFinal = Estado(nombresEstados[index++])
                 nuevoNfa.estados.add(estadoInicial)
                 nuevoNfa.estados.add(estadoFinal)
                 nuevoNfa.estadoInicial = estadoInicial
                 val nfaIzquierda = obtenerNFAE(orNode.getLeftNode())
-                nuevoNfa.Unir(nfaIzquierda)
-                nuevoNfa.setTransition(Transicion(estadoInicial, nfaIzquierda!!.estadoInicial, 'E',null!!))
+                nuevoNfa.Unir(nfaIzquierda!!)
+                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfaIzquierda.estadoInicial, 'E'))
 
                 val nfaDerecha = obtenerNFAE(orNode.getRightNode())
-                nuevoNfa.Unir(nfaDerecha)
-                nuevoNfa.setTransition(Transicion(estadoInicial, nfaDerecha!!.estadoInicial, 'E',null!!))
-                nuevoNfa.setTransition(Transicion(nfaIzquierda!!.estadosDeAceptacion.iterator().next(), estadoFinal, 'E',null!!))
-                nuevoNfa.setTransition(Transicion(nfaDerecha!!.estadosDeAceptacion.iterator().next(), estadoFinal, 'E',null!!))
-                nuevoNfa.StateFinals.clear()
-                nuevoNfa.StateFinals.add(estadoFinal)
+                nuevoNfa.Unir(nfaDerecha!!)
+                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfaDerecha.estadoInicial, 'E'))
+                nuevoNfa.transiciones.add(Transicion(nfaIzquierda.estadosDeAceptacion.iterator().next(), estadoFinal, 'E'))
+                nuevoNfa.transiciones.add(Transicion(nfaDerecha.estadosDeAceptacion.iterator().next(), estadoFinal, 'E'))
+                nuevoNfa.estadosDeAceptacion.clear()
+                nuevoNfa.estadosDeAceptacion.add(estadoFinal)
                 return nuevoNfa
 
             } else if (rootNode is ANDNode) {
                 val andNode = rootNode
                 val nuevoNfa = AutomataNFAe()
                 val nfaDerecha = obtenerNFAE(andNode.getRightNode())
-                nuevoNfa.Unir(nfaDerecha)
+                nuevoNfa.Unir(nfaDerecha!!)
                 val nfaIzquierda = obtenerNFAE(andNode.getLeftNode())
-                nuevoNfa.Unir(nfaIzquierda)
-                nuevoNfa.Initial = nfaIzquierda?.estadoInicial
-                nuevoNfa.StateFinals.add(nfaDerecha?.estadosDeAceptacion?.iterator()?.next())
-                val transicionNueva = Transicion(nfaIzquierda?.estadosDeAceptacion!!.iterator().next(), nfaDerecha!!.estadoInicial, 'E',null!!)
-                nuevoNfa.setTransition(transicionNueva)
+                nuevoNfa.Unir(nfaIzquierda!!)
+                nuevoNfa.estadoInicial = nfaIzquierda.estadoInicial
+                nuevoNfa.estadosDeAceptacion.add(nfaDerecha.estadosDeAceptacion.iterator().next())
+                val transicionNueva = Transicion(nfaIzquierda.estadosDeAceptacion.iterator().next(), nfaDerecha.estadoInicial, 'E')
+                nuevoNfa.transiciones.add(transicionNueva)
                 return nuevoNfa
 
             } else {
-                val estadoInicial = Estado(nombresEstados[index++],null!!)
-                val estadoFinal = Estado(nombresEstados[index++],null!!)
+                val estadoInicial = Estado(nombresEstados[index++])
+                val estadoFinal = Estado(nombresEstados[index++])
                 val nuevoNfa = AutomataNFAe()
                 nuevoNfa.estados.add(estadoInicial)
                 nuevoNfa.estados.add(estadoFinal)
                 nuevoNfa.estadoInicial = estadoInicial
 
                 val nfa = obtenerNFAE((rootNode as RepeatNode).getNode())
-                nuevoNfa.Unir(nfa)
+                nuevoNfa.Unir(nfa!!)
 
-                nuevoNfa.setTransition(Transicion(estadoInicial, nfa?.estadoInicial!!, 'E',null!!))
-                nuevoNfa.setTransition(Transicion(nfa?.estadosDeAceptacion?.iterator()?.next()!!, nfa?.estadoInicial!!, 'E',null!!))
-                nuevoNfa.setTransition(Transicion(nfa!!.estadosDeAceptacion.iterator().next(), estadoFinal, 'E',null!!))
-                nuevoNfa.StateFinals.add(estadoFinal)
-                nuevoNfa.setTransition(Transicion(nuevoNfa.estadoInicial, estadoFinal, 'E',null!!))
+                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfa.estadoInicial, 'E'))
+                nuevoNfa.transiciones.add(Transicion(nfa.estadosDeAceptacion.iterator().next(), nfa.estadoInicial, 'E'))
+                nuevoNfa.transiciones.add(Transicion(nfa.estadosDeAceptacion.iterator().next(), estadoFinal, 'E'))
+                nuevoNfa.estadosDeAceptacion.add(estadoFinal)
+                nuevoNfa.transiciones.add(Transicion(nuevoNfa.estadoInicial, estadoFinal, 'E'))
                 return nuevoNfa
-
             }
+        }
+
+
+        private fun obtainInverse(rootNode: Node): String {
+            if (rootNode is CharNode)
+                return rootNode.value
+            else if (rootNode is ORNode) {
+                return "(" +
+                        obtainInverse(rootNode.leftNode) + "+" +
+                        obtainInverse(rootNode.rightNode) +
+                        ")"
+            } else if (rootNode is ANDNode) {
+                return "(" +
+                        obtainInverse(rootNode.rightNode) + "." +
+                        obtainInverse(rootNode.leftNode) +
+                        ")"
+            } else {
+                return "(" +
+                        obtainInverse((rootNode as RepeatNode).node) +
+                        ")*"
+            }
+
         }
     }
 }

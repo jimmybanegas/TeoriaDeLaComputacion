@@ -7,6 +7,7 @@ import com.mxgraph.util.mxConstants
 import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
+import org.unitec.regularexpresion.tree.*
 import java.awt.Color
 import java.awt.Rectangle
 import java.awt.event.*
@@ -45,6 +46,8 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         this.automata = automata
 
         println(automata)
+        println (automata.estadoInicial)
+        println (automata.transiciones[0])
 
         if(!automata.estadosEstanVacios()){
             automata.dibujarAutomata(this.graph)
@@ -467,6 +470,71 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
         jMenuBar = menubar
 }
+
+    private fun obtainAutomata(rootNode: Node, nfaeList: AutomataNFAe) {
+        var nfaeList = nfaeList
+        if (rootNode is CharNode) {
+            val e1 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            val e2 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            val t = Transicion(e1, e2, (rootNode as Char))
+            nfaeList.estadoInicial = e1
+            nfaeList.estadosDeAceptacion.add(e2)
+            nfaeList.estados.add(e1)
+            nfaeList.estados.add(e2)
+            nfaeList.transiciones.add(t)
+
+        } else if (rootNode is ORNode) {
+            val orNode = rootNode
+            var e1 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            nfaeList.estadoInicial = e1
+            nfaeList.estadosDeAceptacion.add(e1)
+            nfaeList.estados.add(e1)
+            obtainAutomata(orNode.getLeftNode(), nfaeList)
+            obtainAutomata(orNode.getRightNode(), nfaeList)
+            e1 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+
+            nfaeList.estadoInicial = e1
+            nfaeList.estadosDeAceptacion.add(e1)
+            nfaeList.estados.add(e1)
+        } else if (rootNode is ANDNode) {
+            val andNode = rootNode
+            obtainAutomata(andNode.getRightNode(), nfaeList)
+            obtainAutomata(andNode.getLeftNode(), nfaeList)
+        } else {
+            val e1 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            val e2 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            val t = Transicion(e1, e2, 'ε')
+
+            nfaeList.estadoInicial = e1
+            nfaeList.estados.add(e1)
+            nfaeList.estados.add(e2)
+            nfaeList.transiciones.add(t)
+
+            obtainAutomata((rootNode as RepeatNode).getNode(), nfaeList)
+            val e3 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            val e4 = Estado((contadorEstados).toString())
+            contadorEstados += 1
+            val t1 = Transicion(e3, e4, 'ε' )
+            val t2 = Transicion(e3, e2, 'ε')
+            val t3 = Transicion(e1, e4, 'ε')
+            nfaeList = AutomataNFAe()
+            nfaeList.estadoInicial = e3
+            nfaeList.estadosDeAceptacion.add(e4)
+            nfaeList.estados.add(e3)
+            nfaeList.estados.add(e4)
+            nfaeList.transiciones.add(t1)
+            nfaeList.transiciones.add(t2)
+            nfaeList.transiciones.add(t3)
+        }
+
+    }
 
 private fun nombrarTransicion(): Char {
   var nombre: Char = 0.toChar()

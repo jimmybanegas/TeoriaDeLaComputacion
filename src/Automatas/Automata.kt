@@ -138,13 +138,25 @@ abstract class Automata : Serializable {
                     s.posY = (rand.nextInt(300) + 1).toDouble()
                 }
                 if (estadoInicial.nombre.equals(s.nombre) && this.estadosDeAceptacion.any { it.nombre == s.nombre }){
-                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow")
+                    val v = graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightyellow")
+                    if(s.vertice == null){
+                        s.vertice = v as Object
+                    }
                 }else if (estadoInicial.nombre.equals(s.nombre) && !this.estadosDeAceptacion.any { it.nombre == s.nombre }) {
-                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow")
+                    val v = graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightyellow")
+                    if(s.vertice == null){
+                        s.vertice = v as Object
+                    }
                 }else if(this.estadosDeAceptacion.any { it.nombre == s.nombre } && !estadoInicial.nombre.equals(s.nombre)) {
-                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightgreen")
+                    val v = graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=doubleEllipse;whiteSpace=wrap;fillColor=lightgreen")
+                    if(s.vertice == null){
+                        s.vertice = v as Object
+                    }
                 }else if(!this.estadosDeAceptacion.any { it.nombre == s.nombre }  && !estadoInicial.nombre.equals(s.nombre)){
-                    graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightgreen")
+                    val v = graph.insertVertex(parent, null, s.nombre, s.posX, s.posY, 50.0, 50.0,"resizable=0;editable=0;shape=ellipse;whiteSpace=wrap;fillColor=lightgreen")
+                    if(s.vertice == null){
+                        s.vertice = v as Object
+                    }
                 }
             }
 
@@ -158,7 +170,11 @@ abstract class Automata : Serializable {
 
                 val vertex2 = getVertexInGraph(t.destino?.nombre,graph )
 
-                graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
+                val edge = graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
+
+                if(t.arista == null){
+                    t.arista = edge as Object
+                }
             }
         }finally {
             graph.model.endUpdate()
