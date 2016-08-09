@@ -1,18 +1,12 @@
 package Ventanas
 
-import Automatas.Automata
-import Automatas.AutomataDFA
-import Automatas.AutomataNFA
-import Automatas.AutomataNFAe
+import Automatas.*
 import java.awt.Color
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
-import javax.swing.JButton
-import javax.swing.JComboBox
-import javax.swing.JFrame
-import javax.swing.JLabel
+import javax.swing.*
 
 /**
  * Created by Affisa-Jimmy on 22/7/2016.
@@ -47,7 +41,8 @@ class Principal : JFrame(){
 
         var AutomatonStrings = arrayOf("Autotomata Finito Deterministico (DFA)",
                                         "Automata Finito No Determinista (NFA)",
-                                        "Automata Finito No Determinista Epsilon (NFAε)")
+                                        "Automata Finito No Determinista Epsilon (NFAε)" ,
+                                        "Expresion Regular a(NFA-e)")
 
         jComboBoxAutomata = JComboBox(AutomatonStrings)
 
@@ -127,6 +122,9 @@ class Principal : JFrame(){
                 2 -> {
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 2
                 }
+                3 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 3
+                }
                 else ->
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
             }
@@ -161,7 +159,22 @@ class Principal : JFrame(){
             frame = ventanaAutomata(automataNFAe)
 
             ConfigurationForWindows.SetConfigurations(frame,"Automata Finito No Deterministico Epsilon")
-        }
+        } else if (jComboBoxAutomata?.selectedIndex == 3) {
+          //Este va a crear un automata NFA epsilon formado de la evaluación de la expresión regular
+            var automataNFAe = AutomataNFAe()
+
+
+            var expresion = JOptionPane.showInputDialog("Digite la expresión regular")
+
+            if (expresion == null || expresion.isEmpty() ) {
+                ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
+            }else{
+               automataNFAe = ExpresionRegular.Convertir(expresion) as AutomataNFAe
+            }
+
+            frame = ventanaAutomata(automataNFAe)
+            ConfigurationForWindows.SetConfigurations(frame,"Expresión regular a NFA-e")
+         }
 
         frame.addWindowListener(object : WindowAdapter() {
            override fun windowClosing(windowEvent: WindowEvent) {
