@@ -31,6 +31,7 @@ class Estado : Serializable {
     }
 
     constructor(nombre: String){
+        this.nombre = nombre
         this.vertice = null
     }
 }

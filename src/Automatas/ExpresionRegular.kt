@@ -13,20 +13,16 @@ open class ExpresionRegular {
 
         var index = 0
         var NameOfStates = "q0,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,17,q18,q19,q20,q21,q22,q23,q24,q25"
-        var nombresEstados = NameOfStates.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        var nombresEstados = NameOfStates.split(",")
 
         fun Convertir(expresion: String): AutomataNFAe? {
             var rootNode: Node? = null
 
             try {
-
                 rootNode = RegularExpressionParser().Parse(expresion)
-
             } catch (e: Exception) {
-
                 e.printStackTrace()
             }
-
             return obtenerNFAE(rootNode)
         }
 
@@ -34,8 +30,7 @@ open class ExpresionRegular {
             if (rootNode is CharNode) {
                 val estadoOrigen = Estado(nombresEstados[index++])
                 val estadoDestino = Estado(nombresEstados[index++])
-                val transicion = Transicion(estadoOrigen, estadoDestino, rootNode as Char)
-
+                val transicion = Transicion(estadoOrigen, estadoDestino, rootNode.value[0])
                 val nfaEpislon = AutomataNFAe()
                 nfaEpislon.estados.add(estadoOrigen)
                 nfaEpislon.estados.add(estadoDestino)
@@ -54,13 +49,13 @@ open class ExpresionRegular {
                 nuevoNfa.estadoInicial = estadoInicial
                 val nfaIzquierda = obtenerNFAE(orNode.getLeftNode())
                 nuevoNfa.Unir(nfaIzquierda!!)
-                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfaIzquierda.estadoInicial, 'E'))
+                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfaIzquierda.estadoInicial, 'ε'))
 
                 val nfaDerecha = obtenerNFAE(orNode.getRightNode())
                 nuevoNfa.Unir(nfaDerecha!!)
-                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfaDerecha.estadoInicial, 'E'))
-                nuevoNfa.transiciones.add(Transicion(nfaIzquierda.estadosDeAceptacion.iterator().next(), estadoFinal, 'E'))
-                nuevoNfa.transiciones.add(Transicion(nfaDerecha.estadosDeAceptacion.iterator().next(), estadoFinal, 'E'))
+                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfaDerecha.estadoInicial, 'ε'))
+                nuevoNfa.transiciones.add(Transicion(nfaIzquierda.estadosDeAceptacion.iterator().next(), estadoFinal, 'ε'))
+                nuevoNfa.transiciones.add(Transicion(nfaDerecha.estadosDeAceptacion.iterator().next(), estadoFinal, 'ε'))
                 nuevoNfa.estadosDeAceptacion.clear()
                 nuevoNfa.estadosDeAceptacion.add(estadoFinal)
                 return nuevoNfa
@@ -74,7 +69,7 @@ open class ExpresionRegular {
                 nuevoNfa.Unir(nfaIzquierda!!)
                 nuevoNfa.estadoInicial = nfaIzquierda.estadoInicial
                 nuevoNfa.estadosDeAceptacion.add(nfaDerecha.estadosDeAceptacion.iterator().next())
-                val transicionNueva = Transicion(nfaIzquierda.estadosDeAceptacion.iterator().next(), nfaDerecha.estadoInicial, 'E')
+                val transicionNueva = Transicion(nfaIzquierda.estadosDeAceptacion.iterator().next(), nfaDerecha.estadoInicial, 'ε')
                 nuevoNfa.transiciones.add(transicionNueva)
                 return nuevoNfa
 
@@ -89,11 +84,11 @@ open class ExpresionRegular {
                 val nfa = obtenerNFAE((rootNode as RepeatNode).getNode())
                 nuevoNfa.Unir(nfa!!)
 
-                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfa.estadoInicial, 'E'))
-                nuevoNfa.transiciones.add(Transicion(nfa.estadosDeAceptacion.iterator().next(), nfa.estadoInicial, 'E'))
-                nuevoNfa.transiciones.add(Transicion(nfa.estadosDeAceptacion.iterator().next(), estadoFinal, 'E'))
+                nuevoNfa.transiciones.add(Transicion(estadoInicial, nfa.estadoInicial, 'ε'))
+                nuevoNfa.transiciones.add(Transicion(nfa.estadosDeAceptacion.iterator().next(), nfa.estadoInicial, 'ε'))
+                nuevoNfa.transiciones.add(Transicion(nfa.estadosDeAceptacion.iterator().next(), estadoFinal, 'ε'))
                 nuevoNfa.estadosDeAceptacion.add(estadoFinal)
-                nuevoNfa.transiciones.add(Transicion(nuevoNfa.estadoInicial, estadoFinal, 'E'))
+                nuevoNfa.transiciones.add(Transicion(nuevoNfa.estadoInicial, estadoFinal, 'ε'))
                 return nuevoNfa
             }
         }

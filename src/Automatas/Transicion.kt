@@ -29,6 +29,9 @@ class Transicion : Serializable {
     constructor()
 
     constructor(origen: Estado, destino: Estado, simbolo: Char){
+        this.origen = origen
+        this.destino = destino
+        this.simbolo = simbolo
         this.arista = null
     }
 }
