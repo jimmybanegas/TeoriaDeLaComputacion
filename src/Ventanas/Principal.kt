@@ -170,6 +170,7 @@ class Principal : JFrame(){
 
             if (expresion == null || expresion.isEmpty() ) {
                 ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
+                return
             }else{
                automataNFAe = ExpresionRegular.Convertir(expresion) as AutomataNFAe
             }

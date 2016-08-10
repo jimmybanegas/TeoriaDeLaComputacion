@@ -1,10 +1,11 @@
 package Automatas
 
-import com.mxgraph.model.mxCell
-
 /**Created by Jimmy Banegas on 19-Jul-16.
  */
 class AutomataDFA : Automata() {
+    override fun convertirAER(): String {
+        return "(0.1)*"
+    }
 
     override fun convertirADFA(): AutomataDFA {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.

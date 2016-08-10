@@ -4,6 +4,10 @@ package Automatas
  * Created by Affisa-Jimmy on 29/7/2016.
  */
 class AutomataNFAe : Automata() {
+    override fun convertirAER(): String {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun evaluar(cadena: String): Boolean {
         val evaluar = cadena.toCharArray()
         if (!cadena.isEmpty()) {

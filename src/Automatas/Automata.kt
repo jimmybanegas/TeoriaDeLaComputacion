@@ -225,5 +225,7 @@ abstract class Automata : Serializable {
 
     abstract fun convertirADFA() : AutomataDFA
 
+    abstract fun convertirAER(): String
+
 }
 

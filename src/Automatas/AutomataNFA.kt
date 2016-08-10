@@ -6,6 +6,9 @@ import java.util.*
  * Created by Jimmy Ramos on 25-Jul-16.
  */
 class AutomataNFA : Automata() {
+    override fun convertirAER(): String {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun convertirADFA(): AutomataDFA {
         val dfa = AutomataDFA()
