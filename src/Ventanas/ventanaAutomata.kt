@@ -7,6 +7,7 @@ import com.mxgraph.util.mxConstants
 import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
+import src.Regex.FSAToRegularExpressionConverter
 import java.awt.Color
 import java.awt.Rectangle
 import java.awt.event.*
@@ -461,7 +462,9 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         convertirAExpresionMenuItem.toolTipText = "Convertir a ER"
         convertirAExpresionMenuItem.addActionListener {
 
-            val expresionRegular = automata?.convertirAER()
+          //  val expresionRegular = automata?.convertirAER()
+
+            val expresionRegular = FSAToRegularExpressionConverter.convertToRegularExpression(automata!!)?.replace("λ","")
 
             if(!expresionRegular.isNullOrEmpty()){
                 JOptionPane.showMessageDialog(contentPane,"La expresión regular es : " + expresionRegular, "Success",JOptionPane.INFORMATION_MESSAGE);

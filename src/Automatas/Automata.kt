@@ -4,6 +4,7 @@ package Automatas
 import com.mxgraph.model.mxCell
 import com.mxgraph.util.mxConstants
 import com.mxgraph.view.mxGraph
+import src.Regex.FSAToRegularExpressionConverter
 import java.io.Serializable
 import java.util.*
 
@@ -30,6 +31,8 @@ abstract class Automata : Serializable {
     abstract fun evaluar(cadena: String, estadoActual: Estado): Boolean
 
     abstract fun transicionYaExiste(v1 : Estado, v2: Estado, simbolo: Char) : Boolean
+
+    abstract fun transicionYaExiste(v1 : Estado, v2: Estado) : Boolean
 
     open fun agregarTransicion(nombre:Char, origen: Estado, destino:Estado, arista: mxCell){
         transiciones.add(Transicion(origen,destino,nombre,arista as Object))
@@ -227,5 +230,145 @@ abstract class Automata : Serializable {
 
     abstract fun convertirAER(): String
 
+    fun getStateWithID(id: Int): Estado {
+
+      /*  val it = estados.iterator()
+        while (it.hasNext()) {
+            if (it.next().getID() == id)
+                return it.next()
+        }
+        */
+        for(estado in estados){
+            if(estado.getID() == id){
+                println(estado.nombre)
+                return  estado
+            }
+        }
+        return null!!
+    }
+
+    fun crearTodasLasTransicionesVacias(){
+
+        for(e in estados){
+            var transicionesDeEstado = getTransitionsFromState(e)
+
+            (transicionesDeEstado).forEach { t ->
+                for (j in estados) {
+                    if(!transicionYaExiste(t.origen as Estado,j)){
+                        FSAToRegularExpressionConverter.addTransitionOnEmptySet(t.origen as Estado,j,this)
+                        println("transicion creada de "+ (t.origen as Estado).nombre +" a "+j.nombre + "$" )
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    fun getTransitionsFromStateToState(from: Estado, to: Estado): MutableList<Transicion> {
+       /* val t = getTransitionsFromState(fromState)
+        val list = ArrayList()
+        for (i in t.indices)
+            if (t[i].getToState() === to)
+                list.add(t[i])
+        return list.toArray(arrayOfNulls<Transicion>(0))*/
+
+        val list = mutableListOf<Transicion>()
+        for (item in transiciones) {
+            if (item.origen?.nombre.equals(from.nombre) && item.destino?.nombre.equals(to.nombre)) {
+                list.add(item)
+            }
+        }
+
+        if(list.size == 0){
+            FSAToRegularExpressionConverter.addTransitionOnEmptySet(from,to,this)
+            for (item in transiciones) {
+                if (item.origen?.nombre.equals(from.nombre) && item.destino?.nombre.equals(to.nombre)) {
+                    list.add(item)
+                }
+            }
+        }
+
+        var simboloConcatenado = ""
+        if(list.size > 1){
+            for ( i in 0..list.size-1 ){
+                 simboloConcatenado += list[i].simbolo
+                 if(i < list.size-1){
+                     simboloConcatenado+="+"
+                 }
+            }
+
+            println("concatenado "+simboloConcatenado)
+
+          /*  for (t in list){
+                borrarTransicion(t)
+            }*/
+
+            list.clear()
+
+            list.add(Transicion(from,to,simboloConcatenado))
+        }
+
+       /* for (item in transiciones) {
+            if (item.origen?.nombre.equals(from.nombre) && item.destino?.nombre.equals(to.nombre) ) {
+                transiciones.remove(item)
+            }
+        }*/
+
+       // transiciones.add(Transicion(from,to,simboloConcatenado))
+
+        /*for (item in transiciones) {
+            if (item.origen?.nombre.equals(from.nombre) && item.destino?.nombre.equals(to.nombre)) {
+                list.add(item)
+            }
+        }*/
+
+
+
+        //toReturn
+        System.out.println("from " + from.nombre + " to " + to.nombre + " transiciones : " + list.size)
+
+        return list
+    }
+
+    private fun  getTransitionsFromState(from: Estado): MutableList<Transicion> {
+        /* if (transitionArrayFromStateMap.get(from) == null) {
+            transitionArrayFromStateMap.get(from) = transitionFromStateMap.get(from).toArray(arrayOfNulls<Transition>(0)) as Array<Transition>
+            transitionArrayFromStateMap.put(from, transitionArrayFromStateMap.get(from))
+        }
+        return transitionArrayFromStateMap.get(from)*/
+        val list = mutableListOf<Transicion>()
+
+        for (item in transiciones) {
+            if (item.origen?.nombre.equals(from.nombre)) {
+                list.add(item)
+            }
+        }
+        return list
+    }
+
+    fun borrarTransicion(transicion: Transicion){
+        for (item in transiciones) {
+            if (item.origen?.nombre.equals(transicion.origen?.nombre)
+                    && item.destino?.nombre.equals(transicion.destino?.nombre)  && item.simboloS.equals(transicion.simboloS) ) {
+                transiciones.remove(item)
+            }
+        }
+    }
+
+    fun borrarEstado(estado: Estado){
+        for (item in estados) {
+            if (item.nombre.equals(estado.nombre)  ) {
+                estados.remove(item)
+            }
+        }
+
+        for (item in estadosDeAceptacion) {
+            if (item.nombre.equals(estado.nombre)  ) {
+                estadosDeAceptacion.remove(item)
+            }
+        }
+    }
 }
 

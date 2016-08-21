@@ -1,10 +1,28 @@
 package Automatas
 
+import src.Regex.FSAToRegularExpressionConverter
+
 /**Created by Jimmy Banegas on 19-Jul-16.
  */
 class AutomataDFA : Automata() {
+    override fun transicionYaExiste(v1: Estado, v2: Estado): Boolean {
+     //   println((" Parametros "+v1?.nombre + " "+(v2?.nombre) ))
+        for (transicion in transiciones) {
+           // println((" Transicion "+transicion.origen?.nombre + " "+(transicion.destino?.nombre) +" "+transicion.simboloS))
+
+            if(transicion.origen?.nombre.equals(v1.nombre) && transicion.destino?.nombre.equals(v2.nombre)){
+
+                        return true
+            }
+
+        }
+        return false
+    }
+
     override fun convertirAER(): String {
         return "(0.1)*"
+
+        //return FSAToRegularExpressionConverter.convertToRegularExpression(this)
     }
 
     override fun convertirADFA(): AutomataDFA {

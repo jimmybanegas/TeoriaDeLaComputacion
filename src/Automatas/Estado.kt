@@ -1,6 +1,7 @@
 package Automatas
 
 import java.io.Serializable
+import java.util.*
 
 /**
  * Created by Jimmy Banegas on 19-Jul-16.
@@ -10,10 +11,14 @@ class Estado : Serializable {
     var nombre: String = ""
     var posX: Double = 0.0
     var posY: Double = 0.0
+    private var Id: Int = 0
 
     constructor(nombre: String, vertice: Object)  {
         this.nombre = nombre
         this.vertice = vertice
+
+        val rn = Random()
+        Id = rn.nextInt()
     }
 
     constructor()
@@ -33,5 +38,11 @@ class Estado : Serializable {
     constructor(nombre: String){
         this.nombre = nombre
         this.vertice = null
+        val rn = Random()
+        this.Id = rn.nextInt()
+    }
+
+    fun getID(): Int {
+        return this.Id
     }
 }

@@ -11,12 +11,22 @@ class Transicion : Serializable {
     var destino: Estado? = null
     var arista: Object? = null
     var simbolo: Char = '\u0000'
+    var simboloS: String = "";
 
     constructor(origen: Estado, destino: Estado, simbolo: Char, arista: Object) {
         this.origen = origen
         this.destino = destino
         this.arista = arista
         this.simbolo = simbolo
+        this.simboloS = simbolo.toString()
+    }
+
+    constructor(origen: Estado, destino: Estado, simboloS: String, arista: Object) {
+        this.origen = origen
+        this.destino = destino
+        this.arista = arista
+        this.simboloS = simboloS
+        this.simbolo = simboloS[0]
     }
 
     override fun toString():String {
@@ -32,6 +42,15 @@ class Transicion : Serializable {
         this.origen = origen
         this.destino = destino
         this.simbolo = simbolo
+        this.simboloS = simbolo.toString()
+        this.arista = null
+    }
+
+    constructor(origen: Estado, destino: Estado, simboloS: String){
+        this.origen = origen
+        this.destino = destino
+        this.simbolo = simboloS[0]
+        this.simboloS = simboloS.toString()
         this.arista = null
     }
 }
