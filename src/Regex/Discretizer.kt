@@ -1,12 +1,13 @@
 package src.Regex
 
+import java.io.Serializable
 import java.util.*
 
 /**
  * Created by Jimmy Banegas on 20-Aug-16.
  */
 
-open class Discretizer{
+open class Discretizer : Serializable{
 
     companion object{
 

@@ -5,13 +5,14 @@ import Automatas.AutomataDFA
 import Automatas.Estado
 import Automatas.Transicion
 import com.mxgraph.model.mxCell
+import java.io.Serializable
 import java.util.*
 
 /**
  * Created by Jimmy Banegas on 20-Aug-16.
  */
 
-open class FSAToRegularExpressionConverter {
+open class FSAToRegularExpressionConverter : Serializable{
     companion object {
 
         /**
@@ -288,16 +289,24 @@ open class FSAToRegularExpressionConverter {
          * @param automaton
          * *            the automaton.
          */
-        fun removeState(state: Estado, transitions: Array<Transicion>,
+        fun removeState(state: Estado, transitions: MutableList<Transicion>,
                         automaton: Automata) {
+
             val oldTransitions = automaton.transiciones
-            //for (k in oldTransitions.indices) {
-              //  automaton.borrarTransicion(oldTransitions[k])
-        //    }
+           /* for (k in oldTransitions.indices) {
+                automaton.borrarTransicion(oldTransitions[k])
+            }*/
+
+           /* val iterator = automaton.transiciones.iterator()
+            while (iterator.hasNext()) {
+                val item = iterator.next()
+                    automaton.transiciones.remove(item)
+            }*/
             automaton.transiciones.clear()
 
-            automaton.estados.remove(state)
-            println("REMOVE STATE")
+           automaton.estados.remove(state)
+           // automaton.borrarEstado(state)
+            println("REMOVED STATE " +state.nombre)
 
             for (i in transitions.indices) {
                 automaton.transiciones.add(transitions[i])
@@ -319,10 +328,10 @@ open class FSAToRegularExpressionConverter {
          * *         removing state.
          */
         fun getTransitionsForRemoveState(state: Estado,
-                                         automaton: Automata): Array<Transicion>? {
+                                         automaton: Automata): MutableList<Transicion>? {
             if (!isRemovable(state, automaton))
                 return null
-            val list = ArrayList<Transicion>()
+            val list = mutableListOf<Transicion>()
             val k = state.getID()
             val states = automaton.estados
             for (i in states.indices) {
@@ -338,7 +347,8 @@ open class FSAToRegularExpressionConverter {
                     }
                 }
             }
-            return list.toArray(arrayOfNulls<Transicion>(0))
+          //  return list.toArray(arrayOfNulls<Transicion>(0))
+            return list
         }
 
         /**
@@ -458,21 +468,21 @@ open class FSAToRegularExpressionConverter {
          * *            the automaton.
          */
         fun convertToGTG(automaton: Automata) {
-            val finalStates = automaton.estadosDeAceptacion
+            var finalStates = automaton.estadosDeAceptacion
             val initialState = automaton.estadoInicial
-            val states = automaton.estados
+         //   var states = automaton.estados
             println("ENTRA")
 
-            if(finalStates[0].nombre == initialState.nombre){
+            if (finalStates[0].nombre == initialState.nombre) {
                 var v1 = Any()
-                var estado = Estado("x",v1 as Object)
+                var estado = Estado("x", v1 as Object)
 
                 automaton.agregarEstado(estado.nombre, v1)
 
-                var transicion = Transicion(initialState,estado,"\u03BB")
+                var transicion = Transicion(initialState, estado, "\u03BB")
 
-                var transicion2 = Transicion(estado,estado, EMPTY)
-                var transicion3 = Transicion(estado,initialState, EMPTY)
+                var transicion2 = Transicion(estado, estado, EMPTY)
+                var transicion3 = Transicion(estado, initialState, EMPTY)
 
                 automaton.transiciones.add(transicion)
                 automaton.transiciones.add(transicion2)
@@ -485,17 +495,85 @@ open class FSAToRegularExpressionConverter {
             }
             automaton.crearTodasLasTransicionesVacias()
 
+              var states = automaton.getStates()
+                finalStates = automaton.estadosDeAceptacion
+        //   try {
                 for (k in states.indices) {
                     if (states[k].nombre != finalStates[0].nombre && states[k].nombre != initialState.nombre) {
-                        println("SE PUEDE REMOVER "+states[k].nombre)
-                      //  automaton.crearTodasLasTransicionesVacias()
+                        println("SE PUEDE REMOVER " + states[k].nombre)
+                        //  automaton.crearTodasLasTransicionesVacias()
                         val transitions = getTransitionsForRemoveState(states[k], automaton)
-                        removeState(states[k], transitions!!, automaton)
-                        println("REMUEVE")
+                        removeState(states[k], transitions as MutableList<Transicion>, automaton)
+                        // k-=1
+                       // states = automaton.estados
+                        for (estado in automaton.estados) {
+                            println(estado)
+                        }
                     }
                 }
-                println("SALE")
-            }
+            //}catch ( ex:Exception ){
+
+            //}
+
+
+
+        }
+         /*   val iterator = automaton.estados.iterator()
+
+            while (iterator.hasNext()) {
+
+                val k = iterator.next()
+
+                if (k.nombre != automaton.estadosDeAceptacion[0].nombre && k.nombre != automaton.estadoInicial.nombre) {
+                    println("SE PUEDE REMOVER "+k.nombre)
+                    //  automaton.crearTodasLasTransicionesVacias()
+                    val transitions = getTransitionsForRemoveState(k, automaton)
+                   // removeState(k, transitions!!, automaton)
+
+                    automaton.transiciones.clear()
+
+                    automaton.estados.remove(k)
+                    // automaton.borrarEstado(k)
+                    println("REMOVE STATE")
+
+                    /*for (i in transitions) {
+                        automaton.transiciones.add(transitions[i])
+                    }*/
+                    val iterator = transitions?.iterator()
+                    while (iterator!!.hasNext()) {
+                        val item = iterator.next()
+                       // if (item.satisfiesCondition()) {
+                        automaton.transiciones.add(item)
+                       // }
+                    }
+
+                    for(estado in automaton.estados){
+                        println(estado)
+                    }
+
+                    println("REMUEVE")
+                }
+
+
+            }*/
+
+
+          /*  for (k in automaton.estados) {
+                    if (k.nombre != finalStates[0].nombre && k.nombre != initialState.nombre) {
+                        println("SE PUEDE REMOVER "+k.nombre)
+                        //  automaton.crearTodasLasTransicionesVacias()
+                        val transitions = getTransitionsForRemoveState(k, automaton)
+                        removeState(k, transitions!!, automaton)
+
+                        for(estado in automaton.estados){
+                            println(estado)
+                        }
+
+                        println("REMUEVE")
+                    }
+                    println("SALE")
+                }
+            }*/
 
 
         /**

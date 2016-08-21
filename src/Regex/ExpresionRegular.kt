@@ -2,12 +2,13 @@ package Automatas
 
 import org.unitec.regularexpresion.RegularExpressionParser
 import org.unitec.regularexpresion.tree.*
+import java.io.Serializable
 
 
 /**
  * Created by Jimmy Banegas on 08-Aug-16.
  */
-open class ExpresionRegular {
+open class ExpresionRegular : Serializable {
 
     companion object{
 

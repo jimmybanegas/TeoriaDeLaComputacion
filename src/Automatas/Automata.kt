@@ -240,7 +240,7 @@ abstract class Automata : Serializable {
         */
         for(estado in estados){
             if(estado.getID() == id){
-                println(estado.nombre)
+               // println(estado.nombre)
                 return  estado
             }
         }
@@ -369,6 +369,20 @@ abstract class Automata : Serializable {
                 estadosDeAceptacion.remove(item)
             }
         }
+      /*  val iterator = estados.iterator()
+        while (iterator.hasNext()) {
+            val item = iterator.next()
+            if (item.nombre.equals(estado.nombre)) {
+                estados.remove(item)
+            }
+        }*/
+    }
+
+    fun getStates(): Array<Estado> {
+        //if (cachedStates == null) {
+            var cachedStates = estados.toTypedArray()
+
+        return cachedStates
     }
 }
 
