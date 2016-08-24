@@ -495,7 +495,7 @@ open class FSAToRegularExpressionConverter : Serializable{
             }
             automaton.crearTodasLasTransicionesVacias()
 
-              var states = automaton.getStates()
+              var states = automaton.obtenerEstados()
                 finalStates = automaton.estadosDeAceptacion
         //   try {
                 for (k in states.indices) {

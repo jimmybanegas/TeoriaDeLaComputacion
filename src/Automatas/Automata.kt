@@ -332,7 +332,7 @@ abstract class Automata : Serializable {
         return list
     }
 
-    private fun  getTransitionsFromState(from: Estado): MutableList<Transicion> {
+    private fun getTransitionsFromState(from: Estado): MutableList<Transicion> {
         /* if (transitionArrayFromStateMap.get(from) == null) {
             transitionArrayFromStateMap.get(from) = transitionFromStateMap.get(from).toArray(arrayOfNulls<Transition>(0)) as Array<Transition>
             transitionArrayFromStateMap.put(from, transitionArrayFromStateMap.get(from))
@@ -348,37 +348,7 @@ abstract class Automata : Serializable {
         return list
     }
 
-    fun borrarTransicion(transicion: Transicion){
-        for (item in transiciones) {
-            if (item.origen?.nombre.equals(transicion.origen?.nombre)
-                    && item.destino?.nombre.equals(transicion.destino?.nombre)  && item.simboloS.equals(transicion.simboloS) ) {
-                transiciones.remove(item)
-            }
-        }
-    }
-
-    fun borrarEstado(estado: Estado){
-        for (item in estados) {
-            if (item.nombre.equals(estado.nombre)  ) {
-                estados.remove(item)
-            }
-        }
-
-        for (item in estadosDeAceptacion) {
-            if (item.nombre.equals(estado.nombre)  ) {
-                estadosDeAceptacion.remove(item)
-            }
-        }
-      /*  val iterator = estados.iterator()
-        while (iterator.hasNext()) {
-            val item = iterator.next()
-            if (item.nombre.equals(estado.nombre)) {
-                estados.remove(item)
-            }
-        }*/
-    }
-
-    fun getStates(): Array<Estado> {
+    fun obtenerEstados(): Array<Estado> {
         //if (cachedStates == null) {
             var cachedStates = estados.toTypedArray()
 

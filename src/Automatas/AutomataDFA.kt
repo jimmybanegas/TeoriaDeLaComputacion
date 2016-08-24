@@ -6,15 +6,15 @@ import java.util.*
 /**Created by Jimmy Banegas on 19-Jul-16.
  */
 class AutomataDFA : Automata() {
-     override fun minimizar(): AutomataDFA {
+    override fun minimizar(): AutomataDFA {
          val stateSetMapping = HashMap<Estado, Set<Estado>>()
 
          val sets = partition(this, stateSetMapping)
 
          return createMinimizedAutomaton(this, stateSetMapping, sets)
-     }
+    }
 
-     private fun createMinimizedAutomaton(automataDFA: AutomataDFA, stateSetMapping: HashMap<Estado, Set<Estado>>, sets: Set<Set<Estado>> ): AutomataDFA {
+    private fun createMinimizedAutomaton(automataDFA: AutomataDFA, stateSetMapping: HashMap<Estado, Set<Estado>>, sets: Set<Set<Estado>> ): AutomataDFA {
          val minimizedAutomaton = AutomataDFA()
          minimizedAutomaton.alfabeto = automataDFA.alfabeto
 
@@ -97,7 +97,7 @@ class AutomataDFA : Automata() {
          return minimizedAutomaton
      }
 
-     private fun partition(automataDFA: AutomataDFA, stateSetMapping: HashMap<Estado, Set<Estado>>): Set<Set<Estado>>  {
+    private fun partition(automataDFA: AutomataDFA, stateSetMapping: HashMap<Estado, Set<Estado>>): Set<Set<Estado>>  {
 
          //Separa los estados en dos sets FINALSTATES y NONFINALSTATES
          var sets = initSets(automataDFA, stateSetMapping)
@@ -132,7 +132,7 @@ class AutomataDFA : Automata() {
          return sets
      }
 
-     private fun split(automataDFA: AutomataDFA, set: Set<Estado>, stateSetMapping: HashMap<Estado, Set<Estado>>, sets: LinkedHashSet<Set<Estado>>) {
+    private fun split(automataDFA: AutomataDFA, set: Set<Estado>, stateSetMapping: HashMap<Estado, Set<Estado>>, sets: LinkedHashSet<Set<Estado>>) {
          var firstSet: Set<Estado>? = null
          var secondSet: Set<Estado>? = null
 
@@ -188,7 +188,7 @@ class AutomataDFA : Automata() {
          }
      }
 
-     private fun SearchDestiny(OriginState: Estado, Symbol: Char): Estado? {
+    private fun SearchDestiny(OriginState: Estado, Symbol: Char): Estado? {
          for (s in transiciones) {
              if (s.simboloS.equals(Symbol.toString()) && s.origen?.nombre.equals(OriginState.nombre)) {
                  val Destiny = ShearchSate(s.destino?.nombre)
@@ -198,7 +198,7 @@ class AutomataDFA : Automata() {
          return null
      }
 
-     private fun initSets(automataDFA: AutomataDFA, stateSetMapping: HashMap<Estado, Set<Estado>>): Set<Set<Estado>> {
+    private fun initSets(automataDFA: AutomataDFA, stateSetMapping: HashMap<Estado, Set<Estado>>): Set<Set<Estado>> {
          val sets = LinkedHashSet<Set<Estado>>()
 
          val finalStates = LinkedHashSet<Estado>()
@@ -232,7 +232,6 @@ class AutomataDFA : Automata() {
         }
         return null
     }
-
 
     override fun transicionYaExiste(v1: Estado, v2: Estado): Boolean {
      //   println((" Parametros "+v1?.nombre + " "+(v2?.nombre) ))

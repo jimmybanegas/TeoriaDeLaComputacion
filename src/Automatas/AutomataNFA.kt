@@ -37,25 +37,6 @@ class AutomataNFA : Automata() {
 
         obtenerEstadosTransicionesDFA(dfa, actuales, 0)
 
-       /* System.out.println("Inicial " + dfa.estadoInicial.nombre)
-
-        System.out.println("Tamaño estados: " + dfa.estados.size)
-
-        for (estado in dfa.estados) {
-            System.out.println(estado.nombre)
-        }
-
-        System.out.println("Tamaño finales: " + dfa.estadosDeAceptacion.size)
-
-        for (estado in dfa.estadosDeAceptacion) {
-            System.out.println(estado.nombre)
-        }
-
-        System.out.println("Tamaño transiciones: " + dfa.transiciones.size)
-        for (transicion in dfa.transiciones) {
-            println(transicion.simbolo + " " + transicion.origen?.nombre + " " + transicion.destino?.nombre)
-        }*/
-
         return dfa
     }
 
