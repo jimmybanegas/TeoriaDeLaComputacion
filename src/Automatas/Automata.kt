@@ -384,5 +384,8 @@ abstract class Automata : Serializable {
 
         return cachedStates
     }
+
+    abstract fun minimizar(): AutomataDFA
+
 }
 

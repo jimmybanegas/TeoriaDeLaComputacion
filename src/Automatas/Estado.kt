@@ -45,4 +45,18 @@ class Estado : Serializable {
     fun getID(): Int {
         return this.Id
     }
+
+    fun isAccept(automataDFA: AutomataDFA): Boolean {
+        for (State in automataDFA.estadosDeAceptacion) {
+            if (State.nombre.equals(this.nombre))
+                return true
+
+        }
+        return false
+    }
+
+   /* fun isAccept(): Boolean {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }*/
+
 }

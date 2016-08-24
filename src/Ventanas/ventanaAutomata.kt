@@ -59,13 +59,16 @@ class ventanaAutomata(automata: Automata) : JFrame() {
            // menubar.getComponent(2).isVisible = false
             menubar.getMenu(2).getMenuComponent(0).isVisible = false
             menubar.getMenu(2).getMenuComponent(1).isVisible = true
+            menubar.getMenu(2).getMenuComponent(2).isVisible = true
         }else if(automata is AutomataNFAe){
             //  menubar.getComponent(2).isEnabled = false
             menubar.getMenu(2).getMenuComponent(0).isVisible = true
             menubar.getMenu(2).getMenuComponent(1).isVisible = false
+            menubar.getMenu(2).getMenuComponent(2).isVisible = false
         }else if(automata is AutomataNFA){
             menubar.getMenu(2).getMenuComponent(0).isVisible = true
             menubar.getMenu(2).getMenuComponent(1).isVisible = false
+            menubar.getMenu(2).getMenuComponent(2).isVisible = false
         }
     }
 
@@ -462,7 +465,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         convertirAExpresionMenuItem.toolTipText = "Convertir a ER"
         convertirAExpresionMenuItem.addActionListener {
 
-          //  val expresionRegular = automata?.convertirAER()
+            //  val expresionRegular = automata?.convertirAER()
 
             val expresionRegular = FSAToRegularExpressionConverter.convertToRegularExpression(automata!!)?.replace("λ","")
 
@@ -474,6 +477,35 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                 ConfigurationForWindows.messageDialog(contentPane,"No se pudo convertir  ER");
             }
 
+        }
+
+
+        val minimizarMenuItem = JMenuItem("Minimizar")
+        minimizarMenuItem.mnemonic = KeyEvent.VK_E
+        minimizarMenuItem.toolTipText = "Minimizar"
+        minimizarMenuItem.addActionListener {
+
+            val nuevo = automata?.minimizar()
+
+            println( nuevo)
+
+            for (tran in nuevo?.transiciones!!){
+                //println(tran)
+            }
+
+            // automata?.Limpiar()
+
+            // this.automata = nuevo
+
+            //  this.contadorEstados = 0
+
+            // automata?.dibujarAutomata(graph)
+            val frame = nuevo?.let { it -> ventanaAutomata(it) }
+
+            ConfigurationForWindows.SetConfigurations(frame!!, "Automata Finito Determinístico")
+
+            frame.pack()
+            frame.isVisible = true
         }
 
         //Submenus de Archivo
@@ -488,7 +520,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         //Submenus de Conversiones
         conversiones.add(convertirADFAMenuItem)
         conversiones.add(convertirAExpresionMenuItem)
-
+        conversiones.add(minimizarMenuItem)
 
         menubar.add(file)
         menubar.add(ayuda)
