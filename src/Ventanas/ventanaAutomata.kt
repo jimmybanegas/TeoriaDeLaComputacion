@@ -38,6 +38,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
     private var graphComponent: mxGraphComponent? = null
 
     protected var contadorEstados = 0
+    public var subirDos = false
     protected var automata: Automata? = null
     // End of variables declaration
 

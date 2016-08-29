@@ -4,6 +4,7 @@ import Automatas.AutomataDFA
 import Automatas.AutomataNFA
 import Automatas.AutomataNFAe
 import Automatas.ExpresionRegular
+import src.Ventanas.seleccioanarAutomatas
 import java.awt.Color
 import java.awt.event.ActionEvent
 import java.awt.event.WindowAdapter
@@ -44,7 +45,8 @@ class Principal : JFrame(){
         var AutomatonStrings = arrayOf("Autotomata Finito Deterministico (DFA)",
                                         "Automata Finito No Determinista (NFA)",
                                         "Automata Finito No Determinista Epsilon (NFAε)" ,
-                                        "Expresion Regular a(NFA-e)")
+                                        "Expresion Regular a(NFA-e)",
+                                        "Union de automatas", "Interseccion de automatas", "Resta de automatas")
 
         jComboBoxAutomata = JComboBox(AutomatonStrings)
 
@@ -64,7 +66,7 @@ class Principal : JFrame(){
 
         (jLabel2 as JLabel).text = "Proyecto desarrollado por: Jimmy Ramos - 21141016 "
 
-        (jLabel3 as JLabel).text = "Lenguaje: Kotlins y JGraph"
+        (jLabel3 as JLabel).text = "Lenguaje: Kotlin y JGraph"
 
         (jLabel4 as JLabel).text = "Seleccione el tipo de Autómata que quiere probar:"
 
@@ -127,6 +129,15 @@ class Principal : JFrame(){
                 3 -> {
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 3
                 }
+                4 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 4
+                }
+                5 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 5
+                }
+                6 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 6
+                }
                 else ->
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
             }
@@ -179,8 +190,14 @@ class Principal : JFrame(){
                 frame = ventanaAutomata(automataNFAe)
                 ConfigurationForWindows.SetConfigurations(frame,"Expresión regular a NFA-e")
             }
+        }else if (jComboBoxAutomata?.selectedIndex == 4) {
+            frame = seleccioanarAutomatas("union")
+            ConfigurationForWindows.SetConfigurations(frame,"Union de automatas")
+        }else if (jComboBoxAutomata?.selectedIndex == 5) {
 
-         }
+        }else if (jComboBoxAutomata?.selectedIndex == 6) {
+
+        }
 
         frame.addWindowListener(object : WindowAdapter() {
            override fun windowClosing(windowEvent: WindowEvent) {

@@ -4,6 +4,7 @@ import java.awt.Container
 import java.awt.Toolkit
 import javax.naming.Context
 import javax.swing.JDialog
+import javax.swing.JFrame
 import javax.swing.JOptionPane
 
 /**
@@ -13,7 +14,7 @@ open class ConfigurationForWindows {
     //Clase creada para tener en un solo lugar la configuración de tamaños de ventanas, posición y demás configuraciones
     companion object {
 
-        fun SetConfigurations(dialog: ventanaAutomata, title: String){
+        fun SetConfigurations(dialog: JFrame, title: String){
             dialog.pack()
             dialog.setSize(1000, 500)
             val toolkit = Toolkit.getDefaultToolkit()
