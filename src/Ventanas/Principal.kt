@@ -194,9 +194,11 @@ class Principal : JFrame(){
             frame = seleccioanarAutomatas("union")
             ConfigurationForWindows.SetConfigurations(frame,"Union de automatas")
         }else if (jComboBoxAutomata?.selectedIndex == 5) {
-
+            frame = seleccioanarAutomatas("intersection")
+            ConfigurationForWindows.SetConfigurations(frame,"Interseccion de automatas")
         }else if (jComboBoxAutomata?.selectedIndex == 6) {
-
+            frame = seleccioanarAutomatas("difference")
+            ConfigurationForWindows.SetConfigurations(frame,"Diferencia de automatas")
         }
 
         frame.addWindowListener(object : WindowAdapter() {

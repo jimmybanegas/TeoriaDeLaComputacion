@@ -139,7 +139,7 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
     private fun evaluarCadena(evt: java.awt.event.ActionEvent) {
         if(!(automata1?.estadosEstanVacios() as Boolean) && !(automata2?.estadosEstanVacios() as Boolean)){
 
-            val automataFinal = procesarAutomatas(automata1,automata2,operacion)
+            val automataFinal = procesarAutomatas(automata1 as Automata, automata2 as Automata,operacion)
 
             val frame = automataFinal.let { it -> ventanaAutomata(it) }
 
@@ -150,23 +150,30 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
         }
     }
 
-    private fun procesarAutomatas(automata1: Automata?, automata2: Automata?, operacion: String): Automata {
+    private fun procesarAutomatas(automata1: Automata, automata2: Automata, operacion: String): Automata {
         val result = AutomataDFA()
 
-        val automata1Characters = automata1?.alfabeto
-        val automata2Characters = automata2?.alfabeto
+        for (estado in automata2.estados){
+            estado.nombre = estado.nombre.replace('q','s',false)
+        }
 
-        val automata1UniqueCharacters = automata1Characters?.subtract(automata2Characters!!)
-        val newAlphabetCharacters = automata1UniqueCharacters?.union(automata2Characters!!)?.toList()
+        for (estado in automata2.estadosDeAceptacion){
+            estado.nombre = estado.nombre.replace('q','s',false)
+        }
+
+        automata2.estadoInicial.nombre = automata2.estadoInicial.nombre.replace('q','s',false)
+
+
+        val automata1Characters = automata1.alfabeto
+        val automata2Characters = automata2.alfabeto
+
+        val automata1UniqueCharacters = automata1Characters.subtract(automata2Characters)
+        val newAlphabetCharacters = automata1UniqueCharacters.union(automata2Characters).toList()
 
 
         result.alfabeto = newAlphabetCharacters as MutableList<Char>
 
-        for (elem in result.alfabeto){
-            println("\n"+ elem)
-        }
-
-        val nombre = automata1?.estadoInicial?.nombre + "." + automata2?.estadoInicial?.nombre
+        val nombre = automata1.estadoInicial.nombre + "," + automata2.estadoInicial.nombre
 
         val initialState = Estado(nombre)
 
@@ -194,22 +201,22 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
                 considerAutomata1ToProcess = false
                 considerAutomata2ToProcess = false
 
-                if(currentState.contains('.')){
+                if(currentState.contains(',')){
                     considerAutomata1ToProcess = true
                     considerAutomata2ToProcess = true
 
-                    val currentStateParts = currentState.split('.')
+                    val currentStateParts = currentState.split(',')
                     automata1State = currentStateParts[0]
                     automata2State = currentStateParts[1]
                 } else {
-                    for(i in 0..(automata1?.estados?.size?.minus(1) as Int)){
-                        if(automata1?.estados?.get(i)?.nombre.equals(currentState)){
+                    for(i in 0..automata1.estados.size.minus(1)){
+                        if(automata1.estados.get(i).nombre.equals(currentState)){
                             considerAutomata1ToProcess = true
                             break
                         }
                     }
-                    for(i in 0..(automata2?.estados?.size?.minus(1) as Int)){
-                        if(automata2?.estados?.get(i)?.nombre.equals(currentState)){
+                    for(i in 0..automata2.estados.size.minus(1)){
+                        if(automata2.estados.get(i).nombre.equals(currentState)){
                             considerAutomata2ToProcess = true
                             break
                         }
@@ -227,51 +234,20 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
                 for(a in 0..newAlphabetCharacters.size-1){
                     newPossibleState = ""
                     if(considerAutomata1ToProcess){
-                       /* for(d in 0..(automata1?.transiciones?.size?.minus(1) as Int)){
-                            var deltaData1 = automata1?.transiciones?.get(d).split('(').get(1).split('=')
-                            var deltaData2 = deltaData1.get(0).split(')').get(0).split(',')
-                            if((deltaData2.get(0).equals(automata1State)) && (deltaData2.get(1).equals(newAlphabetCharacters?.get(a)))){
-                                newPossibleState = deltaData1.get(1)
-                                break
-                            }
-                        }*/
-                        for (transicion in automata1?.transiciones!!){
+                        for (transicion in automata1.transiciones){
                             if((transicion.origen?.nombre.equals(automata1State)) &&
                                     (transicion.simbolo.equals(newAlphabetCharacters[a]))){
                                 newPossibleState = transicion.destino?.nombre as String
                                 break
                             }
                         }
-
-                       /* val delta ="(q0,0)=q0/q1"
-                        var deltaData1 = delta.split('(').get(1).split('=')
-                        var deltaData2 = deltaData1[0].split(')').get(0).split(',')
-
-                        println(deltaData1)
-                        println(deltaData2)
-                        print(deltaData2.get(0))
-                        print(deltaData2.get(1))
-                        print(deltaData1.get(1))*/
-
                     }
                     if(considerAutomata2ToProcess){
-                        /*for(d in 0..(automata2?.transiciones?.size?.minus(1) as Int)){
-                            var deltaData1 = automata2?.transiciones?.get(d).split('(').get(1).split('=')
-                            var deltaData2 = deltaData1.get(0).split(')').get(0).split(',')
-                            if((deltaData2.get(0).equals(automata2State)) && (deltaData2.get(1).equals(newAlphabetCharacters.get(a)))){
-                                if(considerAutomata1ToProcess){
-                                    newPossibleState = newPossibleState + "." + deltaData1.get(1)
-                                } else {
-                                    newPossibleState = deltaData1.get(1)
-                                }
-                                break
-                            }
-                        }*/
-                        for (transicion in automata2?.transiciones!!){
+                        for (transicion in automata2.transiciones){
                             if((transicion.origen?.nombre.equals(automata2State)) &&
                                     (transicion.simbolo.equals(newAlphabetCharacters[a]))){
                                 if(considerAutomata1ToProcess){
-                                    newPossibleState = newPossibleState + "." + transicion.destino?.nombre.toString()
+                                    newPossibleState = newPossibleState + "," + transicion.destino?.nombre.toString()
                                 } else {
                                     newPossibleState = transicion.destino?.nombre.toString()
                                 }
@@ -293,9 +269,6 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
                             result.estados.add(Estado(newPossibleState))
                         }
 
-
-                        val newDelta = "delta(" + currentState + "," + newAlphabetCharacters.get(a) + ")=" + newPossibleState
-                        //result.transiciones.add(newDelta)
                         result.transiciones.add(Transicion(Estado(currentState),Estado(newPossibleState), newAlphabetCharacters[a]))
                         statesToProcess.add(newPossibleState)
                     }
@@ -311,8 +284,8 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
         for(r in 0..(result.estados.size-1)){
 
             val stateParts = ArrayList<String>()
-            if(result.estados[r].nombre.contains('.')){
-                val tStateParts = result.estados[r].nombre.split('.')
+            if(result.estados[r].nombre.contains(',')){
+                val tStateParts = result.estados[r].nombre.split(',')
                 for(t in 0..(tStateParts.size-1)){
                     stateParts.add(tStateParts[t])
                 }
@@ -325,15 +298,15 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
 
             for(s in 0..(stateParts.size-1)){
 
-                for(i in 0..(automata1?.estadosDeAceptacion?.size?.minus(1) as Int)){
-                    if(automata1?.estadosDeAceptacion?.get(i)?.nombre.equals(stateParts[s])){
+                for(i in 0..automata1.estadosDeAceptacion.size.minus(1)){
+                    if(automata1.estadosDeAceptacion[i].nombre.equals(stateParts[s])){
                         isStateInAutomata1Acceptance = true
                         break
                     }
                 }
 
-                for(j in 0..(automata2?.estadosDeAceptacion?.size?.minus(1) as Int)){
-                    if(automata2?.estadosDeAceptacion?.get(j)?.nombre.equals(stateParts[s])){
+                for(j in 0..automata2.estadosDeAceptacion.size.minus(1)){
+                    if(automata2.estadosDeAceptacion.get(j).nombre.equals(stateParts[s])){
                         isStateInAutomata2Acceptance = true
                         break
                     }
