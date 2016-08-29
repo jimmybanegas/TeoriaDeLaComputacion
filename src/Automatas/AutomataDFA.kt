@@ -6,6 +6,86 @@ import java.util.*
 /**Created by Jimmy Banegas on 19-Jul-16.
  */
 class AutomataDFA : Automata() {
+    override fun obtenerComplemento(): Automata {
+        val result = AutomataDFA()
+
+        result.alfabeto = this.alfabeto
+        val theAlphabet = this.alfabeto
+        result.estadoInicial = this.estadoInicial
+
+        for(i in 0..(this.estados.size-1)){
+            result.estados.add(this.estados.get(i))
+        }
+
+        for(i in 0..(this.transiciones.size-1)){
+            result.transiciones.add(this.transiciones.get(i))
+        }
+
+        var haySumidero = false
+        var hayDeltaConCaracter = false
+        var newDelta = ""
+        for(i in 0..(this.estados.size-1)){
+            for(j in 0..(theAlphabet.size-1)){
+
+                hayDeltaConCaracter = false
+                for(k in 0..(this.transiciones.size-1)){
+                   /* val deltaData1 = this.transiciones[k].split('(').get(1).split('=')
+                    val deltaData2 = deltaData1.get(0).split(')').get(0).split(',')
+                    if((deltaData2.get(0).equals(this.estados[i])) && (deltaData2.get(1).equals(theAlphabet[j]))){
+                        hayDeltaConCaracter = true
+                        break
+                    }*/
+                    if((this.transiciones[k].origen?.nombre.equals(this.estados[i].nombre)) &&
+                            (this.transiciones[k].simbolo.equals(theAlphabet[j]))){
+                        hayDeltaConCaracter = true
+                        break
+                    }
+                }
+
+                if(!hayDeltaConCaracter){
+                    var estado  = Estado("qS")
+
+                    if(!haySumidero){
+                        estado = Estado("qS")
+                        result.estados.add(estado)
+                        result.estadosDeAceptacion.add(estado)
+
+                        for(a in 0..(theAlphabet.size-1)){
+                           // sumideroDelta = "delta(qS," + theAlphabet.get(a) + ")=qS"
+
+                            val transicion = Transicion(estado,estado, theAlphabet[a])
+                            result.transiciones.add(transicion)
+                        }
+
+                        haySumidero = true
+                    }
+
+                    //newDelta = "delta("+ this.estados[i] +","+theAlphabet.get(j)+")=qS"
+                    val newDelta = Transicion(this.estados[i],estado, theAlphabet[j])
+                    result.transiciones.add(newDelta)
+                }
+            }
+        }
+
+        var isStateAcceptance = false
+        for(p in 0..(this.estados.size-1)){
+
+            isStateAcceptance = false
+            for(a in 0..(this.estadosDeAceptacion.size-1)){
+                if(this.estadosDeAceptacion[a].nombre.equals(this.estados[p].nombre)){
+                    isStateAcceptance = true
+                    break
+                }
+            }
+
+            if(!isStateAcceptance){
+                result.estadosDeAceptacion.add(this.estados[p])
+            }
+        }
+
+        return result
+    }
+
     override fun minimizar(): AutomataDFA {
          val stateSetMapping = HashMap<Estado, Set<Estado>>()
 

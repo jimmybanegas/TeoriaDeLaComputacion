@@ -357,5 +357,7 @@ abstract class Automata : Serializable {
 
     abstract fun minimizar(): AutomataDFA
 
+    abstract fun obtenerComplemento(): Automata
+
 }
 

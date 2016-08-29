@@ -61,15 +61,18 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             menubar.getMenu(2).getMenuComponent(0).isVisible = false
             menubar.getMenu(2).getMenuComponent(1).isVisible = true
             menubar.getMenu(2).getMenuComponent(2).isVisible = true
+            menubar.getMenu(2).getMenuComponent(3).isVisible = true
         }else if(automata is AutomataNFAe){
             //  menubar.getComponent(2).isEnabled = false
             menubar.getMenu(2).getMenuComponent(0).isVisible = true
             menubar.getMenu(2).getMenuComponent(1).isVisible = false
             menubar.getMenu(2).getMenuComponent(2).isVisible = false
+            menubar.getMenu(2).getMenuComponent(3).isVisible = false
         }else if(automata is AutomataNFA){
             menubar.getMenu(2).getMenuComponent(0).isVisible = true
             menubar.getMenu(2).getMenuComponent(1).isVisible = false
             menubar.getMenu(2).getMenuComponent(2).isVisible = false
+            menubar.getMenu(2).getMenuComponent(3).isVisible = false
         }
     }
 
@@ -309,7 +312,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         val ayuda = JMenu("Ayuda")
         ayuda.mnemonic = KeyEvent.VK_H
 
-        val conversiones = JMenu("Conversiones")
+        val conversiones = JMenu("Operaciones")
         conversiones.mnemonic = KeyEvent.VK_C
 
         val eMenuItem = JMenuItem("Salir")
@@ -488,19 +491,20 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
             val nuevo = automata?.minimizar()
 
-            println( nuevo)
+            val frame = nuevo?.let { it -> ventanaAutomata(it) }
 
-            for (tran in nuevo?.transiciones!!){
-                //println(tran)
-            }
+            ConfigurationForWindows.SetConfigurations(frame!!, "Automata Finito Determinístico")
 
-            // automata?.Limpiar()
+            frame.pack()
+            frame.isVisible = true
+        }
 
-            // this.automata = nuevo
+        val complementoMenuItem = JMenuItem("Obtener complemento")
+        complementoMenuItem.toolTipText = "Complemento"
+        complementoMenuItem.addActionListener {
 
-            //  this.contadorEstados = 0
+            val nuevo = automata?.obtenerComplemento()
 
-            // automata?.dibujarAutomata(graph)
             val frame = nuevo?.let { it -> ventanaAutomata(it) }
 
             ConfigurationForWindows.SetConfigurations(frame!!, "Automata Finito Determinístico")
@@ -522,6 +526,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         conversiones.add(convertirADFAMenuItem)
         conversiones.add(convertirAExpresionMenuItem)
         conversiones.add(minimizarMenuItem)
+        conversiones.add(complementoMenuItem)
 
         menubar.add(file)
         menubar.add(ayuda)

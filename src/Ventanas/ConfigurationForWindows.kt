@@ -32,9 +32,5 @@ open class ConfigurationForWindows {
             JOptionPane.showMessageDialog(contentPane, s, "Informacion", JOptionPane.ERROR_MESSAGE);
         }
 
-
-        fun SetLookAndFeel() {
-
-        }
     }
 }

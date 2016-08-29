@@ -2,8 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="467645c4-9e07-4ed3-8ade-e51f933cda5d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ventanas/Principal.kt" afterPath="$PROJECT_DIR$/src/Ventanas/Principal.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Automata.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/Automata.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataDFA.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataDFA.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataNFA.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataNFA.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataNFAe.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Automatas/AutomataNFAe.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/VentanaAutomataKt.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/VentanaAutomataKt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$4.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$5.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$6.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$7.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$8.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$createMenuBar$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$4.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$5.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$6.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata$initComponents$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/Ventanas/ventanaAutomata.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$1.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$2.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$3.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$4.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas$initComponents$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas.class" afterPath="$PROJECT_DIR$/out/production/TeoriaDeComputacion/src/Ventanas/seleccioanarAutomatas.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/Automata.kt" afterPath="$PROJECT_DIR$/src/Automatas/Automata.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" afterPath="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" afterPath="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt" afterPath="$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ventanas/ConfigurationForWindows.kt" afterPath="$PROJECT_DIR$/src/Ventanas/ConfigurationForWindows.kt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ventanas/seleccioanarAutomatas.kt" afterPath="$PROJECT_DIR$/src/Ventanas/seleccioanarAutomatas.kt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" afterPath="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,34 +60,7 @@
     <favorites_list name="untitled" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ventanaAutomata.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="335" column="9" selection-start-line="335" selection-start-column="9" selection-end-line="335" selection-end-column="9" />
-              <folding>
-                <element signature="e#18782#19449#2" expanded="false" />
-                <element signature="e#19681#20337#2" expanded="false" />
-                <element signature="e#20591#21200#2" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seleccioanarAutomatas.kt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Ventanas/seleccioanarAutomatas.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-154">
-              <caret line="301" column="52" selection-start-line="301" selection-start-column="52" selection-end-line="301" selection-end-column="52" />
-              <folding>
-                <element signature="e#22#404#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -102,18 +106,18 @@
         <option value="$PROJECT_DIR$/src/Regex/ExpresionRegular.kt" />
         <option value="$PROJECT_DIR$/src/Regex/Discretizer.kt" />
         <option value="$PROJECT_DIR$/src/Regex/FSAToRegularExpressionConverter.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt" />
         <option value="$PROJECT_DIR$/libs/org/unitec/regularexpresion/DFAMinimizator.java" />
         <option value="$PROJECT_DIR$/libs/org/unitec/sample/Principal.java" />
         <option value="$PROJECT_DIR$/src/Automatas/Minimizer.kt" />
         <option value="$PROJECT_DIR$/src/Automatas/Estado.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/Automata.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" />
-        <option value="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
-        <option value="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" />
-        <option value="$PROJECT_DIR$/src/Ventanas/ConfigurationForWindows.kt" />
         <option value="$PROJECT_DIR$/src/Ventanas/Principal.kt" />
         <option value="$PROJECT_DIR$/src/Ventanas/seleccioanarAutomatas.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/Automata.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/AutomataNFA.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt" />
+        <option value="$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt" />
+        <option value="$PROJECT_DIR$/src/Automatas/AutomataDFA.kt" />
+        <option value="$PROJECT_DIR$/src/Ventanas/ConfigurationForWindows.kt" />
       </list>
     </option>
   </component>
@@ -1064,12 +1068,12 @@
       <workItem from="1471709138088" duration="37567000" />
       <workItem from="1471993017655" duration="59000" />
       <workItem from="1472049445915" duration="24922000" />
-      <workItem from="1472402893958" duration="17130000" />
+      <workItem from="1472402893958" duration="19528000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315989000" />
+    <option name="totallyTimeSpent" value="318387000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1082,7 +1086,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.49734244" order="6" side_tool="false" content_ui="tabs" />
@@ -1091,12 +1095,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33554816" sideWeight="0.5132878" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33388704" sideWeight="0.48671222" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33388704" sideWeight="0.48671222" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270525" sideWeight="0.49734244" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15648855" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15648855" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1289,6 +1293,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1296,84 +1301,11 @@
     <entry file="file://$PROJECT_DIR$/libs/org/unitec/regularexpresion/DFAMinimizator.java" />
     <entry file="file://$PROJECT_DIR$/libs/org/unitec/sample/Principal.java" />
     <entry file="file://$PROJECT_DIR$/src/Automatas/Minimizer.kt" />
-    <entry file="file://$PROJECT_DIR$/src/Automatas/Automata.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="228" column="26" selection-start-line="228" selection-start-column="26" selection-end-line="228" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!block;n#agregarTransicion#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#agregarEstado#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#agregarEstadoAceptacion#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerEstadoPorVertice#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerEstadoPorNombre#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#ponerPosicionEstado#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#estadosEstanVacios#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#estadoInicialEstaVacio#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#estadosDeAceptacionEstanVacios#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#transicionesEstanVacias#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#crearAlfabeto#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#simbolosDeTransicionesEstanEnAlfabeto#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#dibujarAutomata#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#getVertexInGraph#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#toString#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#Limpiar#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerTransicionesSiguientes#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#getStateWithID#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#crearTodasLasTransicionesVacias#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#getTransitionsFromStateToState#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#getTransitionsFromState#0;n#!!block;n#Automata#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerEstados#0;n#!!block;n#Automata#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFA.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Automatas/Transicion.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#minimizar#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#transicionYaExiste#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#convertirAER#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#evaluar#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#terminarDeEvaluarCadena#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#clausura#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#verificarCadena#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#evaluar#1;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#transicionYaExiste#1;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#convertirADFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#convertirANFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerEstadosTransicionesNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#crearTransicionNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#agregarEstadosFinalesNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerEstado#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#siEsIgualAlgunEstadoNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#obtenerEstados#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#Unir#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-            <element signature="n#!!block;n#simbolosDeTransicionesEstanEnAlfabeto#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="233" column="5" selection-start-line="233" selection-start-column="5" selection-end-line="233" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1446,6 +1378,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1155">
           <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1462,37 +1395,143 @@
         <state relative-caret-position="-357">
           <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
           <folding>
-            <element signature="e#19#65#0" expanded="true" />
+            <element signature="e#19#65#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt">
+    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFAe.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="335" column="9" selection-start-line="335" selection-start-column="9" selection-end-line="335" selection-end-column="9" />
+        <state relative-caret-position="102">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
           <folding>
-            <element signature="e#18782#19449#2" expanded="false" />
-            <element signature="e#19681#20337#2" expanded="false" />
-            <element signature="e#20591#21200#2" expanded="false" />
+            <element signature="n#!!block;n#obtenerComplemento#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#minimizar#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#transicionYaExiste#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#convertirAER#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#evaluar#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#terminarDeEvaluarCadena#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#clausura#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#verificarCadena#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#evaluar#1;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#transicionYaExiste#1;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#convertirADFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#convertirANFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstadosTransicionesNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#crearTransicionNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#agregarEstadosFinalesNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstado#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#siEsIgualAlgunEstadoNFA#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstados#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#Unir#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+            <element signature="n#!!block;n#simbolosDeTransicionesEstanEnAlfabeto#0;n#!!block;n#AutomataNFAe#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataNFA.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#obtenerComplemento#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#minimizar#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#transicionYaExiste#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#convertirAER#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#convertirADFA#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstadosTransicionesDFA#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#siEsIgualAlgunEstadoDFA#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#agregarEstadosFinalesDFA#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstado#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#crearTransicionDFA#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#evaluar#0;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#evaluar#1;n#!!block;n#AutomataNFA#0" expanded="false" />
+            <element signature="n#!!block;n#transicionYaExiste#1;n#!!block;n#AutomataNFA#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ventanas/seleccioanarAutomatas.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3264">
+          <caret line="245" column="52" selection-start-line="245" selection-start-column="52" selection-end-line="245" selection-end-column="52" />
+          <folding>
+            <element signature="e#22#459#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ventanas/ConfigurationForWindows.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        <state relative-caret-position="421">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ventanas/seleccioanarAutomatas.kt">
+    <entry file="file://$PROJECT_DIR$/src/Automatas/AutomataDFA.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="301" column="52" selection-start-line="301" selection-start-column="52" selection-end-line="301" selection-end-column="52" />
+        <state relative-caret-position="1071">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
           <folding>
-            <element signature="e#22#404#0" expanded="true" />
+            <element signature="e#19#69#0" expanded="true" />
+            <element signature="n#!!block;n#minimizar#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#createMinimizedAutomaton#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#partition#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#split#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#SearchDestiny#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#initSets#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#ShearchSate#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#transicionYaExiste#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#convertirAER#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#convertirADFA#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#evaluar#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#evaluar#1;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerTransicionConSimbolo#0;n#!!block;n#AutomataDFA#0" expanded="false" />
+            <element signature="n#!!block;n#transicionYaExiste#1;n#!!block;n#AutomataDFA#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ventanas/ventanaAutomata.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="525" column="47" selection-start-line="525" selection-start-column="47" selection-end-line="525" selection-end-column="47" />
+          <folding>
+            <element signature="e#18987#19654#2" expanded="false" />
+            <element signature="e#19886#20542#2" expanded="false" />
+            <element signature="e#20796#21405#2" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Automatas/Automata.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="186" column="71" selection-start-line="186" selection-start-column="71" selection-end-line="186" selection-end-column="71" />
+          <folding>
+            <element signature="n#!!block;n#agregarTransicion#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#agregarEstado#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#agregarEstadoAceptacion#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstadoPorVertice#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstadoPorNombre#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#ponerPosicionEstado#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#estadosEstanVacios#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#estadoInicialEstaVacio#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#estadosDeAceptacionEstanVacios#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#transicionesEstanVacias#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#crearAlfabeto#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#simbolosDeTransicionesEstanEnAlfabeto#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#dibujarAutomata#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#getVertexInGraph#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#toString#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#Limpiar#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerTransicionesSiguientes#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#getStateWithID#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#crearTodasLasTransicionesVacias#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#getTransitionsFromStateToState#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#getTransitionsFromState#0;n#!!block;n#Automata#0" expanded="false" />
+            <element signature="n#!!block;n#obtenerEstados#0;n#!!block;n#Automata#0" expanded="false" />
           </folding>
         </state>
       </provider>

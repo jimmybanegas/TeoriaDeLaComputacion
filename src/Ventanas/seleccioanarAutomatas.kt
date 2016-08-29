@@ -13,6 +13,7 @@ import Automatas.Transicion
 import Ventanas.ConfigurationForWindows
 import Ventanas.ventanaAutomata
 import java.util.*
+import javax.swing.filechooser.FileNameExtensionFilter
 
 /**
  * Created by Jimmy Banegas on 28-Aug-16.
@@ -77,6 +78,10 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
     private fun seleccionar2(evt: ActionEvent) {
         val fc = JFileChooser()
         val returnVal =  fc.showOpenDialog(this@seleccioanarAutomatas)
+        val fileFilter = FileNameExtensionFilter("ser files (*.ser)", "ser")
+
+        fc.addChoosableFileFilter(fileFilter)
+
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             val file = fc.selectedFile
@@ -105,8 +110,12 @@ class seleccioanarAutomatas (operation : String) : JFrame() {
         val fc2 = JFileChooser()
         val returnVal =  fc2.showOpenDialog(this@seleccioanarAutomatas)
 
+        val fileFilter = FileNameExtensionFilter("ser files (*.ser)", "ser")
+
+        fc2.addChoosableFileFilter(fileFilter)
+
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            val file = fc2?.selectedFile
+            val file = fc2.selectedFile
             //This is where a real application would open the file.
             try {
                 println(file?.absolutePath)
