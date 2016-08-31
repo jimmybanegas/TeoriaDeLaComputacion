@@ -4,6 +4,7 @@ import Automatas.AutomataDFA
 import Automatas.AutomataNFA
 import Automatas.AutomataNFAe
 import Automatas.ExpresionRegular
+import src.Automatas.AutomataPDA
 import src.Ventanas.seleccioanarAutomatas
 import java.awt.Color
 import java.awt.event.ActionEvent
@@ -46,7 +47,8 @@ class Principal : JFrame(){
                                         "Automata Finito No Determinista (NFA)",
                                         "Automata Finito No Determinista Epsilon (NFAε)" ,
                                         "Expresion Regular a(NFA-e)",
-                                        "Union de automatas", "Interseccion de automatas", "Resta de automatas")
+                                        "Union de automatas", "Interseccion de automatas", "Resta de automatas",
+                                        "Automata de pila (PDA)")
 
         jComboBoxAutomata = JComboBox(AutomatonStrings)
 
@@ -138,6 +140,9 @@ class Principal : JFrame(){
                 6 -> {
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 6
                 }
+                7 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 7
+                }
                 else ->
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
             }
@@ -176,7 +181,6 @@ class Principal : JFrame(){
           //Este va a crear un automata NFA epsilon formado de la evaluación de la expresión regular
             var automataNFAe = AutomataNFAe()
 
-
             var expresion = JOptionPane.showInputDialog("Digite la expresión regular")
 
             if (expresion == null || expresion.isEmpty() ) {
@@ -199,6 +203,13 @@ class Principal : JFrame(){
         }else if (jComboBoxAutomata?.selectedIndex == 6) {
             frame = seleccioanarAutomatas("difference")
             ConfigurationForWindows.SetConfigurations(frame,"Diferencia de automatas")
+        }else if (jComboBoxAutomata?.selectedIndex == 7) {
+
+            //Este va a crear un automata DFA
+            val automataPDA = AutomataPDA()
+            frame = ventanaAutomata(automataPDA)
+
+            ConfigurationForWindows.SetConfigurations(frame, "Automata de Pila")
         }
 
         frame.addWindowListener(object : WindowAdapter() {

@@ -4,6 +4,7 @@ package Automatas
 import com.mxgraph.model.mxCell
 import com.mxgraph.util.mxConstants
 import com.mxgraph.view.mxGraph
+import src.Automatas.AutomataPDA
 import src.Regex.FSAToRegularExpressionConverter
 import java.io.Serializable
 import java.util.*
@@ -173,7 +174,11 @@ abstract class Automata : Serializable {
 
                 val vertex2 = getVertexInGraph(t.destino?.nombre,graph )
 
-                val edge = graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
+                var edge  = Any()
+                if(!(this is AutomataPDA))
+                     edge = graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
+                else
+                     edge = graph.insertEdge(parent, null, t.simboloS, vertex, vertex2)
 
                 if(t.arista == null){
                     t.arista = edge as Object
@@ -359,5 +364,6 @@ abstract class Automata : Serializable {
 
     abstract fun obtenerComplemento(): Automata
 
+    abstract fun transicionYaExiste(v1: Estado, v2: Estado, simbolo: String): Boolean
 }
 

@@ -7,6 +7,7 @@ import com.mxgraph.util.mxConstants
 import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
+import src.Automatas.AutomataPDA
 import src.Regex.FSAToRegularExpressionConverter
 import java.awt.Color
 import java.awt.Rectangle
@@ -74,6 +75,12 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             menubar.getMenu(2).getMenuComponent(2).isVisible = false
             menubar.getMenu(2).getMenuComponent(3).isVisible = false
         }
+        else if( automata is AutomataPDA){
+            menubar.getMenu(2).getMenuComponent(0).isVisible = false
+            menubar.getMenu(2).getMenuComponent(1).isVisible = false
+            menubar.getMenu(2).getMenuComponent(2).isVisible = false
+            menubar.getMenu(2).getMenuComponent(3).isVisible = false
+        }
     }
 
     fun initComponents() {
@@ -82,6 +89,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         jLabel1 = javax.swing.JLabel()
         jLabel3 = javax.swing.JLabel()
         jLabel4 = javax.swing.JLabel()
+
         jTextFieldAlfabeto = javax.swing.JTextField()
         (jTextFieldAlfabeto as JTextField).addKeyListener( object: KeyAdapter() {
             override fun keyReleased(event: KeyEvent) {
@@ -173,24 +181,42 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                     return@addListener
                 }
 
-                val simbolo = nombrarTransicion()
+                if(!(automata is AutomataPDA)){
+                    val simbolo = nombrarTransicion()
 
-                if (simbolo.toInt() == 0) {
-                    graph.model.remove(evt.getProperty("cell"))
-                    return@addListener
+                    if (simbolo.toInt() == 0) {
+                        graph.model.remove(evt.getProperty("cell"))
+                        return@addListener
+                    }
+
+                    val a = automata?.transicionYaExiste(v1 as Estado, v2, simbolo)
+
+                    if ((a as Boolean)) {
+                        ConfigurationForWindows.messageDialog(contentPane,"Ya existe transicion")
+                        graph.model.remove(evt.getProperty("cell"))
+                        return@addListener
+                    }
+                    val name = simbolo
+                    edge.value = name
+
+                    automata?.agregarTransicion(name,v1 as Estado, v2, edge)
+                }else{
+                    val simbolo = nombrarTransicionPda()
+
+                    val a = automata?.transicionYaExiste(v1 as Estado, v2, simbolo)
+
+                    if ((a as Boolean)) {
+                        ConfigurationForWindows.messageDialog(contentPane,"Ya existe transicion")
+                        graph.model.remove(evt.getProperty("cell"))
+                        return@addListener
+                    }
+
+                    val name = simbolo
+                    edge.value = name
+
+                    (automata as AutomataPDA).agregarTransicionPda(name,v1 as Estado, v2, edge)
+
                 }
-
-                var a = automata?.transicionYaExiste(v1 as Estado, v2, simbolo)
-
-                 if ((a as Boolean)) {
-                     ConfigurationForWindows.messageDialog(contentPane,"Ya existe transicion")
-                     graph.model.remove(evt.getProperty("cell"))
-                     return@addListener
-                 }
-                val name = simbolo
-                edge.value = name
-
-                automata?.agregarTransicion(name,v1 as Estado, v2, edge)
 
         }
 
@@ -295,13 +321,32 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                                 .addComponent(jLabel1)
                                 .addComponent(jTextFieldAlfabeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldCadena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2).addComponent(jButtonEvaluarAutomata))
+                                .addComponent(jLabel2)
+                                .addComponent(jButtonEvaluarAutomata))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel3)
                                 .addComponent(graphComponent, 500, javax.swing.GroupLayout.DEFAULT_SIZE, java.lang.Short.MAX_VALUE.toInt())))
     }
 
+    private fun nombrarTransicionPda(): String {
+        var nombre = ""
+        while (true) {
+            val name = JOptionPane.showInputDialog("Simbolo / nombre:")
+            if (name == null || name.isEmpty()) {
+                ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
+                break
+            }
+            val na = name.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (na.size != 3) {
+                ConfigurationForWindows.messageDialog(contentPane,"Ingresar caracter a consumir, pila a consumir, pila a agregar\nEjemplo: 0,z0,0z0")
+            } else if (na.size == 3) {
+                nombre = name
+                break
+            }
+        }
+        return nombre
+    }
 
     private fun createMenuBar() {
         menubar = JMenuBar()
@@ -569,7 +614,7 @@ private fun evaluarCadena(e: ActionEvent) {
           ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
           return
       }
-        if(automata is AutomataDFA || automata is AutomataNFAe){
+        if(automata is AutomataDFA || automata is AutomataNFAe || automata is AutomataPDA){
             if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
                 JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
                 return;

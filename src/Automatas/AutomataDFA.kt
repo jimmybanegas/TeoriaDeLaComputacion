@@ -6,6 +6,10 @@ import java.util.*
 /**Created by Jimmy Banegas on 19-Jul-16.
  */
 class AutomataDFA : Automata() {
+    override fun transicionYaExiste(v1: Estado, v2: Estado, simbolo: String): Boolean {
+        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun obtenerComplemento(): Automata {
         val result = AutomataDFA()
 
