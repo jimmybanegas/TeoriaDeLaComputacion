@@ -65,6 +65,9 @@ class AutomataPDA : Automata(), Serializable {
             if (!(verificarCadena(evaluar)))
                 return false
         }
+
+      //  println(stack.)
+
         var finales: ArrayList<Estado> = ArrayList()
         finales.add(estadoInicial)
         finales = terminarDeEvaluarCadena(finales, evaluar, 0)

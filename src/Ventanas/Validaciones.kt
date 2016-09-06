@@ -2,8 +2,8 @@ package Ventanas
 
 import Automatas.Automata
 import Automatas.Estado
-import Automatas.Transicion
 import com.mxgraph.view.mxGraph
+import src.Automatas.AutomataPDA
 
 /**
  * Created by Affisa-Jimmy on 22/7/2016.
@@ -18,7 +18,7 @@ open class Validaciones {
             if(automata.estadoInicialEstaVacio()){
                 return "Estado inicial vacio"
             }
-            if(automata.estadosDeAceptacionEstanVacios()){
+            if(!(automata is AutomataPDA) && automata.estadosDeAceptacionEstanVacios()){
                 return "No hay ningún estado de aceptacion"
             }
             if(automata.transicionesEstanVacias()){

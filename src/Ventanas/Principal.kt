@@ -48,7 +48,8 @@ class Principal : JFrame(){
                                         "Automata Finito No Determinista Epsilon (NFAε)" ,
                                         "Expresion Regular a(NFA-e)",
                                         "Union de automatas", "Interseccion de automatas", "Resta de automatas",
-                                        "Automata de pila (PDA)")
+                                        "Automata de pila (PDA)",
+                                        "Gramatica a PDA","Maquina de Turing")
 
         jComboBoxAutomata = JComboBox(AutomatonStrings)
 
@@ -143,6 +144,12 @@ class Principal : JFrame(){
                 7 -> {
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 7
                 }
+                8 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 8
+                }
+                9 -> {
+                    (jComboBoxAutomata as JComboBox<*>).selectedIndex = 9
+                }
                 else ->
                     (jComboBoxAutomata as JComboBox<*>).selectedIndex = 0
             }
@@ -181,7 +188,7 @@ class Principal : JFrame(){
           //Este va a crear un automata NFA epsilon formado de la evaluación de la expresión regular
             var automataNFAe = AutomataNFAe()
 
-            var expresion = JOptionPane.showInputDialog("Digite la expresión regular")
+            val expresion = JOptionPane.showInputDialog("Digite la expresión regular")
 
             if (expresion == null || expresion.isEmpty() ) {
                 ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
@@ -204,12 +211,18 @@ class Principal : JFrame(){
             frame = seleccioanarAutomatas("difference")
             ConfigurationForWindows.SetConfigurations(frame,"Diferencia de automatas")
         }else if (jComboBoxAutomata?.selectedIndex == 7) {
-
-            //Este va a crear un automata DFA
+            //Este va a crear un automata PDA
             val automataPDA = AutomataPDA()
             frame = ventanaAutomata(automataPDA)
 
             ConfigurationForWindows.SetConfigurations(frame, "Automata de Pila")
+        }else if (jComboBoxAutomata?.selectedIndex == 8){
+           //Gramatica a PDA
+
+
+        }else if(jComboBoxAutomata?.selectedIndex == 9){
+            //Maquina de turing
+
         }
 
         frame.addWindowListener(object : WindowAdapter() {
