@@ -30,10 +30,11 @@ class Transicion : Serializable {
     }
 
     override fun toString():String {
-       return " \nOrigen: " +this.origen.toString() +"\r\n"+
-               " Destino: "+ this.destino.toString()+ "\r\n"+
-               " Arista :"+this.arista +"\r\n"+
-               " Simbolo: "+ this.simbolo
+       return " \nOrigen: " +this.origen.toString() +"\r"+
+               " Destino: "+ this.destino.toString()+ "\r"+
+               " Arista :"+this.arista +"\r"+
+               " Simbolo: "+ this.simbolo+"\r"+
+               " Simbolos: "+ this.simboloS+"\r"
     }
 
     constructor()

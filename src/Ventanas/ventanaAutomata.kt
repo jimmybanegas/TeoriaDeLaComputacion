@@ -49,6 +49,9 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
         println(automata)
 
+        for(tran in automata.transiciones)
+            println(tran)
+
         if(!automata.estadosEstanVacios()){
             automata.dibujarAutomata(this.graph)
             contadorEstados = automata.estados.size

@@ -56,9 +56,16 @@ class AutomataPDA : Automata(), Serializable {
 
     override fun evaluar(cadena: String): Boolean {
 
+
+
         this.simboloInicial = "z0"
         this.simboloActualDePila = "z0"
         stack?.push(simboloActualDePila)
+
+        println(this)
+
+        for (tran in transiciones)
+            println(tran)
 
         val evaluar = cadena.toCharArray()
         if (!cadena.isEmpty()) {

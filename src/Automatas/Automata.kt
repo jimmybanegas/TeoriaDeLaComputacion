@@ -207,6 +207,7 @@ abstract class Automata : Serializable {
                 ("Tamaño transiciones : "+ transiciones.size)+ "\n"+
                 ("Tamaño alfabeto : "+ alfabeto.size)+ "\n"+
                 ("Inicial : "+ estadoInicial.nombre)+ "\n")
+
     }
 
     open fun Limpiar(){
@@ -355,7 +356,7 @@ abstract class Automata : Serializable {
 
     fun obtenerEstados(): Array<Estado> {
         //if (cachedStates == null) {
-            var cachedStates = estados.toTypedArray()
+            val cachedStates = estados.toTypedArray()
 
         return cachedStates
     }
