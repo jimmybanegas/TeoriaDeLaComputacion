@@ -5,6 +5,7 @@ import Automatas.AutomataNFA
 import Automatas.AutomataNFAe
 import Automatas.ExpresionRegular
 import src.Automatas.AutomataPDA
+import src.Gramatica.Gramatica
 import src.Ventanas.seleccioanarAutomatas
 import java.awt.Color
 import java.awt.event.ActionEvent
@@ -219,6 +220,21 @@ class Principal : JFrame(){
         }else if (jComboBoxAutomata?.selectedIndex == 8){
            //Gramatica a PDA
 
+            var automataPda = AutomataPDA()
+            val expresion = JOptionPane.showInputDialog("Digite la gramatoca regular en el formato:" +
+                    "E:E+T,T...T:T*F,F...F:D,(E)...D:0,1,2,3,4,5,6,7,8,9")
+
+            if (expresion == null || expresion.isEmpty() ) {
+                ConfigurationForWindows.messageDialog(contentPane,"Cancelado")
+                return
+            }else{
+                automataPda = Gramatica.gramaticaAPda(expresion)
+            }
+
+            if(!automataPda.estadosEstanVacios()){
+                frame = ventanaAutomata(automataPda)
+                ConfigurationForWindows.SetConfigurations(frame,"Gramatica a PDA")
+            }
 
         }else if(jComboBoxAutomata?.selectedIndex == 9){
             //Maquina de turing

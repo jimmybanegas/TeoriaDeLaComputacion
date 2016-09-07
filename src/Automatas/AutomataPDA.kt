@@ -135,9 +135,9 @@ class AutomataPDA : Automata(), Serializable {
                         stack?.push(simboloInicial)
                         if (!sub.isEmpty()) {
                             for (j in sub.length - 1 downTo 0) {
-                                stack?.push(sub.get(j).toString())
+                                stack?.push(sub[j].toString())
                             }
-                            simboloActualDePila = sub.get(0).toString()
+                            simboloActualDePila = sub[0].toString()
                         } else {
                             simboloActualDePila = stack?.pop()
                             stack?.push(simboloActualDePila)
@@ -146,9 +146,9 @@ class AutomataPDA : Automata(), Serializable {
                     } else {
                         if (t[2] != "ε") {
                             for (j in t[2].length - 1 downTo 0) {
-                                stack?.push(t[2].get(j).toString())
+                                stack?.push(t[2][j].toString())
                             }
-                            simboloActualDePila = t[2].get(0).toString()
+                            simboloActualDePila = t[2][0].toString()
                         } else {
                             simboloActualDePila = stack?.pop()
                             stack?.push(simboloActualDePila)
