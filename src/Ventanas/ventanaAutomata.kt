@@ -8,6 +8,7 @@ import com.mxgraph.util.mxEvent
 import com.mxgraph.util.mxEventObject
 import com.mxgraph.view.mxGraph
 import src.Automatas.AutomataPDA
+import src.Automatas.MaquinaTuring
 import src.Regex.FSAToRegularExpressionConverter
 import java.awt.Color
 import java.awt.Rectangle
@@ -67,7 +68,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             menubar.getMenu(2).getMenuComponent(2).isVisible = true
             menubar.getMenu(2).getMenuComponent(3).isVisible = true
         }else if(automata is AutomataNFAe){
-            //  menubar.getComponent(2).isEnabled = false
             menubar.getMenu(2).getMenuComponent(0).isVisible = true
             menubar.getMenu(2).getMenuComponent(1).isVisible = false
             menubar.getMenu(2).getMenuComponent(2).isVisible = false
@@ -119,12 +119,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
 
         (jTextFieldCadena as JTextField).addKeyListener( object: KeyAdapter() {
             override fun keyReleased(event: KeyEvent) {
-                /*val content = (jTextFieldCadena as JTextField).text
-                if (content != "") {
-                    jButtonEvaluarAutomata?.isEnabled = true
-                } else {
-                    jButtonEvaluarAutomata?.isEnabled = false
-                }*/
+
             }
         })
 
@@ -184,7 +179,7 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                     return@addListener
                 }
 
-                if(!(automata is AutomataPDA)){
+                if(!(automata is AutomataPDA || automata is MaquinaTuring)){
                     val simbolo = nombrarTransicion()
 
                     if (simbolo.toInt() == 0) {
@@ -217,7 +212,10 @@ class ventanaAutomata(automata: Automata) : JFrame() {
                     val name = simbolo
                     edge.value = name
 
-                    (automata as AutomataPDA).agregarTransicionPda(name,v1 as Estado, v2, edge)
+                   if(automata is AutomataPDA)
+                       (automata as AutomataPDA).agregarTransicionPda(name,v1 as Estado, v2, edge)
+                   else if(automata is MaquinaTuring)
+                       (automata as MaquinaTuring).agregarTransicionPda(name,v1 as Estado, v2, edge)
 
                 }
 
@@ -342,7 +340,12 @@ class ventanaAutomata(automata: Automata) : JFrame() {
             }
             val na = name.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (na.size != 3) {
-                ConfigurationForWindows.messageDialog(contentPane,"Ingresar caracter a consumir, pila a consumir, pila a agregar\nEjemplo: 0,z0,0z0")
+                if(automata is AutomataPDA)
+                    ConfigurationForWindows.messageDialog(contentPane,"Ingresar caracter a consumir, pila a consumir, pila a agregar\n" +
+                            "Ejemplo: 0,z0,0z0")
+                else if(automata is MaquinaTuring)
+                    ConfigurationForWindows.messageDialog(contentPane,"ingresar caracter a consumir, caracter que sustituye valor de cinta, direccion en cinta (R:derecha; L:Izquierda\n" +
+                            "Ejemplo: 0,X,D")
             } else if (na.size == 3) {
                 nombre = name
                 break
@@ -488,21 +491,11 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         convertirADFAMenuItem.mnemonic = KeyEvent.VK_T
         convertirADFAMenuItem.toolTipText = "Convertir a DFA"
         convertirADFAMenuItem.addActionListener {
-            /*graph.model.beginUpdate()
-            graph.removeCells(graph.getChildVertices(graph.getDefaultParent()));
-            graph.model.endUpdate()*/
 
             val nuevo = automata?.convertirADFA()
 
             println(" nuevo resultado"+ nuevo)
 
-           // automata?.Limpiar()
-
-           // this.automata = nuevo
-
-          //  this.contadorEstados = 0
-
-           // automata?.dibujarAutomata(graph)
             val frame = nuevo?.let { it1 -> ventanaAutomata(it1) }
 
             ConfigurationForWindows.SetConfigurations(frame!!, "Automata Finito Determinístico")
@@ -516,8 +509,6 @@ class ventanaAutomata(automata: Automata) : JFrame() {
         convertirAExpresionMenuItem.mnemonic = KeyEvent.VK_E
         convertirAExpresionMenuItem.toolTipText = "Convertir a ER"
         convertirAExpresionMenuItem.addActionListener {
-
-            //  val expresionRegular = automata?.convertirAER()
 
             val expresionRegular = FSAToRegularExpressionConverter.convertToRegularExpression(automata!!)?.replace("λ","")
 
@@ -617,7 +608,7 @@ private fun evaluarCadena(e: ActionEvent) {
           ConfigurationForWindows.messageDialog(contentPane,"Los símbolos no están en el alfabeto");
           return
       }
-        if(automata is AutomataDFA || automata is AutomataNFAe || automata is AutomataPDA){
+        if(automata is AutomataDFA || automata is AutomataNFAe || automata is AutomataPDA || automata is MaquinaTuring){
             if(automata?.evaluar(jTextFieldCadena?.text.toString()) as Boolean){
                 JOptionPane.showMessageDialog(contentPane,"Se acepta la cadena", "Success",JOptionPane.INFORMATION_MESSAGE);
                 return;

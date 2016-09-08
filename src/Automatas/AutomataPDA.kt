@@ -26,7 +26,6 @@ class AutomataPDA : Automata(), Serializable {
     }
 
     override fun transicionYaExiste(v1: Estado, v2: Estado, simbolo: String): Boolean {
-        //throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         for (transicion in transicionesItems) {
             if(transicion.origen?.nombre.equals(v1.nombre) &&transicion.simboloS.equals(simbolo) )
                 return true

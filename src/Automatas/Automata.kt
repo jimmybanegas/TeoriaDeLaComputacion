@@ -5,6 +5,7 @@ import com.mxgraph.model.mxCell
 import com.mxgraph.util.mxConstants
 import com.mxgraph.view.mxGraph
 import src.Automatas.AutomataPDA
+import src.Automatas.MaquinaTuring
 import src.Regex.FSAToRegularExpressionConverter
 import java.io.Serializable
 import java.util.*
@@ -175,7 +176,7 @@ abstract class Automata : Serializable {
                 val vertex2 = getVertexInGraph(t.destino?.nombre,graph )
 
                 var edge  = Any()
-                if(!(this is AutomataPDA))
+                if(this !is AutomataPDA || this !is MaquinaTuring)
                      edge = graph.insertEdge(parent, null, t.simbolo, vertex, vertex2)
                 else
                      edge = graph.insertEdge(parent, null, t.simboloS, vertex, vertex2)

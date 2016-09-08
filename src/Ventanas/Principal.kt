@@ -5,6 +5,7 @@ import Automatas.AutomataNFA
 import Automatas.AutomataNFAe
 import Automatas.ExpresionRegular
 import src.Automatas.AutomataPDA
+import src.Automatas.MaquinaTuring
 import src.Gramatica.Gramatica
 import src.Ventanas.seleccioanarAutomatas
 import java.awt.Color
@@ -219,9 +220,8 @@ class Principal : JFrame(){
             ConfigurationForWindows.SetConfigurations(frame, "Automata de Pila")
         }else if (jComboBoxAutomata?.selectedIndex == 8){
            //Gramatica a PDA
-
             var automataPda = AutomataPDA()
-            val expresion = JOptionPane.showInputDialog("Digite la gramatoca regular en el formato:" +
+            val expresion = JOptionPane.showInputDialog("Digite la gramatoca regular en el formato: \r\n" +
                     "E:E+T,T...T:T*F,F...F:D,(E)...D:0,1,2,3,4,5,6,7,8,9")
 
             if (expresion == null || expresion.isEmpty() ) {
@@ -238,7 +238,10 @@ class Principal : JFrame(){
 
         }else if(jComboBoxAutomata?.selectedIndex == 9){
             //Maquina de turing
+            val maquina = MaquinaTuring()
+            frame = ventanaAutomata(maquina)
 
+            ConfigurationForWindows.SetConfigurations(frame, "Maquina de Turing")
         }
 
         frame.addWindowListener(object : WindowAdapter() {
