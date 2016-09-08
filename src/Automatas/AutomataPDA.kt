@@ -15,7 +15,7 @@ class AutomataPDA : Automata(), Serializable {
 
     var simboloInicial: String? = "z0"
     var simboloActualDePila: String? = "z0"
-    var stack: Stack<String>? = Stack()
+    var stack: Stack<String> = Stack()
 
     override fun transicionYaExiste(v1: Estado, v2: Estado, simbolo: Char): Boolean {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -56,11 +56,10 @@ class AutomataPDA : Automata(), Serializable {
 
     override fun evaluar(cadena: String): Boolean {
 
-
-
+       // this.stack.clear()
         this.simboloInicial = "z0"
         this.simboloActualDePila = "z0"
-        stack?.push(simboloActualDePila)
+        stack.push(simboloActualDePila)
 
         println(this)
 
@@ -101,27 +100,27 @@ class AutomataPDA : Automata(), Serializable {
                 val t = transicion.simboloS.split(",")
                 if (t[0] == evaluar[pos].toString() && t[1] == simboloActualDePila
                         && transicion.origen?.nombre.equals(estado.nombre)) {
-                    stack?.pop()
+                    stack.pop()
                     if (t[2].contains(simboloInicial.toString())) {
                         val sub = t[2].replace(simboloInicial.toString(), "")
-                        stack?.push(simboloInicial)
+                        stack.push(simboloInicial)
                         if (!sub.isEmpty())
                             for (j in sub.length - 1 downTo 0) {
-                                stack?.push(sub.get(j).toString())
+                                stack.push(sub.get(j).toString())
                             }
                         nuevoFinales.add(transicion.destino as Estado)
                     } else {
                         if (t[2] != "ε") {
                             for (j in t[2].length - 1 downTo 0) {
-                                stack?.push(t[2].get(j).toString())
+                                stack.push(t[2].get(j).toString())
                             }
                         }
                         nuevoFinales.add(transicion.destino as Estado)
                     }
                 }
             }
-            simboloActualDePila = stack?.pop()
-            stack?.push(simboloActualDePila)
+            simboloActualDePila = stack.pop()
+            stack.push(simboloActualDePila)
         }
         return terminarDeEvaluarCadena(nuevoFinales, evaluar, pos + 1)
     }
@@ -136,29 +135,29 @@ class AutomataPDA : Automata(), Serializable {
                 val t = transicion.simboloS.split(",")
                 if (t[0] == "ε" && t[1] == simboloActualDePila
                         && transicion.origen?.nombre.equals(estado.nombre)) {
-                    stack?.pop()
+                    stack.pop()
                     if (t[2].contains(simboloInicial.toString())) {
                         val sub = t[2].replace(simboloInicial.toString(), "")
-                        stack?.push(simboloInicial)
+                        stack.push(simboloInicial)
                         if (!sub.isEmpty()) {
                             for (j in sub.length - 1 downTo 0) {
-                                stack?.push(sub[j].toString())
+                                stack.push(sub[j].toString())
                             }
                             simboloActualDePila = sub[0].toString()
                         } else {
-                            simboloActualDePila = stack?.pop()
-                            stack?.push(simboloActualDePila)
+                            simboloActualDePila = stack.pop()
+                            stack.push(simboloActualDePila)
                         }
                         nuevoFinales.add(transicion.destino as Estado)
                     } else {
                         if (t[2] != "ε") {
                             for (j in t[2].length - 1 downTo 0) {
-                                stack?.push(t[2][j].toString())
+                                stack.push(t[2][j].toString())
                             }
                             simboloActualDePila = t[2][0].toString()
                         } else {
-                            simboloActualDePila = stack?.pop()
-                            stack?.push(simboloActualDePila)
+                            simboloActualDePila = stack.pop()
+                            stack.push(simboloActualDePila)
                         }
                         nuevoFinales.add(transicion.destino as Estado)
                     }

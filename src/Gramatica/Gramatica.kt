@@ -2,6 +2,7 @@ package src.Gramatica
 
 import Automatas.Estado
 import Automatas.Transicion
+import com.mxgraph.model.mxCell
 import src.Automatas.AutomataPDA
 
 /**
@@ -12,7 +13,7 @@ open class Gramatica {
         fun gramaticaAPda (gramatica :String) : AutomataPDA{
             val automataPda = AutomataPDA()
 
-            val inicial = Estado("qo")
+            val inicial = Estado("q0")
             val segundo = Estado("q1")
             val tercero = Estado("q2")
 
@@ -38,19 +39,13 @@ open class Gramatica {
                 for(pr in (elem.split(":")[1].split(",")))
                     producciones.add(pr)
 
-            val producciones2 = mutableListOf<String>()
-            for (elem in alphabet)
-                  producciones2.add(elem.split(":")[1])
-
             val terminales = mutableListOf<String>()
             for (produccion in producciones){
-
                 val charpr= produccion.toCharArray()
                 for (chara in charpr){
                     if(!notTerminales.contains(chara.toString()))
                           terminales.add(chara.toString())
                 }
-
                 terminales.distinct()
             }
 
@@ -62,9 +57,6 @@ open class Gramatica {
             for (prod in producciones)
                 println(prod)
 
-            println("PRODUCCIONES2")
-            for (prod in producciones2)
-                println(prod)
 
             println("TERMINALES")
             for (no in terminales.distinct())
@@ -89,13 +81,27 @@ open class Gramatica {
             val axioma = notTerminales[0]
 
             val simbolo = "ε,z0,"+axioma.toString()+"z0"
-            val transicion1 = Transicion(inicial,segundo,simbolo)
-            val transicion2 = Transicion(segundo,tercero,"ε,z0,ε")
+          //  val transicion1 = Transicion(inicial,segundo,simbolo)
+
+            val simbolo2 = "ε,z0,ε"
+            //val transicion2 = Transicion(segundo,tercero,"ε,z0,ε")
 
           //  newDelta = "delta(q1,E,Z)=(q2,Z)"
 
-            automataPda.transiciones.add(transicion1)
-            automataPda.transiciones.add(transicion2)
+            val arista = mxCell()
+
+            automataPda.agregarTransicionPda(simbolo,inicial,segundo,arista)
+            automataPda.agregarTransicionPda(simbolo2,segundo,tercero,arista)
+
+            for (terminal in terminales.distinct()){
+                if(terminal!="ε"){
+                    val simbolos = terminal.toString()+","+terminal.toString()+",ε"
+                    //  val transicion = Transicion(segundo,segundo,simbolos)
+                    if(!automataPda.transicionYaExiste(segundo,segundo,simbolos))
+                        automataPda.agregarTransicionPda(simbolos,segundo,segundo,arista)
+                    //  automataPda.transiciones.add(transicion)
+                }
+            }
 
             //PDA.globalDeltas.add(newDelta)
             for(i  in 0..(alphabet.size-1)){
@@ -114,10 +120,13 @@ open class Gramatica {
 
 
                     for (elem in rest){
-                        val simb = "ε,"+ax.toString()+","+elem.toString()
+                        if(ax!= "ε" ) {
 
-                        val transicion = Transicion(segundo,segundo,simb)
-                        automataPda.transiciones.add(transicion)
+                            val simb = "ε,"+ax.toString()+","+elem.toString()
+
+                            //val transicion = Transicion(segundo,segundo,simb)
+                            automataPda.agregarTransicionPda(simb,segundo,segundo,arista)
+                        }
                     }
 
                // }
@@ -129,12 +138,7 @@ open class Gramatica {
 
               //  PDA.globalDeltas.add(newDelta)
             }
-            for (terminal in terminales){
-                val simbolos = terminal.toString()+","+terminal.toString()+",ε"
-                val transicion = Transicion(segundo,segundo,simbolos)
-                if(!automataPda.transicionYaExiste(segundo,segundo,simbolos))
-                    automataPda.transiciones.add(transicion)
-            }
+
           /*  for(i in 0..(g.terminals.size-1)){
                 newDelta = "delta(q1,"+g.terminals.get(i)+","+g.terminals.get(i)+")=(q1,E)"
                 PDA.globalDeltas.add(newDelta)
